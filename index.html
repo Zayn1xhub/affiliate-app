@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>ZAYN1x Affiliate | Official 1XBET Partner</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
@@ -12,8 +12,8 @@
         body { background-color: #0f172a; color: white; overflow-x: hidden; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
         .hero-gradient { background: radial-gradient(circle at top right, #1e3a8a, #0f172a); }
         .glass { background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.1); }
-        input[type='range'] { -webkit-appearance: none; background: #1e293b; border-radius: 10px; height: 6px; }
-        input[type='range']::-webkit-slider-thumb { -webkit-appearance: none; width: 20px; height: 20px; background: #3b82f6; border-radius: 50%; cursor: pointer; border: 2px solid white; }
+        input[type='range'] { -webkit-appearance: none; background: #1e293b; border-radius: 10px; height: 6px; width: 100%; }
+        input[type='range']::-webkit-slider-thumb { -webkit-appearance: none; width: 22px; height: 22px; background: #3b82f6; border-radius: 50%; cursor: pointer; border: 2px solid white; box-shadow: 0 0 10px rgba(59, 130, 246, 0.5); }
     </style>
 </head>
 <body class="antialiased">
@@ -24,7 +24,7 @@
             <div class="text-xl font-black tracking-tighter"><span class="text-blue-500">ZAYN1x</span></div>
         </div>
         <div id="userBadge" class="hidden flex items-center space-x-2 bg-blue-500/10 px-3 py-1 rounded-full border border-blue-500/20">
-            <span id="topBarName" class="text-[10px] font-bold text-blue-400 uppercase tracking-tighter">Partner</span>
+            <span id="topBarName" class="text-[10px] font-bold text-blue-400 uppercase tracking-tighter italic">Partner</span>
         </div>
     </nav>
 
@@ -33,15 +33,15 @@
             Partner with 1XBET
         </h1>
         <div class="flex flex-wrap justify-center gap-2 mb-6">
-            <span class="bg-blue-600 px-3 py-1 rounded-md text-[10px] font-bold uppercase tracking-wider">Up to 40% RevShare</span>
-            <span class="bg-indigo-600 px-3 py-1 rounded-md text-[10px] font-bold uppercase tracking-wider">Hybrid System (CPA + RS)</span>
-            <span class="bg-emerald-600 px-3 py-1 rounded-md text-[10px] font-bold uppercase tracking-wider">Weekly Payouts</span>
+            <span class="bg-blue-600 px-3 py-1 rounded-md text-[9px] font-bold uppercase tracking-wider">Up to 40% RevShare</span>
+            <span class="bg-indigo-600 px-3 py-1 rounded-md text-[9px] font-bold uppercase tracking-wider">Hybrid (CPA + RS)</span>
+            <span class="bg-emerald-600 px-3 py-1 rounded-md text-[9px] font-bold uppercase tracking-wider">Weekly Payouts</span>
         </div>
     </section>
 
     <section class="py-4 px-6">
         <div class="glass p-6 rounded-3xl shadow-2xl border-t border-white/10">
-            <h3 class="text-sm font-bold mb-6 flex items-center text-blue-300 uppercase tracking-widest">
+            <h3 class="text-xs font-bold mb-6 flex items-center text-blue-300 uppercase tracking-widest">
                 <span class="mr-2 italic font-black">01.</span> Profit Estimator
             </h3>
             <div class="space-y-8">
@@ -50,184 +50,168 @@
                         <label class="text-[10px] font-bold text-gray-400 uppercase">Company Revenue</label>
                         <span class="text-white font-mono font-bold">$<span id="revenueVal">5,000</span></span>
                     </div>
-                    <input type="range" id="revenueSlider" min="0" max="100000" step="5" value="5000" class="w-full">
+                    <input type="range" id="revenueSlider" min="0" max="100000" step="500" value="5000">
                 </div>
                 <div>
                     <div class="flex justify-between mb-2">
                         <label class="text-[10px] font-bold text-gray-400 uppercase">Comm. Rate</label>
                         <span class="text-blue-400 font-mono font-bold"><span id="rateVal">25</span>%</span>
                     </div>
-                    <input type="range" id="rateSlider" min="25" max="40" step="5" value="25" class="w-full">
+                    <input type="range" id="rateSlider" min="25" max="40" step="5" value="25">
                 </div>
-                <div class="bg-blue-600/10 p-5 rounded-2xl border border-blue-500/20 text-center">
-                    <p class="text-[9px] text-blue-300 uppercase font-black tracking-widest mb-1 text-balance">Your Commission</p>
+                <div class="bg-blue-600/10 p-5 rounded-2xl border border-blue-500/20 text-center shadow-inner">
+                    <p class="text-[9px] text-blue-300 uppercase font-black tracking-widest mb-1">Estimated Commission</p>
                     <span id="payoutDisplay" class="text-4xl font-black text-white">$1,250</span>
-                    <p class="text-[9px] text-gray-500 mt-2">*Calculated based on Revenue Share model</p>
                 </div>
             </div>
         </div>
     </section>
 
     <section class="py-8 px-8">
-        <h3 class="text-xs font-bold mb-6 text-gray-500 uppercase tracking-[0.2em]">Partner Roadmap</h3>
+        <h3 class="text-[10px] font-bold mb-6 text-gray-500 uppercase tracking-[0.2em]">Partner Roadmap</h3>
         <div class="space-y-6 relative">
             <div class="absolute left-4 top-0 bottom-0 w-[1px] bg-blue-500/20"></div>
             <div class="flex items-start space-x-6 relative">
                 <div class="bg-blue-600 text-white w-8 h-8 rounded-xl flex items-center justify-center font-bold shadow-lg z-10">1</div>
                 <div>
                     <h5 class="font-bold text-sm">Register & Apply</h5>
-                    <p class="text-[11px] text-gray-400">Fill out your region's form below.</p>
+                    <p class="text-[11px] text-gray-400">Choose your regional form below.</p>
                 </div>
             </div>
             <div class="flex items-start space-x-6 relative">
-                <div class="bg-emerald-500 text-white w-8 h-8 rounded-xl flex items-center justify-center font-bold shadow-lg z-10">2</div>
+                <div class="bg-indigo-500 text-white w-8 h-8 rounded-xl flex items-center justify-center font-bold shadow-lg z-10">2</div>
                 <div>
                     <h5 class="font-bold text-sm">Verification</h5>
-                    <p class="text-[11px] text-gray-400">Review of your traffic source by Zayn.</p>
+                    <p class="text-[11px] text-gray-400">Fast review by Zayn's team.</p>
                 </div>
             </div>
             <div class="flex items-start space-x-6 relative">
-                <div class="bg-green-600 text-white w-8 h-8 rounded-xl flex items-center justify-center font-bold shadow-lg z-10">3</div>
+                <div class="bg-emerald-500 text-white w-8 h-8 rounded-xl flex items-center justify-center font-bold shadow-lg z-10">3</div>
                 <div>
-                    <h5 class="font-bold text-sm">Weekly Payouts</h5>
-                    <p class="text-[11px] text-gray-400">Get paid every Tuesday automatically.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="py-4 px-6">
-        <div class="glass p-5 rounded-3xl border border-white/5 shadow-inner">
-            <h4 class="text-[10px] font-black text-blue-400 uppercase tracking-widest mb-4">Official Earnings Dashboard</h4>
-            <div class="rounded-2xl overflow-hidden border border-white/10 shadow-2xl">
-                <img src="assets/proof.png" alt="Payout Proof" class="w-full grayscale hover:grayscale-0 transition-all duration-700" onerror="this.style.display='none'">
-                <div class="p-3 bg-white/5 text-[10px] text-gray-400 italic text-center">
-                    Transparency is our priority. Weekly auto-payouts verified.
+                    <h5 class="font-bold text-sm">Start Earning</h5>
+                    <p class="text-[11px] text-gray-400">Weekly payouts every Tuesday.</p>
                 </div>
             </div>
         </div>
     </section>
 
     <section id="apply-section" class="py-10 px-6">
-        <h3 class="text-xl font-black mb-8 text-center italic">SELECT REGION</h3>
+        <h3 class="text-xl font-black mb-8 text-center italic tracking-tight uppercase">Select Region</h3>
         <div class="grid grid-cols-2 gap-4">
-            <button onclick="openForm('EN')" class="glass p-6 rounded-2xl flex flex-col items-center border-b-4 border-b-blue-600 active:scale-90 transition-all">
-                <span class="text-4xl mb-2">🌍</span><span class="text-xs font-black uppercase">English</span>
+            <button onclick="openForm('EN')" class="glass p-6 rounded-2xl flex flex-col items-center border-b-4 border-b-blue-600 active:scale-95 transition-transform">
+                <span class="text-4xl mb-2">🌍</span><span class="text-[10px] font-black uppercase">English</span>
             </button>
-            <button onclick="openForm('HI')" class="glass p-6 rounded-2xl flex flex-col items-center border-b-4 border-b-orange-600 active:scale-90 transition-all">
-                <span class="text-4xl mb-2">🇮🇳</span><span class="text-xs font-black uppercase">हिन्दी</span>
+            <button onclick="openForm('HI')" class="glass p-6 rounded-2xl flex flex-col items-center border-b-4 border-b-orange-600 active:scale-95 transition-transform">
+                <span class="text-4xl mb-2">🇮🇳</span><span class="text-[10px] font-black uppercase">हिन्दी</span>
             </button>
-            <button onclick="openForm('AR')" class="glass p-6 rounded-2xl flex flex-col items-center border-b-4 border-b-emerald-600 active:scale-90 transition-all">
-                <span class="text-4xl mb-2">🇦🇪</span><span class="text-xs font-black uppercase">العربية</span>
+            <button onclick="openForm('AR')" class="glass p-6 rounded-2xl flex flex-col items-center border-b-4 border-b-emerald-600 active:scale-95 transition-transform">
+                <span class="text-4xl mb-2">🇦🇪</span><span class="text-[10px] font-black uppercase">العربية</span>
             </button>
-            <button onclick="openForm('FR')" class="glass p-6 rounded-2xl flex flex-col items-center border-b-4 border-b-indigo-600 active:scale-90 transition-all">
-                <span class="text-4xl mb-2">🇫🇷</span><span class="text-xs font-black uppercase">Français</span>
+            <button onclick="openForm('FR')" class="glass p-6 rounded-2xl flex flex-col items-center border-b-4 border-b-indigo-600 active:scale-95 transition-transform">
+                <span class="text-4xl mb-2">🇫🇷</span><span class="text-[10px] font-black uppercase">Français</span>
             </button>
-            <button onclick="openForm('TR')" class="glass p-6 rounded-2xl flex flex-col items-center border-b-4 border-b-red-600 active:scale-90 transition-all">
-                <span class="text-4xl mb-2">🇹🇷</span><span class="text-xs font-black uppercase">Türkçe</span>
+            <button onclick="openForm('TR')" class="glass p-6 rounded-2xl flex flex-col items-center border-b-4 border-b-red-600 active:scale-95 transition-transform col-span-2">
+                <span class="text-4xl mb-2">🇹🇷</span><span class="text-[10px] font-black uppercase">Türkçe</span>
             </button>
         </div>
     </section>
 
     <section class="py-8 px-6 pb-24">
-        <div class="glass p-6 rounded-3xl relative overflow-hidden bg-gradient-to-br from-blue-900/20 to-transparent">
-            <div class="flex items-center space-x-4 mb-6">
-                <img src="assets/zayn.png" class="w-16 h-16 rounded-2xl object-cover shadow-xl border-2 border-blue-500" onerror="this.src='https://ui-avatars.com/api/?name=Zayn+1x&background=3b82f6&color=fff'">
+        <div class="glass p-6 rounded-3xl relative overflow-hidden bg-gradient-to-br from-blue-900/10 to-transparent border border-white/10">
+            <div class="flex items-center space-x-4 mb-4">
+                <img src="assets/zayn.png" class="w-14 h-14 rounded-2xl object-cover border-2 border-blue-500 shadow-lg" onerror="this.src='https://ui-avatars.com/api/?name=Zayn+1x&background=3b82f6&color=fff'">
                 <div>
                     <h4 class="font-black text-lg">Zayn</h4>
-                    <p class="text-[10px] text-blue-400 font-bold uppercase tracking-widest leading-none">Official 1XBET Affiliate Manager</p>
+                    <p class="text-[9px] text-blue-400 font-bold uppercase tracking-widest leading-none">Official 1X Affiliate Manager</p>
                 </div>
             </div>
-            <p class="text-xs text-gray-300 mb-6 leading-relaxed">
-                Contact me for <strong class="text-white">Hybrid (CPA + RevShare)</strong> deals and custom promo codes. Direct management only.
+            <p class="text-xs text-gray-400 mb-6 italic leading-relaxed">
+                "Apply via forms above or contact me directly for <strong>Hybrid/CPA</strong> deals."
             </p>
-            <button id="contactZayn" class="w-full bg-[#0088cc] py-4 rounded-2xl font-black uppercase tracking-widest text-xs flex justify-center items-center">
-                Message Zayn
+            <button id="contactZayn" class="w-full bg-[#0088cc] hover:bg-[#0077b5] py-4 rounded-2xl font-black uppercase tracking-widest text-[10px] flex justify-center items-center shadow-lg transition-all active:scale-95">
+                Direct Message Zayn
             </button>
         </div>
     </section>
 
     <script>
-    const tg = window.Telegram.WebApp;
-    tg.expand();
-    tg.ready();
-    tg.setHeaderColor('#0f172a');
+        // Initialize SDK
+        const tg = window.Telegram.WebApp;
+        tg.expand();
+        tg.ready();
+        tg.setHeaderColor('#0f172a');
 
-    // 1. Personalization
-    const user = tg.initDataUnsafe?.user;
-    if (user && user.first_name) {
-        // We use a check to ensure the element exists before writing to it
-        const userNameText = document.getElementById('userName');
-        if (userNameText) userNameText.innerText = user.first_name;
-        
-        document.getElementById('topBarName').innerText = user.first_name;
-        document.getElementById('userBadge').classList.remove('hidden');
-    }
-
-    // 2. Calculator Logic (Fixed)
-    const revSlider = document.getElementById('revenueSlider');
-    const rateSlider = document.getElementById('rateSlider');
-    const revVal = document.getElementById('revenueVal');
-    const rateVal = document.getElementById('rateVal');
-    const payoutDisplay = document.getElementById('payoutDisplay');
-
-    function updateCalc() {
-        if (!revSlider || !rateSlider) return;
-        const revenue = parseInt(revSlider.value);
-        const rate = parseInt(rateSlider.value);
-        const result = (revenue * (rate / 100));
-        
-        revVal.innerText = revenue.toLocaleString();
-        rateVal.innerText = rate;
-        payoutDisplay.innerText = '$' + Math.floor(result).toLocaleString();
-    }
-
-    if (revSlider && rateSlider) {
-        revSlider.oninput = () => { updateCalc(); tg.HapticFeedback.selectionChanged(); };
-        rateSlider.oninput = () => { updateCalc(); tg.HapticFeedback.selectionChanged(); };
-        // Initial call to set values
-        updateCalc();
-    }
-
-    // 3. Form Redirects (Fixed Variable Names & Scope)
-    window.openForm = function(lang) {
-        tg.HapticFeedback.notificationOccurred('success');
-        let finalUrl = ""; // Changed to finalUrl for clarity
-        
-        switch(lang) {
-            case 'EN': finalUrl = "https://forms.gle/jdWbKvg8qbRqXomi9"; break;
-            case 'HI': finalUrl = "https://forms.gle/YOUR_HINDI_FORM_URL"; break;
-            case 'AR': finalUrl = "https://forms.gle/LijfMVsGhbnLVKwo8"; break;
-            case 'FR': finalUrl = "https://forms.gle/fp7rofvUAo1PEoCu7"; break;
-            case 'TR': finalUrl = "https://forms.gle/5c6zrjN3JrQuzhtz9"; break;
-            default: finalUrl = "https://forms.gle/jdWbKvg8qbRqXomi9";
+        // 1. Personalization
+        const user = tg.initDataUnsafe?.user;
+        if (user && user.first_name) {
+            const topBar = document.getElementById('topBarName');
+            if(topBar) topBar.innerText = user.first_name;
+            document.getElementById('userBadge')?.classList.remove('hidden');
         }
-        
-        console.log("Attempting to open:", finalUrl);
-        tg.openLink(finalUrl);
-    };
 
-    // 4. Contact Button (Fixed)
-    const contactBtn = document.getElementById('contactZayn');
-    if (contactBtn) {
-        contactBtn.onclick = () => {
-            tg.HapticFeedback.impactOccurred('heavy');
-            const handle = "ZAYN1x"; 
-            tg.openTelegramLink(`https://t.me/${handle}?text=Hi%20Zayn%2C%20I%20want%20to%20discuss%20a%20Hybrid%20partnership.`);
+        // 2. Calculator Engine (Fixed)
+        const revSlider = document.getElementById('revenueSlider');
+        const rateSlider = document.getElementById('rateSlider');
+        const revVal = document.getElementById('revenueVal');
+        const rateVal = document.getElementById('rateVal');
+        const payoutDisplay = document.getElementById('payoutDisplay');
+
+        function updateCalc() {
+            if (!revSlider || !rateSlider) return;
+            const revenue = parseInt(revSlider.value) || 0;
+            const rate = parseInt(rateSlider.value) || 0;
+            const result = revenue * (rate / 100);
+            
+            if(revVal) revVal.innerText = revenue.toLocaleString();
+            if(rateVal) rateVal.innerText = rate;
+            if(payoutDisplay) payoutDisplay.innerText = '$' + Math.floor(result).toLocaleString();
+        }
+
+        if(revSlider && rateSlider) {
+            revSlider.oninput = () => { updateCalc(); tg.HapticFeedback.selectionChanged(); };
+            rateSlider.oninput = () => { updateCalc(); tg.HapticFeedback.selectionChanged(); };
+            updateCalc(); // Run initially
+        }
+
+        // 3. Global Form Redirect (Fixed Logic)
+        window.openForm = function(lang) {
+            tg.HapticFeedback.notificationOccurred('success');
+            let targetUrl = "";
+            
+            switch(lang) {
+                case 'EN': targetUrl = "https://forms.gle/jdWbKvg8qbRqXomi9"; break;
+                case 'HI': targetUrl = "https://forms.gle/YOUR_HINDI_FORM_URL"; break; // UPDATE THIS
+                case 'AR': targetUrl = "https://forms.gle/LijfMVsGhbnLVKwo8"; break;
+                case 'FR': targetUrl = "https://forms.gle/fp7rofvUAo1PEoCu7"; break;
+                case 'TR': targetUrl = "https://forms.gle/5c6zrjN3JrQuzhtz9"; break;
+                default: targetUrl = "https://forms.gle/jdWbKvg8qbRqXomi9";
+            }
+            
+            tg.openLink(targetUrl);
         };
-    }
 
-    // 5. Main Button
-    tg.MainButton.setText("APPLY NOW");
-    tg.MainButton.setParams({ color: '#3b82f6' });
-    tg.MainButton.show();
-    tg.MainButton.onClick(() => {
-        const applySection = document.getElementById('apply-section');
-        if (applySection) {
-            applySection.scrollIntoView({ behavior: 'smooth' });
-            tg.HapticFeedback.impactOccurred('medium');
+        // 4. Contact Button (Direct DM Logic)
+        const contactBtn = document.getElementById('contactZayn');
+        if (contactBtn) {
+            contactBtn.onclick = () => {
+                tg.HapticFeedback.impactOccurred('heavy');
+                const handle = "ZAYN1x"; 
+                const text = encodeURIComponent("Hi Zayn, I'm interested in the 1XBET Hybrid system.");
+                tg.openTelegramLink(`https://t.me/${handle}?text=${text}`);
+            };
         }
-    });
-</script>
+
+        // 5. Native Main Button
+        tg.MainButton.setText("START APPLICATION");
+        tg.MainButton.setParams({ color: '#3b82f6', text_color: '#ffffff' });
+        tg.MainButton.show();
+        tg.MainButton.onClick(() => {
+            const applySection = document.getElementById('apply-section');
+            if (applySection) {
+                applySection.scrollIntoView({ behavior: 'smooth' });
+                tg.HapticFeedback.impactOccurred('medium');
+            }
+        });
+    </script>
 </body>
 </html>
