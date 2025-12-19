@@ -148,67 +148,86 @@
     </section>
 
     <script>
-        const tg = window.Telegram.WebApp;
-        tg.expand();
-        tg.ready();
-        tg.setHeaderColor('#0f172a');
+    const tg = window.Telegram.WebApp;
+    tg.expand();
+    tg.ready();
+    tg.setHeaderColor('#0f172a');
 
-        // Personalization
-        const user = tg.initDataUnsafe?.user;
-        if (user && user.first_name) {
-            document.getElementById('userName')?.innerText = user.first_name;
-            document.getElementById('topBarName').innerText = user.first_name;
-            document.getElementById('userBadge').classList.remove('hidden');
-        }
+    // 1. Personalization
+    const user = tg.initDataUnsafe?.user;
+    if (user && user.first_name) {
+        // We use a check to ensure the element exists before writing to it
+        const userNameText = document.getElementById('userName');
+        if (userNameText) userNameText.innerText = user.first_name;
+        
+        document.getElementById('topBarName').innerText = user.first_name;
+        document.getElementById('userBadge').classList.remove('hidden');
+    }
 
-        // Calculator Logic
-        const revSlider = document.getElementById('revenueSlider');
-        const rateSlider = document.getElementById('rateSlider');
-        const revVal = document.getElementById('revenueVal');
-        const rateVal = document.getElementById('rateVal');
-        const payoutDisplay = document.getElementById('payoutDisplay');
+    // 2. Calculator Logic (Fixed)
+    const revSlider = document.getElementById('revenueSlider');
+    const rateSlider = document.getElementById('rateSlider');
+    const revVal = document.getElementById('revenueVal');
+    const rateVal = document.getElementById('rateVal');
+    const payoutDisplay = document.getElementById('payoutDisplay');
 
-        function updateCalc() {
-            const revenue = parseInt(revSlider.value);
-            const rate = parseInt(rateSlider.value);
-            const result = (revenue * (rate / 100)).toFixed(0);
-            revVal.innerText = revenue.toLocaleString();
-            rateVal.innerText = rate;
-            payoutDisplay.innerText = '$' + parseInt(result).toLocaleString();
-        }
+    function updateCalc() {
+        if (!revSlider || !rateSlider) return;
+        const revenue = parseInt(revSlider.value);
+        const rate = parseInt(rateSlider.value);
+        const result = (revenue * (rate / 100));
+        
+        revVal.innerText = revenue.toLocaleString();
+        rateVal.innerText = rate;
+        payoutDisplay.innerText = '$' + Math.floor(result).toLocaleString();
+    }
 
+    if (revSlider && rateSlider) {
         revSlider.oninput = () => { updateCalc(); tg.HapticFeedback.selectionChanged(); };
         rateSlider.oninput = () => { updateCalc(); tg.HapticFeedback.selectionChanged(); };
+        // Initial call to set values
+        updateCalc();
+    }
 
-        // Form Redirects
-        function openForm(lang) {
-            tg.HapticFeedback.notificationOccurred('success');
-            let formUrl = "";
-            switch(lang) {
-                case 'EN': url = "https://forms.gle/jdWbKvg8qbRqXomi9"; break;
-                case 'HI': url = "YOUR_HINDI_FORM_URL"; break;
-                case 'AR': url = "https://forms.gle/LijfMVsGhbnLVKwo8"; break;
-                case 'FR': url = "https://forms.gle/fp7rofvUAo1PEoCu7"; break;
-                case 'TR': url = "https://forms.gle/5c6zrjN3JrQuzhtz9"; break;
-                default: url = "https://forms.gle/jdWbKvg8qbRqXomi9";
-            }
-            tg.openLink(url);
+    // 3. Form Redirects (Fixed Variable Names & Scope)
+    window.openForm = function(lang) {
+        tg.HapticFeedback.notificationOccurred('success');
+        let finalUrl = ""; // Changed to finalUrl for clarity
+        
+        switch(lang) {
+            case 'EN': finalUrl = "https://forms.gle/jdWbKvg8qbRqXomi9"; break;
+            case 'HI': finalUrl = "https://forms.gle/YOUR_HINDI_FORM_URL"; break;
+            case 'AR': finalUrl = "https://forms.gle/LijfMVsGhbnLVKwo8"; break;
+            case 'FR': finalUrl = "https://forms.gle/fp7rofvUAo1PEoCu7"; break;
+            case 'TR': finalUrl = "https://forms.gle/5c6zrjN3JrQuzhtz9"; break;
+            default: finalUrl = "https://forms.gle/jdWbKvg8qbRqXomi9";
         }
+        
+        console.log("Attempting to open:", finalUrl);
+        tg.openLink(finalUrl);
+    };
 
-        // Contact Button
-        document.getElementById('contactZayn').onclick = () => {
+    // 4. Contact Button (Fixed)
+    const contactBtn = document.getElementById('contactZayn');
+    if (contactBtn) {
+        contactBtn.onclick = () => {
+            tg.HapticFeedback.impactOccurred('heavy');
             const handle = "ZAYN1x"; 
             tg.openTelegramLink(`https://t.me/${handle}?text=Hi%20Zayn%2C%20I%20want%20to%20discuss%20a%20Hybrid%20partnership.`);
         };
+    }
 
-        // Main Button
-        tg.MainButton.setText("APPLY NOW");
-        tg.MainButton.setParams({ color: '#3b82f6' });
-        tg.MainButton.show();
-        tg.MainButton.onClick(() => {
-document.getElementById('apply-section').scrollIntoView({ behavior: 'smooth' });
+    // 5. Main Button
+    tg.MainButton.setText("APPLY NOW");
+    tg.MainButton.setParams({ color: '#3b82f6' });
+    tg.MainButton.show();
+    tg.MainButton.onClick(() => {
+        const applySection = document.getElementById('apply-section');
+        if (applySection) {
+            applySection.scrollIntoView({ behavior: 'smooth' });
             tg.HapticFeedback.impactOccurred('medium');
-        });
-    </script>
+        }
+    });
+</script>
 </body>
 </html>
