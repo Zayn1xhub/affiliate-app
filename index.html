@@ -82,6 +82,10 @@
                 <span class="text-3xl mb-2">🇮🇳</span>
                 <span class="text-sm font-bold">हिन्दी</span>
             </button>
+            <button onclick="openForm('TR')" class="glass p-5 rounded-2xl flex flex-col items-center border-b-4 border-b-orange-500 active:scale-95 transition-transform">
+                <span class="text-3xl mb-2">🇮🇳</span>
+                <span class="text-sm font-bold">Türkçe</span>
+            </button>
             <button onclick="openForm('AR')" class="glass p-5 rounded-2xl flex flex-col items-center border-b-4 border-b-emerald-500 active:scale-95 transition-transform">
                 <span class="text-3xl mb-2">🇦🇪</span>
                 <span class="text-sm font-bold">العربية</span>
@@ -156,11 +160,12 @@
             let formUrl = "";
 
             switch(lang) {
-                case 'EN': formUrl = "PASTE_YOUR_ENGLISH_FORM_LINK_HERE"; break;
+                case 'EN': formUrl = "https://forms.gle/KHsNkyGZzC97mu926"; break;
                 case 'HI': formUrl = "PASTE_YOUR_HINDI_FORM_LINK_HERE"; break;
-                case 'AR': formUrl = "PASTE_YOUR_ARABIC_FORM_LINK_HERE"; break;
-                case 'FR': formUrl = "PASTE_YOUR_FRENCH_FORM_LINK_HERE"; break;
-                default: formUrl = "PASTE_YOUR_ENGLISH_FORM_LINK_HERE";
+                case 'TR': formUrl = "https://forms.gle/bNjQiRK4U6UzHLab7"; break;
+                case 'AR': formUrl = "https://forms.gle/DdVaq16ahGXJuUm79"; break;
+                case 'FR': formUrl = "https://forms.gle/u22AzwKLBZSARi5U9"; break;
+                default: formUrl = "https://forms.gle/KHsNkyGZzC97mu926";
             }
             tg.openLink(formUrl);
         }
