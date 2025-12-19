@@ -9,161 +9,176 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
     
     <style>
-        body { background-color: #0f172a; color: white; overflow-x: hidden; }
-        .hero-gradient { background: linear-gradient(135deg, #1e3a8a 0%, #0f172a 100%); }
-        .glass { background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.1); }
-        input[type='range']::-webkit-slider-thumb {
-            -webkit-appearance: none;
-            appearance: none;
-            width: 20px;
-            height: 20px;
-            background: #3b82f6;
-            cursor: pointer;
-            border-radius: 50%;
-        }
+        body { background-color: #0f172a; color: white; overflow-x: hidden; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
+        .hero-gradient { background: radial-gradient(circle at top right, #1e3a8a, #0f172a); }
+        .glass { background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.1); }
+        .accent-border { border-left: 4px solid #3b82f6; }
+        input[type='range'] { -webkit-appearance: none; background: #1e293b; border-radius: 10px; }
+        input[type='range']::-webkit-slider-thumb { -webkit-appearance: none; width: 22px; height: 22px; background: #3b82f6; border-radius: 50%; cursor: pointer; border: 2px solid white; }
     </style>
 </head>
-<body class="font-sans antialiased">
+<body class="antialiased">
 
-    <nav class="p-5 flex justify-between items-center bg-[#1e293b] border-b border-blue-900 sticky top-0 z-50">
-        <div class="text-xl font-black tracking-tighter text-blue-400">ZAYN1x <span class="text-white">AFFILIATE</span></div>
-        <div id="userBadge" class="hidden sm:flex items-center space-x-2 bg-blue-900/50 px-3 py-1 rounded-full border border-blue-500/30">
-            <span id="topBarName" class="text-xs font-medium text-blue-200">Partner</span>
+    <nav class="p-4 flex justify-between items-center bg-[#0f172a]/80 backdrop-blur-md sticky top-0 z-50 border-b border-white/5">
+        <div class="text-xl font-black tracking-tighter"><span class="text-blue-500">ZAYN1x</span> AFFILIATE</div>
+        <div id="userBadge" class="hidden flex items-center space-x-2 bg-blue-500/10 px-3 py-1 rounded-full border border-blue-500/20">
+            <span id="topBarName" class="text-xs font-bold text-blue-400 uppercase">Partner</span>
         </div>
     </nav>
 
-    <section class="hero-gradient py-16 px-6 text-center">
-        <h1 class="animate__animated animate__fadeInDown text-4xl md:text-6xl font-extrabold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-white to-blue-400">
-            Maximize Your Traffic
+    <section class="hero-gradient pt-12 pb-8 px-6 text-center">
+        <h1 class="animate__animated animate__fadeInDown text-4xl font-extrabold mb-3 bg-clip-text text-transparent bg-gradient-to-r from-white via-blue-200 to-blue-500">
+            Official 1XBET Management
         </h1>
-        <p class="animate__animated animate__fadeInUp animate__delay-1s text-lg text-gray-300 mb-8 max-w-xl mx-auto">
-            Join the official 1XBET partnership program with Zayn. Get exclusive tools and high RevShare.
-        </p>
-        <div class="flex flex-wrap justify-center gap-4">
-            <div class="bg-blue-600/20 px-4 py-2 rounded-lg border border-blue-500/50 text-blue-400 font-bold text-sm">
-                ✓ 40% Commission
-            </div>
-            <div class="bg-green-600/20 px-4 py-2 rounded-lg border border-green-500/50 text-green-400 font-bold text-sm">
-                ✓ Weekly Payouts
-            </div>
+        <p class="text-gray-400 text-sm mb-6 max-w-xs mx-auto">Scale your traffic with Zayn. Professional tools for professional affiliates.</p>
+        
+        <div class="flex flex-wrap justify-center gap-2 mb-4">
+            <span class="bg-blue-600 px-3 py-1 rounded-md text-[10px] font-bold uppercase tracking-wider">Up to 40% RevShare</span>
+            <span class="bg-indigo-600 px-3 py-1 rounded-md text-[10px] font-bold uppercase tracking-wider">Hybrid (CPA + RS)</span>
+            <span class="bg-emerald-600 px-3 py-1 rounded-md text-[10px] font-bold uppercase tracking-wider">Weekly Payouts</span>
         </div>
     </section>
 
-    <section class="py-12 px-6">
-        <div class="glass p-8 rounded-3xl max-w-2xl mx-auto shadow-2xl animate__animated animate__zoomIn">
-            <h3 class="text-2xl font-bold mb-6 text-center text-blue-300">Potential Earnings Calculator</h3>
+    <section class="py-6 px-6">
+        <div class="glass p-6 rounded-3xl shadow-2xl">
+            <h3 class="text-lg font-bold mb-6 flex items-center italic text-blue-400">
+                <span class="mr-2 text-2xl">📊</span> PROFIT ESTIMATOR
+            </h3>
+            
             <div class="space-y-8">
                 <div>
-                    <div class="flex justify-between mb-4">
-                        <label class="font-medium text-gray-300">Monthly Player Deposits</label>
-                        <span class="text-green-400 font-bold">$<span id="depositValue">5,000</span></span>
+                    <div class="flex justify-between mb-2">
+                        <label class="text-xs font-bold text-gray-400 uppercase tracking-widest">Company Revenue</label>
+                        <span class="text-white font-mono font-bold">$<span id="revenueVal">5,000</span></span>
                     </div>
-                    <input type="range" id="depositSlider" min="500" max="100000" step="500" value="5000" class="w-full h-2 bg-gray-700 rounded-lg appearance-none cursor-pointer accent-blue-500">
+                    <input type="range" id="revenueSlider" min="0" max="50000" step="1" value="5000" class="w-full h-2">
                 </div>
-                <div class="bg-black/40 p-6 rounded-2xl border border-white/5 flex flex-col items-center">
-                    <span class="text-gray-400 uppercase text-xs tracking-widest mb-2">Your Estimated Monthly Profit</span>
-                    <span id="payoutDisplay" class="text-4xl font-black text-green-400">$2,000</span>
+
+                <div>
+                    <div class="flex justify-between mb-2">
+                        <label class="text-xs font-bold text-gray-400 uppercase tracking-widest">Commission Rate</label>
+                        <span class="text-blue-400 font-mono font-bold"><span id="rateVal">25</span>%</span>
+                    </div>
+                    <input type="range" id="rateSlider" min="25" max="40" step="1" value="25" class="w-full h-2">
+                </div>
+
+                <div class="bg-blue-600/10 p-5 rounded-2xl border border-blue-500/20 text-center">
+                    <p class="text-[10px] text-blue-300 uppercase font-bold tracking-[0.2em] mb-1">Your Weekly Commission</p>
+                    <span id="payoutDisplay" class="text-4xl font-black text-white">$1,250</span>
+                    <p class="text-[9px] text-gray-500 mt-2">*Calculated based on Revenue Share model</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <section class="py-12 px-6">
-        <div class="glass p-8 rounded-3xl max-w-2xl mx-auto border-t-4 border-t-blue-500 shadow-2xl">
-            <div class="flex flex-col items-center text-center">
-                <div class="relative mb-4">
-                    <img src="https://ui-avatars.com/api/?name=Zayn+1x&background=0D8ABC&color=fff&size=128" 
-                         alt="Zayn" class="w-24 h-24 rounded-full border-4 border-blue-500 shadow-lg">
-                    <div class="absolute bottom-1 right-1 w-5 h-5 bg-green-500 border-2 border-white rounded-full animate-pulse"></div>
-                </div>
-                
-                <h2 class="text-2xl font-bold mb-1">Hello, <span id="userName" class="text-blue-400 font-black italic">Partner</span>! 👋</h2>
-                <p class="text-gray-300 mb-6 text-sm">"I'm Zayn, your 1XBET Affiliate Manager. I'm here to help you scale your earnings."</p>
-                
-                <div class="grid grid-cols-1 gap-3 w-full text-left">
-                    <div class="flex items-center space-x-3 bg-white/5 p-4 rounded-xl">
-                        <span class="text-xl">💰</span>
-                        <p class="text-sm font-medium">Get exclusive 40%+ RevShare deals</p>
-                    </div>
-                    <div class="flex items-center space-x-3 bg-white/5 p-4 rounded-xl">
-                        <span class="text-xl">🛠️</span>
-                        <p class="text-sm font-medium">Custom banners & promo codes</p>
-                    </div>
-                </div>
-
-                <button id="contactZayn" class="mt-8 w-full bg-[#0088cc] hover:bg-[#0077b5] text-white py-4 rounded-2xl font-bold text-lg shadow-xl transition-all transform active:scale-95 flex justify-center items-center">
-                    <svg class="w-6 h-6 mr-2" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-.99-.65-.35-1.01.22-1.59.15-.15 2.71-2.48 2.76-2.69a.2.2 0 00-.05-.18c-.06-.05-.14-.03-.21-.02-.09.02-1.49.95-4.22 2.79-.4.27-.76.41-1.08.4-.36-.01-1.04-.2-1.55-.37-.63-.2-1.12-.31-1.08-.66.02-.18.27-.36.74-.55 2.92-1.27 4.86-2.11 5.83-2.51 2.78-1.16 3.35-1.36 3.73-1.36.08 0 .27.02.39.12.1.08.13.19.14.27-.01.06.01.24 0 .38z"/></svg>
-                    Contact Zayn Now
-                </button>
-            </div>
+    <section id="apply-section" class="py-8 px-6">
+        <h3 class="text-xl font-extrabold mb-6 text-center">Apply for Partnership</h3>
+        <div class="grid grid-cols-2 gap-3">
+            <button onclick="openForm('EN')" class="glass p-5 rounded-2xl flex flex-col items-center border-b-4 border-b-blue-500 active:scale-95 transition-transform">
+                <span class="text-3xl mb-2">🌍</span>
+                <span class="text-sm font-bold">English</span>
+            </button>
+            <button onclick="openForm('HI')" class="glass p-5 rounded-2xl flex flex-col items-center border-b-4 border-b-orange-500 active:scale-95 transition-transform">
+                <span class="text-3xl mb-2">🇮🇳</span>
+                <span class="text-sm font-bold">हिन्दी</span>
+            </button>
+            <button onclick="openForm('AR')" class="glass p-5 rounded-2xl flex flex-col items-center border-b-4 border-b-emerald-500 active:scale-95 transition-transform">
+                <span class="text-3xl mb-2">🇦🇪</span>
+                <span class="text-sm font-bold">العربية</span>
+            </button>
+            <button onclick="openForm('FR')" class="glass p-5 rounded-2xl flex flex-col items-center border-b-4 border-b-red-500 active:scale-95 transition-transform">
+                <span class="text-3xl mb-2">🇨🇲</span>
+                <span class="text-sm font-bold">Français</span>
+            </button>
         </div>
     </section>
 
-    <footer class="p-10 bg-[#020617] text-center opacity-50">
-        <p class="text-xs">&copy; 2025 ZAYN1x Official Affiliate Program.</p>
+    <section class="py-8 px-6">
+        <div class="glass p-6 rounded-3xl relative overflow-hidden">
+            <div class="absolute top-0 right-0 p-4 opacity-10 text-6xl italic font-black">1X</div>
+            <div class="flex items-center space-x-4 mb-6">
+                <img src="https://ui-avatars.com/api/?name=Zayn+1x&background=3b82f6&color=fff" class="w-16 h-16 rounded-2xl shadow-lg border-2 border-blue-500">
+                <div>
+                    <h4 class="font-bold text-lg leading-tight">Zayn</h4>
+                    <p class="text-xs text-blue-400 font-medium italic underline">Affiliate Manager</p>
+                </div>
+            </div>
+            <p class="text-sm text-gray-300 mb-6 leading-relaxed">
+                Hello <span id="userName" class="text-blue-400 font-bold">Partner</span>! I handle exclusive deals for high-traffic partners. Contact me for <strong>Hybrid</strong> and <strong>CPA</strong> offers.
+            </p>
+            <button id="contactZayn" class="w-full bg-[#0088cc] text-white py-4 rounded-xl font-black uppercase tracking-widest text-sm flex justify-center items-center shadow-lg">
+                Direct Message Zayn
+            </button>
+        </div>
+    </section>
+
+    <footer class="p-8 text-center opacity-30 text-[10px] uppercase tracking-tighter">
+        &copy; 2025 ZAYN1X OFFICIAL AFFILIATE PORTAL
     </footer>
 
     <script>
-        // 1. Initialize Telegram Web App
         const tg = window.Telegram.WebApp;
         tg.expand();
         tg.ready();
-        tg.setHeaderColor('#1e293b');
+        tg.setHeaderColor('#0f172a');
 
-        // 2. Personalize with User Data
+        // Personalization
         const user = tg.initDataUnsafe?.user;
-        const userNameElement = document.getElementById('userName');
-        const topBarName = document.getElementById('topBarName');
-        const userBadge = document.getElementById('userBadge');
-
         if (user && user.first_name) {
-            userNameElement.innerText = user.first_name;
-            topBarName.innerText = user.first_name;
-            userBadge.classList.remove('hidden');
+            document.getElementById('userName').innerText = user.first_name;
+            document.getElementById('topBarName').innerText = user.first_name;
+            document.getElementById('userBadge').classList.remove('hidden');
         }
 
-        // 3. Profit Calculator Logic
-        const slider = document.getElementById('depositSlider');
-        const depositValue = document.getElementById('depositValue');
+        // Calculator Logic
+        const revSlider = document.getElementById('revenueSlider');
+        const rateSlider = document.getElementById('rateSlider');
+        const revVal = document.getElementById('revenueVal');
+        const rateVal = document.getElementById('rateVal');
         const payoutDisplay = document.getElementById('payoutDisplay');
 
-        slider.oninput = function() {
-            const val = parseInt(this.value);
-            depositValue.innerHTML = val.toLocaleString();
-            payoutDisplay.innerHTML = '$' + (val * 0.4).toLocaleString();
-            // Optional: Light haptic on slider move
-            if(val % 5000 === 0) tg.HapticFeedback.selectionChanged();
+        function updateCalc() {
+            const revenue = parseInt(revSlider.value);
+            const rate = parseInt(rateSlider.value);
+            const result = (revenue * (rate / 100)).toFixed(0);
+            
+            revVal.innerText = revenue.toLocaleString();
+            rateVal.innerText = rate;
+            payoutDisplay.innerText = '$' + parseInt(result).toLocaleString();
+        }
+
+        revSlider.oninput = () => { updateCalc(); tg.HapticFeedback.selectionChanged(); };
+        rateSlider.oninput = () => { updateCalc(); tg.HapticFeedback.selectionChanged(); };
+
+        // Google Form Redirection
+        function openForm(lang) {
+            tg.HapticFeedback.notificationOccurred('success');
+            let formUrl = "";
+
+            switch(lang) {
+                case 'EN': formUrl = "PASTE_YOUR_ENGLISH_FORM_LINK_HERE"; break;
+                case 'HI': formUrl = "PASTE_YOUR_HINDI_FORM_LINK_HERE"; break;
+                case 'AR': formUrl = "PASTE_YOUR_ARABIC_FORM_LINK_HERE"; break;
+                case 'FR': formUrl = "PASTE_YOUR_FRENCH_FORM_LINK_HERE"; break;
+                default: formUrl = "PASTE_YOUR_ENGLISH_FORM_LINK_HERE";
+            }
+            tg.openLink(formUrl);
+        }
+
+        // Contact Button
+        document.getElementById('contactZayn').onclick = () => {
+            const myUsername = "ZAYN1x"; // <-- PUT YOUR USERNAME HERE
+            const msg = encodeURIComponent(`Hi Zayn! I'm ${user?.first_name || 'a partner'}. I'm interested in the 1XBET Hybrid/CPA system.`);
+            tg.openTelegramLink(`https://t.me/${myUsername}?text=${msg}`);
         };
 
-        // 4. Contact Button Logic
-        const contactBtn = document.getElementById('contactZayn');
-        contactBtn.addEventListener('click', () => {
-            tg.HapticFeedback.notificationOccurred('success');
-            
-            // !!! IMPORTANT: CHANGE 'YOUR_USERNAME' TO YOUR ACTUAL TELEGRAM USERNAME !!!
-            const myUsername = "@ZAYN1x"; 
-            const welcomeMsg = encodeURIComponent(
-                `Hi Zayn! I'm ${user?.first_name || 'a partner'} and I want to join the 1XBET affiliate program via your app.`
-            );
-            
-            tg.openTelegramLink(`https://t.me/${myUsername}?text=${welcomeMsg}`);
-        });
-
-        // 5. Telegram Main Button (The persistent action button at bottom)
-        tg.MainButton.setText("REGISTER FOR 1XBET PARTNERS");
-        tg.MainButton.setParams({
-            color: '#16a34a',
-            text_color: '#ffffff'
-        });
+        // Main Button Logic
+        tg.MainButton.setText("APPLY NOW");
+        tg.MainButton.setParams({ color: '#3b82f6', text_color: '#ffffff' });
         tg.MainButton.show();
         tg.MainButton.onClick(() => {
-            tg.HapticFeedback.impactOccurred('heavy');
-            tg.openLink('https://1xbetaffiliates.net/registration/');
-        });
-
-        // Add haptics to all buttons
-        document.querySelectorAll('button').forEach(btn => {
-            btn.addEventListener('click', () => tg.HapticFeedback.impactOccurred('medium'));
+            document.getElementById('apply-section').scrollIntoView({ behavior: 'smooth' });
+            tg.HapticFeedback.impactOccurred('medium');
         });
     </script>
 </body>
