@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Affiliate Partners | Earn with Us</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <style>
+        body { background-color: #0f172a; color: white; }
+        .hero-gradient { background: linear-gradient(135deg, #1e3a8a 0%, #0f172a 100%); }
+    </style>
+</head>
+<body class="font-sans antialiased">
+
+    <nav class="p-5 flex justify-between items-center bg-[#1e293b] border-b border-blue-900">
+        <div class="text-2xl font-bold text-blue-400">PARTNERS</div>
+        <button id="mainButton" class="bg-blue-600 px-6 py-2 rounded-lg font-semibold hover:bg-blue-500 transition">Login</button>
+    </nav>
+
+    <section class="hero-gradient py-20 px-6 text-center">
+        <h1 class="text-4xl md:text-6xl font-extrabold mb-4">Earn up to 40% Commission</h1>
+        <p class="text-xl text-gray-300 mb-8 max-w-2xl mx-auto">Join the leading affiliate program. High conversion rates and weekly payouts for all partners.</p>
+        <a href="#" class="bg-green-500 text-white px-10 py-4 rounded-full text-xl font-bold shadow-lg hover:scale-105 transition transform inline-block">Register Now</a>
+    </section>
+
+    <section class="py-16 px-6 max-w-6xl mx-auto">
+        <h2 class="text-3xl font-bold text-center mb-12">Our Advantages</h2>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div class="bg-[#1e293b] p-8 rounded-xl border border-gray-700">
+                <div class="text-blue-400 text-3xl mb-4">💰</div>
+                <h3 class="text-xl font-bold mb-2">High Commissions</h3>
+                <p class="text-gray-400">Get a lifetime commission of up to 40% from every player.</p>
+            </div>
+            <div class="bg-[#1e293b] p-8 rounded-xl border border-gray-700">
+                <div class="text-blue-400 text-3xl mb-4">📅</div>
+                <h3 class="text-xl font-bold mb-2">Weekly Payouts</h3>
+                <p class="text-gray-400">Automated payments every Tuesday directly to your wallet.</p>
+            </div>
+            <div class="bg-[#1e293b] p-8 rounded-xl border border-gray-700">
+                <div class="text-blue-400 text-3xl mb-4">📊</div>
+                <h3 class="text-xl font-bold mb-2">Real-time Stats</h3>
+                <p class="text-gray-400">Track clicks, registrations, and earnings in your personal dashboard.</p>
+            </div>
+        </div>
+    </section>
+
+    <footer class="p-10 bg-[#020617] text-center border-t border-gray-800">
+        <p class="text-gray-500">&copy; 2024 Affiliate Partners. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // Initialize Telegram Web App
+        const tg = window.Telegram.WebApp;
+        tg.expand(); // Make the app full screen
+
+        // Optional: Change the Telegram Header color
+        tg.setHeaderColor('#1e293b');
+    </script>
+</body>
+</html>
