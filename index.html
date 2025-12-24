@@ -1,302 +1,329 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>ZAYN1x Affiliate | Official 1XBET Partner</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://telegram.org/js/telegram-web-app.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
-    
-    <style>
-        body { background-color: #0f172a; color: white; overflow-x: hidden; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
-        .hero-gradient { background: radial-gradient(circle at top right, #1e3a8a, #0f172a); }
-        .glass { background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.1); }
-        input[type='range'] { -webkit-appearance: none; background: #1e293b; border-radius: 10px; height: 6px; width: 100%; }
-        input[type='range']::-webkit-slider-thumb { -webkit-appearance: none; width: 22px; height: 22px; background: #3b82f6; border-radius: 50%; cursor: pointer; border: 2px solid white; box-shadow: 0 0 10px rgba(59, 130, 246, 0.5); }
-        /* fallback start button styling */
-        #fallbackStartBtn { position: fixed; bottom: 24px; right: 24px; z-index: 60; background:#3b82f6; color:white; padding: 14px 18px; border-radius: 14px; font-weight:800; box-shadow: 0 8px 30px rgba(59,130,246,0.2); }
-        .hidden { display: none !important; }
-    </style>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no" />
+  <title>ZAYN1x Affiliate | Official 1XBET Partner</title>
+
+  <!-- Tailwind CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Telegram WebApp (safe-guarded in script) -->
+  <script src="https://telegram.org/js/telegram-web-app.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+
+  <meta name="description" content="ZAYN1x — Official 1XBET Affiliate Manager. Hybrid CPA + Revenue Share deals, weekly payouts, onboarding & support." />
+  <meta property="og:title" content="ZAYN1x Affiliate | Official 1XBET Partner" />
+  <meta property="og:description" content="Hybrid CPA + Revenue Share deals, weekly payouts, onboarding & support by Zayn — Affiliate Manager." />
+  <meta name="theme-color" content="#0f172a" />
+
+  <style>
+    :root{
+      --bg:#0f172a; --glass: rgba(255,255,255,0.03); --accent:#3b82f6;
+    }
+    html,body{height:100%;}
+    body {
+      background-color: var(--bg);
+      color: #e6eef8;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+    }
+
+    .hero-gradient { background: radial-gradient(circle at top right, #1e3a8a, var(--bg)); }
+    .glass { background: var(--glass); backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.06); }
+
+    input[type='range']{ -webkit-appearance:none; background:#0b1220; border-radius:10px; height:6px; width:100%; }
+    input[type='range']::-webkit-slider-thumb{ -webkit-appearance:none; width:20px; height:20px; background:var(--accent); border-radius:50%; border:2px solid rgba(255,255,255,0.9); cursor:pointer; box-shadow:0 6px 18px rgba(59,130,246,0.25); }
+
+    .hidden-el{ display:none !important; }
+
+    /* small utilities that tailwind cannot cover due to CDN usage */
+    .shadow-deep{ box-shadow: 0 10px 40px rgba(2,6,23,0.6); }
+
+    @media (max-width:640px){ .desktop-only{ display:none; } }
+  </style>
 </head>
-<body class="antialiased">
+<body class="antialiased leading-relaxed">
 
-    <nav class="p-4 flex justify-between items-center bg-[#0f172a]/80 backdrop-blur-md sticky top-0 z-50 border-b border-white/5">
-        <div class="flex items-center space-x-2">
-            <img src="assets/logo.png" class="h-6 w-auto" alt="Zayn1x logo" loading="lazy" onerror="this.src='https://img.icons8.com/color/48/1xbet.png'">
-            <div class="text-xl font-black tracking-tighter"><span class="text-blue-500">ZAYN1x</span></div>
-        </div>
-        <div id="userBadge" class="hidden flex items-center space-x-2 bg-blue-500/10 px-3 py-1 rounded-full border border-blue-500/20 tg-only">
-            <span id="topBarName" class="text-[10px] font-bold text-blue-400 uppercase tracking-tighter italic">Partner</span>
-        </div>
-    </nav>
+  <!-- NAV -->
+  <nav class="p-4 flex items-center justify-between sticky top-0 z-50 bg-[#0f172a]/80 backdrop-blur-md border-b border-white/5">
+    <div class="flex items-center gap-3">
+      <img src="assets/logo.png" alt="ZAYN1x" class="h-8 w-auto" onerror="this.src='https://img.icons8.com/color/48/1xbet.png'" loading="lazy">
+      <div class="text-xl font-extrabold tracking-tight"><span class="text-blue-400">ZAYN1x</span> <span class="text-sm text-white/60 font-semibold">Official 1X Partner</span></div>
+    </div>
+    <div class="flex items-center gap-3">
+      <a href="#apply" class="hidden desktop-only uppercase text-xs font-bold px-3 py-2 rounded-lg bg-blue-600/10 border border-blue-600/20 hover:bg-blue-600/20">Apply</a>
+      <a href="#contact" id="navContact" class="uppercase text-xs font-bold px-3 py-2 rounded-lg bg-[#0088cc] hover:bg-[#0077b5]">Contact</a>
+    </div>
+  </nav>
 
-    <section class="hero-gradient pt-10 pb-6 px-6 text-center">
-        <h1 class="animate__animated animate__fadeInDown text-3xl font-extrabold mb-2 bg-clip-text text-transparent bg-gradient-to-r from-white via-blue-200 to-blue-500">
-            Partner with 1XBET
-        </h1>
-        <div class="flex flex-wrap justify-center gap-2 mb-6">
-            <span class="bg-blue-600 px-3 py-1 rounded-md text-[9px] font-bold uppercase tracking-wider">Up to 40% RevShare</span>
-            <span class="bg-indigo-600 px-3 py-1 rounded-md text-[9px] font-bold uppercase tracking-wider">Hybrid (CPA + RS)</span>
-            <span class="bg-emerald-600 px-3 py-1 rounded-md text-[9px] font-bold uppercase tracking-wider">Weekly Payouts</span>
+  <!-- HERO -->
+  <header class="hero-gradient text-center py-12 px-6">
+    <div class="max-w-4xl mx-auto">
+      <h1 class="animate__animated animate__fadeInDown text-3xl sm:text-4xl font-extrabold mb-3 bg-clip-text text-transparent bg-gradient-to-r from-white via-blue-200 to-blue-500">Partner with <span class="text-white/90">1XBET</span> — Grow & Earn</h1>
+      <p class="text-sm text-white/60 max-w-2xl mx-auto mb-6">Hybrid CPA + Revenue share deals, weekly payouts, recruitment support, onboarding guides and a tight team to help you scale.</p>
+
+      <div class="flex flex-col sm:flex-row gap-3 items-center justify-center">
+        <button onclick="scrollToApply()" class="px-6 py-3 bg-blue-600 rounded-xl font-bold uppercase shadow-deep active:scale-95">Start Application</button>
+        <button onclick="openContact()" class="px-6 py-3 border border-white/6 rounded-xl font-semibold uppercase">Message Zayn</button>
+      </div>
+
+      <div class="mt-6 flex flex-wrap gap-2 justify-center text-[11px]">
+        <span class="bg-blue-600 px-3 py-1 rounded-md font-bold uppercase">Up to 40% RevShare</span>
+        <span class="bg-indigo-600 px-3 py-1 rounded-md font-bold uppercase">Hybrid (CPA + RS)</span>
+        <span class="bg-emerald-600 px-3 py-1 rounded-md font-bold uppercase">Weekly Payouts</span>
+      </div>
+    </div>
+  </header>
+
+  <main class="max-w-5xl mx-auto px-4 -mt-8 relative">
+
+    <!-- CALCULATOR CARD -->
+    <section class="glass p-6 rounded-3xl border border-white/6 shadow-deep">
+      <div class="flex flex-col sm:flex-row gap-6">
+        <div class="flex-1">
+          <h3 class="text-xs font-bold mb-4 text-blue-300 uppercase tracking-wider">Profit Estimator</h3>
+
+          <label class="text-[11px] font-semibold text-white/80 flex justify-between mb-2">Monthly Deposits <span class="font-mono" id="revenueVal">5,000</span></label>
+          <input type="range" id="revenueSlider" min="0" max="50000" step="10" value="5000">
+
+          <label class="text-[11px] font-semibold text-white/80 mt-4 flex justify-between mb-2">Commission Rate <span id="rateVal" class="font-mono">25%</span></label>
+          <input type="range" id="rateSlider" min="25" max="40" step="5" value="25">
+
+          <div class="mt-6 p-4 rounded-2xl bg-blue-600/6 border border-blue-500/10 text-center">
+            <div class="text-[10px] uppercase text-blue-300 font-black tracking-wide">Estimated Commission</div>
+            <div id="payoutDisplay" class="text-3xl font-extrabold mt-1">$1,250</div>
+            <div class="text-[11px] text-white/60 mt-1">(Monthly estimate)</div>
+          </div>
         </div>
+
+        <div class="w-full sm:w-72">
+          <h4 class="text-sm font-bold mb-3">Quick Facts</h4>
+          <ul class="text-[13px] space-y-2 text-white/70">
+            <li>• Hybrid model: CPA + RevShare (starting 25% up to 40%).</li>
+            <li>• CPA example: 3-1-3 for qualifying deposits and bets.</li>
+            <li>• Weekly payouts via Binance wallet.</li>
+            <li>• Dedicated onboarding & tracking support.</li>
+          </ul>
+
+          <div class="mt-6">
+            <a href="#apply" class="block w-full text-center py-2 rounded-lg bg-blue-600 font-bold">Apply Now</a>
+            <button id="downloadPdf" class="mt-3 w-full py-2 rounded-lg border border-white/5">Download Affiliate Guide (EN)</button>
+          </div>
+        </div>
+      </div>
     </section>
 
-    <section class="py-4 px-6">
-        <div class="glass p-6 rounded-3xl shadow-2xl border-t border-white/10">
-            <h3 class="text-xs font-bold mb-6 flex items-center text-blue-300 uppercase tracking-widest">
-                <span class="mr-2 italic font-black">01.</span> Profit Estimator
-            </h3>
-            <div class="space-y-8">
-                <div>
-                    <div class="flex justify-between mb-2">
-                        <label for="revenueSlider" class="text-[10px] font-bold text-gray-400 uppercase">Company Revenue</label>
-                        <span class="text-white font-mono font-bold">$<span id="revenueVal">5,000</span></span>
-                    </div>
-                    <input
-                        type="range"
-                        id="revenueSlider"
-                        role="slider"
-                        aria-label="Company revenue"
-                        aria-valuemin="0"
-                        aria-valuemax="50000"
-                        aria-valuenow="5000"
-                        min="0"
-                        max="50000"
-                        step="1"
-                        value="5000">
-                </div>
-                <div>
-                    <div class="flex justify-between mb-2">
-                        <label for="rateSlider" class="text-[10px] font-bold text-gray-400 uppercase">Comm. Rate</label>
-                        <span class="text-blue-400 font-mono font-bold"><span id="rateVal">25</span>%</span>
-                    </div>
-                    <input
-                        type="range"
-                        id="rateSlider"
-                        role="slider"
-                        aria-label="Commission rate"
-                        aria-valuemin="25"
-                        aria-valuemax="40"
-                        aria-valuenow="25"
-                        min="25"
-                        max="40"
-                        step="5"
-                        value="25">
-                </div>
-                <div class="bg-blue-600/10 p-5 rounded-2xl border border-blue-500/20 text-center shadow-inner">
-                    <p class="text-[9px] text-blue-300 uppercase font-black tracking-widest mb-1">Estimated Commission</p>
-                    <span id="payoutDisplay" class="text-4xl font-black text-white" aria-live="polite">$1,250</span>
-                </div>
-            </div>
+    <!-- Partner Roadmap -->
+    <section class="mt-8 pb-6">
+      <h3 class="text-xs font-bold mb-4 text-gray-400 uppercase tracking-wide">Partner Roadmap</h3>
+      <div class="relative pl-8">
+        <div class="absolute left-2 top-1 bottom-0 w-0.5 bg-blue-500/20"></div>
+
+        <div class="flex items-start gap-4 mb-6">
+          <div class="w-9 h-9 bg-blue-600 rounded-xl flex items-center justify-center font-bold">1</div>
+          <div>
+            <h5 class="font-bold">Register & Apply</h5>
+            <p class="text-[13px] text-white/60">Choose region form and submit basic info.</p>
+          </div>
         </div>
+
+        <div class="flex items-start gap-4 mb-6">
+          <div class="w-9 h-9 bg-indigo-600 rounded-xl flex items-center justify-center font-bold">2</div>
+          <div>
+            <h5 class="font-bold">Verification</h5>
+            <p class="text-[13px] text-white/60">Fast review by Zayn's team and setup of tracking links.</p>
+          </div>
+        </div>
+
+        <div class="flex items-start gap-4 mb-2">
+          <div class="w-9 h-9 bg-emerald-600 rounded-xl flex items-center justify-center font-bold">3</div>
+          <div>
+            <h5 class="font-bold">Start Earning</h5>
+            <p class="text-[13px] text-white/60">Weekly payouts, support calls and optimisation tips.</p>
+          </div>
+        </div>
+      </div>
     </section>
 
-    <section class="py-8 px-8">
-        <h3 class="text-[10px] font-bold mb-6 text-gray-500 uppercase tracking-[0.2em]">Partner Roadmap</h3>
-        <div class="space-y-6 relative">
-            <div class="absolute left-4 top-0 bottom-0 w-[1px] bg-blue-500/20"></div>
-            <div class="flex items-start space-x-6 relative">
-                <div class="bg-blue-600 text-white w-8 h-8 rounded-xl flex items-center justify-center font-bold shadow-lg z-10">1</div>
-                <div>
-                    <h5 class="font-bold text-sm">Register & Apply</h5>
-                    <p class="text-[11px] text-gray-400">Choose your regional form below.</p>
-                </div>
-            </div>
-            <div class="flex items-start space-x-6 relative">
-                <div class="bg-indigo-500 text-white w-8 h-8 rounded-xl flex items-center justify-center font-bold shadow-lg z-10">2</div>
-                <div>
-                    <h5 class="font-bold text-sm">Verification</h5>
-                    <p class="text-[11px] text-gray-400">Fast review by Zayn's team.</p>
-                </div>
-            </div>
-            <div class="flex items-start space-x-6 relative">
-                <div class="bg-emerald-500 text-white w-8 h-8 rounded-xl flex items-center justify-center font-bold shadow-lg z-10">3</div>
-                <div>
-                    <h5 class="font-bold text-sm">Start Earning</h5>
-                    <p class="text-[11px] text-gray-400">Weekly payouts every Tuesday.</p>
-                </div>
-            </div>
-        </div>
+    <!-- Application / Regions -->
+    <section id="apply" class="mt-6 mb-10">
+      <h3 class="text-lg font-extrabold mb-4 text-center uppercase tracking-tight">Select Region & Apply</h3>
+      <div class="grid grid-cols-2 sm:grid-cols-3 gap-4">
+        <button onclick="openForm('EN')" class="glass p-4 rounded-2xl flex flex-col items-center">🇺🇸<span class="mt-2 text-[12px] font-black uppercase">English</span></button>
+        <button onclick="openForm('AR')" class="glass p-4 rounded-2xl flex flex-col items-center">🇦🇪<span class="mt-2 text-[12px] font-black uppercase">العربية</span></button>
+        <button onclick="openForm('FR')" class="glass p-4 rounded-2xl flex flex-col items-center">🇫🇷<span class="mt-2 text-[12px] font-black uppercase">Français</span></button>
+        <button onclick="openForm('HI')" class="glass p-4 rounded-2xl flex flex-col items-center">🇮🇳<span class="mt-2 text-[12px] font-black uppercase">हिन्दी</span></button>
+        <button onclick="openForm('TR')" class="glass p-4 rounded-2xl flex flex-col items-center">🇹🇷<span class="mt-2 text-[12px] font-black uppercase">Türkçe</span></button>
+      </div>
     </section>
 
-    <section id="apply-section" class="py-10 px-6">
-        <h3 class="text-xl font-black mb-8 text-center italic tracking-tight uppercase">Select Region</h3>
-        <div class="grid grid-cols-2 gap-4">
-            <button onclick="openForm('EN')" class="glass p-6 rounded-2xl flex flex-col items-center border-b-4 border-b-blue-600 active:scale-95 transition-transform" aria-label="Open English application form">
-                <span class="text-4xl mb-2">🌍</span><span class="text-[10px] font-black uppercase">English</span>
-            </button>
-            <button onclick="openForm('HI')" class="glass p-6 rounded-2xl flex flex-col items-center border-b-4 border-b-orange-600 active:scale-95 transition-transform" aria-label="Open Hindi application form">
-                <span class="text-4xl mb-2">🇮🇳</span><span class="text-[10px] font-black uppercase">हिन्दी</span>
-            </button>
-            <button onclick="openForm('AR')" class="glass p-6 rounded-2xl flex flex-col items-center border-b-4 border-b-emerald-600 active:scale-95 transition-transform" aria-label="Open Arabic application form">
-                <span class="text-4xl mb-2">🇦🇪</span><span class="text-[10px] font-black uppercase">العربية</span>
-            </button>
-            <button onclick="openForm('FR')" class="glass p-6 rounded-2xl flex flex-col items-center border-b-4 border-b-indigo-600 active:scale-95 transition-transform" aria-label="Open French application form">
-                <span class="text-4xl mb-2">🇫🇷</span><span class="text-[10px] font-black uppercase">Français</span>
-            </button>
-            <button onclick="openForm('TR')" class="glass p-6 rounded-2xl flex flex-col items-center border-b-4 border-b-red-600 active:scale-95 transition-transform col-span-2" aria-label="Open Turkish application form">
-                <span class="text-4xl mb-2">🇹🇷</span><span class="text-[10px] font-black uppercase">Türkçe</span>
-            </button>
+    <!-- About / Manager -->
+    <section class="glass p-6 rounded-3xl border border-white/6 mb-10">
+      <div class="flex gap-6 items-center">
+        <img src="assets/zayn.png" alt="Zayn" class="w-20 h-20 object-cover rounded-2xl border-2 border-blue-500" onerror="this.src='https://ui-avatars.com/api/?name=Zayn+1x&background=3b82f6&color=fff'">
+        <div>
+          <h4 class="font-extrabold text-lg">Zayn — Affiliate Manager</h4>
+          <p class="text-[13px] text-white/70">I run the recruitment & support for 1XBET affiliates. Apply via the forms above or message me directly for hybrid CPA deals.</p>
+          <div class="mt-3 flex gap-3">
+            <button id="contactBtnSmall" class="px-4 py-2 rounded-lg bg-[#0088cc] font-bold">Direct Message</button>
+            <a href="#faq" class="px-4 py-2 rounded-lg border border-white/6">FAQ</a>
+          </div>
         </div>
+      </div>
     </section>
 
-    <section class="py-8 px-6 pb-24">
-        <div class="glass p-6 rounded-3xl relative overflow-hidden bg-gradient-to-br from-blue-900/10 to-transparent border border-white/10">
-            <div class="flex items-center space-x-4 mb-4">
-                <img src="assets/zayn.png" class="w-14 h-14 rounded-2xl object-cover border-2 border-blue-500 shadow-lg" alt="Zayn profile" loading="lazy" onerror="this.src='https://ui-avatars.com/api/?name=Zayn+1x&background=3b82f6&color=fff'">
-                <div>
-                    <h4 class="font-black text-lg">Zayn</h4>
-                    <p class="text-[9px] text-blue-400 font-bold uppercase tracking-widest leading-none">Official 1X Affiliate Manager</p>
-                </div>
-            </div>
-            <p class="text-xs text-gray-400 mb-6 italic leading-relaxed">
-                "Apply via forms above or contact me directly for <strong>Hybrid/CPA</strong> deals."
-            </p>
-            <button id="contactZayn" class="w-full bg-[#0088cc] hover:bg-[#0077b5] py-4 rounded-2xl font-black uppercase tracking-widest text-[10px] flex justify-center items-center shadow-lg transition-all active:scale-95">
-                Direct Message Zayn
-            </button>
-        </div>
+    <!-- FAQ -->
+    <section id="faq" class="mb-12">
+      <h3 class="text-xl font-extrabold mb-4">FAQ</h3>
+      <div class="space-y-3">
+        <details class="glass p-4 rounded-lg">
+          <summary class="font-bold">How do payouts work?</summary>
+          <div class="mt-2 text-[13px] text-white/70">Payouts are weekly and processed to your Binance wallet by default. We can discuss alternatives for different regions.</div>
+        </details>
+        <details class="glass p-4 rounded-lg">
+          <summary class="font-bold">What does hybrid model mean?</summary>
+          <div class="mt-2 text-[13px] text-white/70">You get a CPA (fixed amount per qualifying deposit) + Revenue share percentage of net revenue (25–40%). Example CPA: 3-1-3.</div>
+        </details>
+        <details class="glass p-4 rounded-lg">
+          <summary class="font-bold">Can I join if I have a small audience?</summary>
+          <div class="mt-2 text-[13px] text-white/70">Yes — we work with micro-influencers and small teams. Reach out for tailored offers.</div>
+        </details>
+      </div>
     </section>
 
-    <!-- fallback start button will be injected if not in Telegram -->
-    <script>
-        // Safe Telegram wrapper
-        const tg = window.Telegram && window.Telegram.WebApp ? window.Telegram.WebApp : null;
-        const isTelegram = !!tg;
+    <!-- Contact -->
+    <section id="contact" class="glass p-6 rounded-3xl border border-white/6 mb-20">
+      <h3 class="text-xl font-extrabold mb-4">Contact</h3>
+      <p class="text-[13px] text-white/70 mb-4">Prefer DMs? Use the button — otherwise fill the quick message form and I will reply.</p>
 
-        if (isTelegram) {
-            try {
-                // safe-guarded calls
-                tg.ready?.();
-                tg.expand?.();
-                tg.setHeaderColor?.('#0f172a');
-            } catch (e) {
-                console.warn('Telegram WebApp init error', e);
-            }
-        } else {
-            // Hide telegram-only UI (if any)
-            document.querySelectorAll('.tg-only').forEach(n => n.classList.add('hidden'));
-        }
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <div>
+          <input id="nameInput" placeholder="Your name" class="w-full p-3 rounded-lg bg-transparent border border-white/6" />
+          <input id="contactInput" placeholder="Telegram handle or phone" class="w-full p-3 rounded-lg bg-transparent border border-white/6 mt-3" />
+          <textarea id="messageInput" placeholder="Short message" class="w-full p-3 rounded-lg bg-transparent border border-white/6 mt-3 h-28"></textarea>
+          <div class="mt-3 flex gap-3">
+            <button id="sendMsgBtn" class="px-4 py-2 rounded-lg bg-blue-600 font-bold">Send</button>
+            <button id="dmZayn" class="px-4 py-2 rounded-lg border border-white/6">DM on Telegram</button>
+          </div>
+        </div>
+        <div>
+          <div class="h-full flex flex-col justify-center items-start gap-3">
+            <div class="text-[13px] text-white/70">Quick links</div>
+            <a class="underline text-sm" href="#apply">Application forms</a>
+            <a class="underline text-sm" href="assets/affiliate_en.pdf">Affiliate Guide (EN)</a>
+            <a class="underline text-sm" href="assets/affiliate_ar.pdf">دليل الشركاء (AR)</a>
 
-        // 1. Personalization (safe)
-        if (isTelegram && tg.initDataUnsafe?.user?.first_name) {
-            const name = tg.initDataUnsafe.user.first_name;
-            const topBar = document.getElementById('topBarName');
-            if (topBar) topBar.innerText = name;
-            document.getElementById('userBadge')?.classList.remove('hidden');
-        }
+            <div class="mt-6 text-[12px] text-white/60">Follow on Telegram: <a href="https://t.me/ZAYN1x" class="underline">@ZAYN1x</a></div>
+          </div>
+        </div>
+      </div>
+    </section>
 
-        // 2. Calculator Engine (Fixed & accessible)
-        const revSlider = document.getElementById('revenueSlider');
-        const rateSlider = document.getElementById('rateSlider');
-        const revVal = document.getElementById('revenueVal');
-        const rateVal = document.getElementById('rateVal');
-        const payoutDisplay = document.getElementById('payoutDisplay');
+  </main>
 
-        function updateCalc() {
-            if (!revSlider || !rateSlider) return;
-            const revenue = Number(revSlider.value) || 0;
-            const rate = Number(rateSlider.value) || 0;
-            const result = revenue * (rate / 100);
+  <footer class="text-center py-6 text-white/60">
+    <div class="max-w-4xl mx-auto px-4">
+      <div class="mb-3">© <strong>ZAYN1x</strong> — Official 1XBET Partner</div>
+      <div class="text-[12px]">Built with focus on affiliates. Questions? <a href="#contact" class="underline">Contact Zayn</a>.</div>
+    </div>
+  </footer>
 
-            if (revVal) revVal.innerText = revenue.toLocaleString();
-            if (rateVal) rateVal.innerText = rate;
-            if (payoutDisplay) payoutDisplay.innerText = '$' + Math.round(result).toLocaleString();
+  <!-- SCRIPTS -->
+  <script>
+    // Telegram safe wrapper
+    const tg = window.Telegram && window.Telegram.WebApp ? window.Telegram.WebApp : null;
+    const isTelegram = !!tg;
 
-            // update aria values for screen readers
-            revSlider.setAttribute('aria-valuenow', String(revenue));
-            rateSlider.setAttribute('aria-valuenow', String(rate));
-            payoutDisplay.setAttribute('aria-live', 'polite');
-        }
+    if (isTelegram) {
+      try { tg.ready?.(); tg.expand?.(); } catch(e){}
+    }
 
-        if (revSlider && rateSlider) {
-            revSlider.oninput = () => {
-                updateCalc();
-                // safe haptic call (only if available)
-                try { if (isTelegram && tg.HapticFeedback?.selectionChanged) tg.HapticFeedback.selectionChanged(); } catch(e){ /* ignore */ }
-            };
-            rateSlider.oninput = () => {
-                updateCalc();
-                try { if (isTelegram && tg.HapticFeedback?.selectionChanged) tg.HapticFeedback.selectionChanged(); } catch(e){ /* ignore */ }
-            };
-            updateCalc(); // initial
-        }
+    // Personalize top bar if inside Telegram
+    try {
+      if (isTelegram && tg.initDataUnsafe?.user?.first_name) {
+        // we could insert name into DOM or use for analytics
+      }
+    } catch(e){}
 
-        // 3. Global Form Redirect (Telegram-safe with fallback)
-        window.openForm = function(lang) {
-            try { if (isTelegram && tg.HapticFeedback?.notificationOccurred) tg.HapticFeedback.notificationOccurred('success'); } catch(e){ /* ignore */ }
+    // Calculator
+    const revSlider = document.getElementById('revenueSlider');
+    const rateSlider = document.getElementById('rateSlider');
+    const revVal = document.getElementById('revenueVal');
+    const rateVal = document.getElementById('rateVal');
+    const payoutDisplay = document.getElementById('payoutDisplay');
 
-            const urls = {
-                EN: "https://forms.gle/jdWbKvg8qbRqXomi9",
-                HI: "https://forms.gle/YOUR_HINDI_FORM_URL",
-                AR: "https://forms.gle/LijfMVsGhbnLVKwo8",
-                FR: "https://forms.gle/fp7rofvUAo1PEoCu7",
-                TR: "https://forms.gle/5c6zrjN3JrQuzhtz9"
-            };
-            const target = urls[lang] || urls.EN;
+    function updateCalc(){
+      const revenue = Number(revSlider?.value || 0);
+      const rate = Number(rateSlider?.value || 25);
+      const result = revenue * (rate/100);
+      if (revVal) revVal.innerText = '$' + revenue.toLocaleString();
+      if (rateVal) rateVal.innerText = rate + '%';
+      if (payoutDisplay) payoutDisplay.innerText = '$' + Math.round(result).toLocaleString();
+    }
+    if (revSlider && rateSlider){
+      revSlider.addEventListener('input', updateCalc);
+      rateSlider.addEventListener('input', updateCalc);
+      updateCalc();
+    }
 
-            if (isTelegram && typeof tg.openLink === 'function') {
-                try { tg.openLink(target); } catch(e){ console.warn('tg.openLink failed, falling back', e); window.open(target, '_blank', 'noopener,noreferrer'); }
-            } else {
-                window.open(target, '_blank', 'noopener,noreferrer');
-            }
-        };
+    // Form links (put your real forms / Google Forms links here)
+    window.openForm = function(lang){
+      const urls = {
+        EN: "https://forms.gle/jdWbKvg8qbRqXomi9",
+        HI: "https://forms.gle/YOUR_HINDI_FORM_URL",
+        AR: "https://forms.gle/LijfMVsGhbnLVKwo8",
+        FR: "https://forms.gle/fp7rofvUAo1PEoCu7",
+        TR: "https://forms.gle/5c6zrjN3JrQuzhtz9"
+      };
+      const target = urls[lang] || urls.EN;
+      if (isTelegram && typeof tg.openLink === 'function'){
+        try{ tg.openLink(target); return; } catch(e){}
+      }
+      window.open(target, '_blank', 'noopener');
+    }
 
-        // 4. Contact Button (Direct DM Logic) — safe with fallback
-        const contactBtn = document.getElementById('contactZayn');
-        if (contactBtn) {
-            contactBtn.onclick = () => {
-                try { if (isTelegram && tg.HapticFeedback?.impactOccurred) tg.HapticFeedback.impactOccurred('heavy'); } catch(e){ /* ignore */ }
+    // Contact actions
+    function openContact(){
+      document.getElementById('contact')?.scrollIntoView({behavior:'smooth'});
+    }
+    function scrollToApply(){ document.getElementById('apply')?.scrollIntoView({behavior:'smooth'}); }
 
-                const handle = "ZAYN1x";
-                const text = encodeURIComponent("Hi Zayn, I'm interested in the 1XBET Hybrid system.");
-                const tgLink = `https://t.me/${handle}?text=${text}`;
+    document.getElementById('contactBtnSmall')?.addEventListener('click', openContact);
+    document.getElementById('navContact')?.addEventListener('click', openContact);
 
-                if (isTelegram && typeof tg.openTelegramLink === 'function') {
-                    try { tg.openTelegramLink(tgLink); }
-                    catch (e) { console.warn('tg.openTelegramLink failed, falling back to window.open', e); window.open(tgLink, '_blank', 'noopener,noreferrer'); }
-                } else {
-                    window.open(tgLink, '_blank', 'noopener,noreferrer');
-                }
-            };
-        }
+    // DM buttons
+    function openTelegramDM(){
+      const handle = 'ZAYN1x';
+      const text = encodeURIComponent("Hi Zayn, I'm interested in the 1XBET Hybrid system.");
+      const tgLink = `https://t.me/${handle}?text=${text}`;
+      if (isTelegram && typeof tg.openTelegramLink === 'function'){
+        try{ tg.openTelegramLink(tgLink); return; } catch(e){}
+      }
+      window.open(tgLink, '_blank', 'noopener');
+    }
+    document.getElementById('dmZayn')?.addEventListener('click', openTelegramDM);
 
-        // 5. Native Main Button (only when available), otherwise provide a fallback on-page button
-        if (isTelegram && tg.MainButton) {
-            try {
-                tg.MainButton.setText("START APPLICATION");
-                tg.MainButton.setParams({ color: '#3b82f6', text_color: '#ffffff' });
-                tg.MainButton.show();
-                if (typeof tg.MainButton.onClick === 'function') {
-                    tg.MainButton.onClick(() => {
-                        const applySection = document.getElementById('apply-section');
-                        if (applySection) {
-                            applySection.scrollIntoView({ behavior: 'smooth' });
-                            try { if (tg.HapticFeedback?.impactOccurred) tg.HapticFeedback.impactOccurred('medium'); } catch(e){ /* ignore */ }
-                        }
-                    });
-                }
-            } catch (e) {
-                console.warn('Error configuring tg.MainButton', e);
-            }
-        } else {
-            // create a visible fallback start button for non-Telegram environments
-            const fallback = document.createElement('button');
-            fallback.id = 'fallbackStartBtn';
-            fallback.type = 'button';
-            fallback.innerText = 'START APPLICATION';
-            fallback.setAttribute('aria-label', 'Start application');
-            fallback.onclick = () => {
-                const applySection = document.getElementById('apply-section');
-                if (applySection) {
-                    applySection.scrollIntoView({ behavior: 'smooth' });
-                    // small vibration fallback for devices that support it
-                    try { if (navigator.vibrate) navigator.vibrate(40); } catch(e){ /* ignore */ }
-                }
-            };
-            document.body.appendChild(fallback);
-        }
-    </script>
+    // Small contact form (simple client-side -> opens Telegram DM or mailto fallback)
+    document.getElementById('sendMsgBtn')?.addEventListener('click', ()=>{
+      const name = document.getElementById('nameInput')?.value || 'Friend';
+      const contact = document.getElementById('contactInput')?.value || '';
+      const msg = document.getElementById('messageInput')?.value || '';
+      const text = encodeURIComponent(`Name: ${name}\nContact: ${contact}\nMessage: ${msg}`);
+      // prefer Telegram DM, but fallback to mailto
+      const tgLink = `https://t.me/ZAYN1x?text=${text}`;
+      try{ window.open(tgLink, '_blank', 'noopener'); } catch(e){ window.location.href = `mailto:your@email.com?subject=Affiliate%20Inquiry&body=${text}`; }
+    });
+
+    // Download affiliate guide (placeholder behavior)
+    document.getElementById('downloadPdf')?.addEventListener('click', ()=>{
+      window.open('assets/affiliate_en.pdf','_blank');
+    });
+
+    // Accessibility: allow Enter on keyboard for region buttons
+    document.querySelectorAll('[onclick]')?.forEach(el=>{ el.setAttribute('tabindex', '0'); el.addEventListener('keypress', (e)=>{ if(e.key==='Enter') el.click(); }); });
+
+  </script>
+
 </body>
 </html>
