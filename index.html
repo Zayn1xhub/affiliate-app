@@ -72,7 +72,7 @@
         <button onclick="openContact()" class="px-6 py-3 border border-white/6 rounded-xl font-semibold uppercase">Message Zayn</button>
       </div>
       <div class="mt-6 flex flex-wrap gap-2 justify-center text-[11px]">
-        <span class="bg-blue-600 px-3 py-1 rounded-md font-bold uppercase">Tiered RevShare up to 50%</span>
+        <span class="bg-blue-600 px-3 py-1 rounded-md font-bold uppercase">Tiered RevShare up to 40%+</span>
         <span class="bg-purple-600 px-3 py-1 rounded-md font-bold uppercase">5% Sub-Affiliate Bonus</span>
         <span class="bg-indigo-600 px-3 py-1 rounded-md font-bold uppercase">Hybrid (CPA + RS)</span>
         <span class="bg-emerald-600 px-3 py-1 rounded-md font-bold uppercase">Weekly Payouts</span>
@@ -86,7 +86,7 @@
         <div class="flex-1">
           <h3 class="text-xs font-bold mb-4 text-blue-300 uppercase tracking-wider">Profit Estimator</h3>
           <label class="text-[11px] font-semibold text-white/80 flex justify-between mb-2">Monthly Deposits <span class="font-mono" id="revenueVal">$5,000</span></label>
-          <input type="range" id="revenueSlider" min="0" max="150000" step="100" value="5000">
+          <input type="range" id="revenueSlider" min="0" max="200000" step="100" value="5000">
           <div class="mt-6 p-4 rounded-2xl bg-blue-600/6 border border-blue-500/10 text-center">
             <div class="text-[10px] uppercase text-blue-300 font-black tracking-wide">Estimated Monthly Commission</div>
             <div id="payoutDisplay" class="text-3xl font-extrabold mt-1">$1,250</div>
@@ -96,7 +96,7 @@
         <div class="w-full sm:w-72">
           <h4 class="text-sm font-bold mb-3">Quick Facts</h4>
           <ul class="text-[13px] space-y-2 text-white/70">
-            <li>• Tiered Revenue Share: 25% → 50% based on performance.</li>
+            <li>• Tiered Revenue Share: 25% → 40%+ (Diamond negotiable).</li>
             <li>• <strong>5% lifetime bonus</strong> on your sub-affiliates' earnings.</li>
             <li>• Hybrid model available: CPA + RevShare.</li>
             <li>• Weekly payouts via Binance wallet.</li>
@@ -109,12 +109,12 @@
       </div>
     </section>
 
-    <!-- AFFILIATES TIER SYSTEM SECTION - INTERACTIVE -->
+    <!-- AFFILIATES TIER SYSTEM SECTION - NOW WITH 5 TIERS -->
     <section class="mt-12 glass p-8 rounded-3xl border border-white/6 shadow-deep">
       <h3 class="text-2xl font-extrabold mb-8 text-center uppercase tracking-tight">Affiliate Tier System</h3>
       <p class="text-center text-white/70 mb-10 max-w-3xl mx-auto">Performance-based tiers with increasing RevShare. Plus earn <strong>5% lifetime commission</strong> on all affiliates you recruit (sub-affiliates).</p>
 
-      <div class="grid grid-cols-1 md:grid-cols-4 gap-6" id="tierContainer">
+      <div class="grid grid-cols-1 md:grid-cols-5 gap-6" id="tierContainer">
         <!-- Tier Bronze -->
         <div class="tier-card glass p-6 rounded-2xl text-center border border-amber-600/30 bg-amber-600/5 active" data-tier="bronze" data-rate="25" data-min="0" data-max="10000">
           <div class="text-4xl font-black text-amber-400 mb-4">Bronze</div>
@@ -127,9 +127,9 @@
         </div>
 
         <!-- Tier Silver -->
-        <div class="tier-card glass p-6 rounded-2xl text-center border border-gray-400/30 bg-gray-400/5" data-tier="silver" data-rate="35" data-min="10001" data-max="30000">
+        <div class="tier-card glass p-6 rounded-2xl text-center border border-gray-400/30 bg-gray-400/5" data-tier="silver" data-rate="30" data-min="10001" data-max="30000">
           <div class="text-4xl font-black text-gray-300 mb-4">Silver</div>
-          <div class="text-3xl font-extrabold mb-2">35%</div>
+          <div class="text-3xl font-extrabold mb-2">30%</div>
           <div class="text-sm text-white/60 mb-6">RevShare</div>
           <div class="text-xs uppercase font-bold text-gray-300 mb-4">Growing</div>
           <hr class="border-white/10 my-4">
@@ -138,9 +138,9 @@
         </div>
 
         <!-- Tier Gold -->
-        <div class="tier-card glass p-6 rounded-2xl text-center border border-yellow-500/40 bg-yellow-500/5" data-tier="gold" data-rate="45" data-min="30001" data-max="70000">
+        <div class="tier-card glass p-6 rounded-2xl text-center border border-yellow-500/40 bg-yellow-500/5" data-tier="gold" data-rate="35" data-min="30001" data-max="70000">
           <div class="text-4xl font-black text-yellow-400 mb-4">Gold</div>
-          <div class="text-3xl font-extrabold mb-2">45%</div>
+          <div class="text-3xl font-extrabold mb-2">35%</div>
           <div class="text-sm text-white/60 mb-6">RevShare</div>
           <div class="text-xs uppercase font-bold text-yellow-300 mb-4">Top Performer</div>
           <hr class="border-white/10 my-4">
@@ -149,14 +149,25 @@
         </div>
 
         <!-- Tier Platinum -->
-        <div class="tier-card glass p-6 rounded-2xl text-center border border-cyan-400/50 bg-cyan-400/5" data-tier="platinum" data-rate="50" data-min="70001" data-max="999999">
+        <div class="tier-card glass p-6 rounded-2xl text-center border border-cyan-400/50 bg-cyan-400/5" data-tier="platinum" data-rate="40" data-min="70001" data-max="150000">
           <div class="text-4xl font-black text-cyan-300 mb-4">Platinum</div>
-          <div class="text-3xl font-extrabold mb-2">50%</div>
+          <div class="text-3xl font-extrabold mb-2">40%</div>
           <div class="text-sm text-white/60 mb-6">RevShare</div>
           <div class="text-xs uppercase font-bold text-cyan-300 mb-4">Elite</div>
           <hr class="border-white/10 my-4">
-          <p class="text-[13px] text-white/70">Monthly NGR<br>$70,001+</p>
-          <p class="text-xs text-cyan-200 mt-3">+ Personal manager<br>+ Custom deals</p>
+          <p class="text-[13px] text-white/70">Monthly NGR<br>$70,001 – $150,000</p>
+          <svg class="tier-check mx-auto mt-4 w-8 h-8 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
+        </div>
+
+        <!-- Tier Diamond -->
+        <div class="tier-card glass p-6 rounded-2xl text-center border border-purple-500/60 bg-purple-600/10" data-tier="diamond" data-rate="negotiable" data-min="150001" data-max="999999999">
+          <div class="text-4xl font-black text-purple-300 mb-4">Diamond</div>
+          <div class="text-3xl font-extrabold mb-2">??%</div>
+          <div class="text-sm text-white/60 mb-6">RevShare</div>
+          <div class="text-xs uppercase font-bold text-purple-300 mb-4">VIP</div>
+          <hr class="border-white/10 my-4">
+          <p class="text-[13px] text-white/70">Monthly NGR<br>$150,001+</p>
+          <p class="text-xs text-purple-200 mt-3">Negotiable rate<br>+ Exclusive perks</p>
           <svg class="tier-check mx-auto mt-4 w-8 h-8 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
         </div>
       </div>
@@ -171,7 +182,7 @@
 
       <div class="mt-10 text-center text-sm text-white/60">
         <p>* NGR = Net Gaming Revenue. Tiers calculated monthly and applied retroactively.</p>
-        <p class="mt-2">Hybrid CPA + custom sub-affiliate deals available for qualified partners.</p>
+        <p class="mt-2">Hybrid CPA + custom deals (including Diamond tier) available for qualified partners.</p>
       </div>
     </section>
 
@@ -204,7 +215,7 @@
       </div>
     </section>
 
-    <!-- Rest of sections unchanged -->
+    <!-- Application / Regions -->
     <section id="apply" class="mt-6 mb-10">
       <h3 class="text-lg font-extrabold mb-4 text-center uppercase tracking-tight">Select Region & Apply</h3>
       <div class="grid grid-cols-2 sm:grid-cols-3 gap-4">
@@ -215,12 +226,13 @@
       </div>
     </section>
 
+    <!-- About / Manager -->
     <section class="glass p-6 rounded-3xl border border-white/6 mb-10">
       <div class="flex gap-6 items-center">
         <img src="assets/zayn.png" alt="Zayn" class="w-20 h-20 object-cover rounded-2xl border-2 border-blue-500" onerror="this.src='https://ui-avatars.com/api/?name=Zayn+1x&background=3b82f6&color=fff'">
         <div>
           <h4 class="font-extrabold text-lg">Zayn — Affiliate Manager</h4>
-          <p class="text-[13px] text-white/70">I run the recruitment & support for 1XBET affiliates. Apply via the forms above or message me directly for hybrid CPA or sub-affiliate deals.</p>
+          <p class="text-[13px] text-white/70">I run the recruitment & support for 1XBET affiliates. Apply via the forms above or message me directly for hybrid CPA, sub-affiliate, or Diamond tier deals.</p>
           <div class="mt-3 flex gap-3">
             <button id="contactBtnSmall" class="px-4 py-2 rounded-lg bg-[#0088cc] font-bold">Direct Message</button>
             <a href="#faq" class="px-4 py-2 rounded-lg border border-white/6">FAQ</a>
@@ -229,6 +241,7 @@
       </div>
     </section>
 
+    <!-- FAQ -->
     <section id="faq" class="mb-12">
       <h3 class="text-xl font-extrabold mb-4">FAQ</h3>
       <div class="space-y-3">
@@ -241,6 +254,10 @@
           <div class="mt-2 text-[13px] text-white/70">Earn 5% lifetime commission on the earnings of any affiliates you recruit. There is no limit to how many you can bring in.</div>
         </details>
         <details class="glass p-4 rounded-lg">
+          <summary class="font-bold">What about the Diamond tier?</summary>
+          <div class="mt-2 text-[13px] text-white/70">Diamond is for top performers with $150k+ monthly NGR. RevShare rate is fully negotiable along with exclusive perks. Contact me directly to discuss.</div>
+        </details>
+        <details class="glass p-4 rounded-lg">
           <summary class="font-bold">How are tiers calculated?</summary>
           <div class="mt-2 text-[13px] text-white/70">Tiers are based on monthly Net Gaming Revenue (NGR). The higher your players' net revenue, the higher your RevShare rate — applied to the entire month's earnings.</div>
         </details>
@@ -251,6 +268,7 @@
       </div>
     </section>
 
+    <!-- Contact -->
     <section id="contact" class="glass p-6 rounded-3xl border border-white/6 mb-20">
       <h3 class="text-xl font-extrabold mb-4">Contact</h3>
       <p class="text-[13px] text-white/70 mb-4">Prefer DMs? Use the button — otherwise fill the quick message form and I will reply.</p>
@@ -302,15 +320,29 @@
       let tierName = 'Bronze';
       let colorClass = 'text-amber-400';
 
-      if (revenue >= 70001) { rate = 50; tierName = 'Platinum'; colorClass = 'text-cyan-300'; }
-      else if (revenue >= 30001) { rate = 45; tierName = 'Gold'; colorClass = 'text-yellow-400'; }
-      else if (revenue >= 10001) { rate = 35; tierName = 'Silver'; colorClass = 'text-gray-300'; }
+      if (revenue >= 150001) {
+        rate = 'Negotiable';
+        tierName = 'Diamond';
+        colorClass = 'text-purple-300';
+      } else if (revenue >= 70001) {
+        rate = 40;
+        tierName = 'Platinum';
+        colorClass = 'text-cyan-300';
+      } else if (revenue >= 30001) {
+        rate = 35;
+        tierName = 'Gold';
+        colorClass = 'text-yellow-400';
+      } else if (revenue >= 10001) {
+        rate = 30;
+        tierName = 'Silver';
+        colorClass = 'text-gray-300';
+      }
 
-      const result = Math.round(revenue * (rate / 100));
+      const result = (typeof rate === 'number') ? Math.round(revenue * (rate / 100)) : 'Contact for custom rate';
 
       revVal.innerText = '$' + revenue.toLocaleString();
-      payoutDisplay.innerText = '$' + result.toLocaleString();
-      tierInfo.innerText = `(${tierName} Tier – ${rate}% RevShare)`;
+      payoutDisplay.innerText = (typeof result === 'number') ? '$' + result.toLocaleString() : result;
+      tierInfo.innerText = `(${tierName} Tier – ${typeof rate === 'number' ? rate + '%' : rate} RevShare)`;
       tierInfo.className = `text-[11px] text-white/60 mt-1 ${colorClass}`;
 
       // Highlight active tier
@@ -318,7 +350,7 @@
         card.classList.remove('active');
         const min = Number(card.dataset.min);
         const max = Number(card.dataset.max);
-        if (revenue >= min && revenue <= max) {
+        if (revenue >= min && (max === 999999999 || revenue <= max)) {
           card.classList.add('active');
         }
       });
@@ -327,13 +359,18 @@
     revSlider.addEventListener('input', updateCalculator);
     updateCalculator();
 
-    // Optional: Click on tier card to simulate that revenue range
+    // Click on tier card to simulate that revenue range
     tierCards.forEach(card => {
       card.addEventListener('click', () => {
         const min = Number(card.dataset.min);
         const max = Number(card.dataset.max);
-        const mid = Math.round((min + max) / 2);
-        revSlider.value = mid > revSlider.max ? revSlider.max : mid;
+        let target = min;
+        if (max !== 999999999) {
+          target = Math.round((min + max) / 2);
+        } else {
+          target = min + 50000; // reasonable value for Diamond
+        }
+        revSlider.value = target;
         updateCalculator();
       });
     });
@@ -360,7 +397,7 @@
 
     function openTelegramDM(){
       const handle = 'ZAYN1x';
-      const text = encodeURIComponent("Hi Zayn, I'm interested in the 1XBET affiliate program and sub-affiliate bonuses.");
+      const text = encodeURIComponent("Hi Zayn, I'm interested in the 1XBET affiliate program and higher/Diamond tier options.");
       const tgLink = `https://t.me/${handle}?text=${text}`;
       if (isTelegram && typeof tg.openTelegramLink === 'function'){
         try{ tg.openTelegramLink(tgLink); return; } catch(e){}
