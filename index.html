@@ -13,7 +13,7 @@
 
   <meta name="description" content="ZAYN1x — Official 1XBET Affiliate Manager. Hybrid CPA + Revenue Share deals, weekly payouts, onboarding & support." />
   <meta property="og:title" content="ZAYN1x Affiliate | Official 1XBET Partner" />
-  <meta property="og:description" content="Hybrid CPA + Revenue Share deals, weekly payouts, recruitment support, onboarding guides and a tight team to help you scale." />
+  <meta property="og:description" content="Hybrid CPA + Revenue Share deals, weekly payouts, onboarding & support by Zayn — Affiliate Manager." />
   <meta name="theme-color" content="#0f172a" />
 
   <style>
@@ -40,23 +40,10 @@
     /* small utilities that tailwind cannot cover due to CDN usage */
     .shadow-deep{ box-shadow: 0 10px 40px rgba(2,6,23,0.6); }
 
-    .tier-card { transition: transform .18s ease, box-shadow .18s ease; }
-    .tier-card:hover { transform: translateY(-6px); box-shadow: 0 12px 30px rgba(2,6,23,0.5); }
-
-    /* marquee animation */
-    .ticker-wrap { position: fixed; left: 0; right: 0; bottom: 0; z-index: 60; background: linear-gradient(90deg, rgba(6,8,25,0.9), rgba(6,8,25,0.8)); border-top: 1px solid rgba(255,255,255,0.04); padding: 8px 0; }
-    .ticker { white-space: nowrap; display: inline-block; padding-left: 100%; will-change: transform; }
-    @keyframes scroll-left {
-      0% { transform: translateX(0%); }
-      100% { transform: translateX(-100%); }
-    }
-    /* small label */
-    .badge-small { font-size: 10px; padding:4px 7px; border-radius:999px; }
-
-    @media (max-width:640px){ .desktop-only{ display:none; } .ticker-wrap{ font-size:12px; } }
+    @media (max-width:640px){ .desktop-only{ display:none; } }
   </style>
 </head>
-<body class="antialiased leading-relaxed pb-20"> <!-- add bottom padding so ticker doesn't overlap content -->
+<body class="antialiased leading-relaxed">
 
   <!-- NAV -->
   <nav class="p-4 flex items-center justify-between sticky top-0 z-50 bg-[#0f172a]/80 backdrop-blur-md border-b border-white/5">
@@ -108,19 +95,6 @@
             <div id="payoutDisplay" class="text-3xl font-extrabold mt-1">$1,250</div>
             <div class="text-[11px] text-white/60 mt-1">(Monthly estimate)</div>
           </div>
-
-          <!-- Tier progress indicator (small) -->
-          <div class="mt-4 p-3 rounded-xl bg-white/3 border border-white/5">
-            <div class="flex items-center justify-between mb-2 text-sm">
-              <div class="font-bold">Tier Progress</div>
-              <div id="currentTierLabel" class="text-[12px] text-white/70 badge-small bg-gray-800/50 px-2">Bronze</div>
-            </div>
-            <div class="w-full bg-white/6 rounded-full h-3 overflow-hidden">
-              <div id="tierProgress" class="h-3 rounded-full bg-gradient-to-r from-yellow-400 to-blue-500" style="width:10%"></div>
-            </div>
-            <div class="mt-2 text-[12px] text-white/60">Reach <span id="nextTierTarget" class="font-bold">$10,000</span> monthly deposits for Silver.</div>
-          </div>
-
         </div>
 
         <div class="w-full sm:w-72">
@@ -138,80 +112,6 @@
           </div>
         </div>
       </div>
-    </section>
-
-    <!-- Tier System -->
-    <section class="mt-8 pb-6">
-      <h3 class="text-xs font-bold mb-4 text-gray-400 uppercase tracking-wide">Affiliate Tiers (VIP Progression)</h3>
-
-      <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
-        <!-- Bronze -->
-        <div class="tier-card glass p-4 rounded-2xl border border-white/6 cursor-pointer" id="tierBronze" data-tier="bronze" role="button" tabindex="0">
-          <div class="flex items-center justify-between">
-            <div>
-              <div class="text-sm font-black">Bronze</div>
-              <div class="text-[12px] text-white/60">Starter partners</div>
-            </div>
-            <div class="text-xl font-extrabold">25%</div>
-          </div>
-          <div class="mt-3 text-[13px] text-white/70">
-            <ul class="space-y-1">
-              <li>• 25% Revenue Share</li>
-              <li>• Weekly payouts</li>
-            </ul>
-          </div>
-          <div class="mt-4 flex justify-between items-center">
-            <button class="px-3 py-1 rounded-lg bg-blue-600 text-xs font-bold" onclick="selectTier('bronze', event)">Select</button>
-            <div class="text-[11px] text-white/60">Good for new affiliates</div>
-          </div>
-        </div>
-
-        <!-- Silver -->
-        <div class="tier-card glass p-4 rounded-2xl border border-white/6 cursor-pointer" id="tierSilver" data-tier="silver" role="button" tabindex="0">
-          <div class="flex items-center justify-between">
-            <div>
-              <div class="text-sm font-black">Silver</div>
-              <div class="text-[12px] text-white/60">Growing partners</div>
-            </div>
-            <div class="text-xl font-extrabold">30%</div>
-          </div>
-          <div class="mt-3 text-[13px] text-white/70">
-            <ul class="space-y-1">
-              <li>• 30% Revenue Share</li>
-              <li>• Weekly strategy calls</li>
-              <li>• Priority payout queue</li>
-            </ul>
-          </div>
-          <div class="mt-4 flex justify-between items-center">
-            <button class="px-3 py-1 rounded-lg bg-indigo-600 text-xs font-bold" onclick="selectTier('silver', event)">Select</button>
-            <div class="text-[11px] text-white/60">Great for scaling</div>
-          </div>
-        </div>
-
-        <!-- Gold / Diamond -->
-        <div class="tier-card glass p-4 rounded-2xl border border-white/6 cursor-pointer" id="tierGold" data-tier="gold" role="button" tabindex="0">
-          <div class="flex items-center justify-between">
-            <div>
-              <div class="text-sm font-black">Gold · Diamond</div>
-              <div class="text-[12px] text-white/60">Top partners</div>
-            </div>
-            <div class="text-xl font-extrabold">40%</div>
-          </div>
-          <div class="mt-3 text-[13px] text-white/70">
-            <ul class="space-y-1">
-              <li>• 40% Revenue Share</li>
-              <li>• Private manager</li>
-              <li>• Dedicated optimisation & priority support</li>
-            </ul>
-          </div>
-          <div class="mt-4 flex justify-between items-center">
-            <button class="px-3 py-1 rounded-lg bg-yellow-500 text-xs font-black" onclick="selectTier('gold', event)">Select</button>
-            <div class="text-[11px] text-white/60">Invite-only perks available</div>
-          </div>
-        </div>
-      </div>
-
-      <div class="mt-4 text-[12px] text-white/60">Tip: click a tier to preview its RevShare in the Profit Estimator.</div>
     </section>
 
     <!-- Partner Roadmap -->
@@ -328,23 +228,6 @@
     </div>
   </footer>
 
-  <!-- LIVE PAYOUT TICKER (fixed bottom) -->
-  <div class="ticker-wrap" aria-hidden="false" role="region" aria-label="Recent partner payouts" id="tickerWrap">
-    <div class="max-w-6xl mx-auto px-4 flex items-center gap-4">
-      <div class="flex items-center gap-3">
-        <div class="badge-small bg-white/5 text-white/70 px-2">LIVE</div>
-        <div class="text-[13px] text-white/70 hidden sm:block">Recent payouts</div>
-      </div>
-      <div id="tickerInner" class="overflow-hidden flex-1">
-        <div id="ticker" class="ticker" aria-live="polite"></div>
-      </div>
-      <div class="ml-4 flex items-center gap-2">
-        <button id="pauseTicker" class="text-[12px] px-3 py-1 rounded-lg bg-white/5">Pause</button>
-        <button id="clearTicker" class="text-[12px] px-3 py-1 rounded-lg border border-white/5">Clear</button>
-      </div>
-    </div>
-  </div>
-
   <!-- SCRIPTS -->
   <script>
     // Telegram safe wrapper
@@ -376,75 +259,11 @@
       if (revVal) revVal.innerText = '$' + revenue.toLocaleString();
       if (rateVal) rateVal.innerText = rate + '%';
       if (payoutDisplay) payoutDisplay.innerText = '$' + Math.round(result).toLocaleString();
-      updateTierProgress(revenue);
     }
     if (revSlider && rateSlider){
       revSlider.addEventListener('input', updateCalc);
       rateSlider.addEventListener('input', updateCalc);
       updateCalc();
-    }
-
-    // Tier logic
-    const tiers = {
-      bronze: { label: 'Bronze', rate: 25, nextTarget: 150 },
-      silver: { label: 'Silver', rate: 30, nextTarget: 300 },
-      gold:   { label: 'GoldDiamond', rate: 35, nextTarget: 500 }, 
-      diamond:   { label: 'Diamond', rate: 40, nextTarget: null } // top
-    };
-    let selectedTier = 'bronze';
-
-    function selectTier(tier, e){
-      if (e) e.stopPropagation();
-      if (!tiers[tier]) return;
-      selectedTier = tier;
-      // set slider to tier rate
-      rateSlider.value = tiers[tier].rate;
-      updateCalc();
-      // visually mark selected
-      document.getElementById('currentTierLabel').innerText = tiers[tier].label;
-      // small toast effect
-      const btn = document.createElement('div');
-      btn.innerText = `${tiers[tier].label} selected — ${tiers[tier].rate}% RevShare`;
-      btn.className = 'fixed right-6 bottom-24 bg-blue-600/90 text-white px-4 py-2 rounded-md shadow-lg z-60';
-      document.body.appendChild(btn);
-      setTimeout(()=>{ btn.remove(); }, 1800);
-    }
-
-    // keyboard support for tier cards
-    document.getElementById('tierBronze')?.addEventListener('click', ()=>selectTier('bronze'));
-    document.getElementById('tierSilver')?.addEventListener('click', ()=>selectTier('silver'));
-    document.getElementById('tierGold')?.addEventListener('click', ()=>selectTier('gold'));
-    document.getElementById('tierBronze')?.addEventListener('keypress', (e)=>{ if(e.key==='Enter') selectTier('bronze'); });
-    document.getElementById('tierSilver')?.addEventListener('keypress', (e)=>{ if(e.key==='Enter') selectTier('silver'); });
-    document.getElementById('tierGold')?.addEventListener('keypress', (e)=>{ if(e.key==='Enter') selectTier('gold'); });
-
-    // Tier progress visualization (based on monthly deposits slider)
-    function updateTierProgress(revenue){
-      const r = Number(revenue || 0);
-      let current = 'bronze';
-      if (r >= (tiers.silver.nextTarget || 0) && tiers.silver.nextTarget) current = 'silver';
-      if (r >= (tiers.gold.nextTarget || 999999999)) current = 'gold'; // gold is invite only — handled visually below
-
-      // show progress to next target (from Bronze -> Silver -> Gold)
-      let nextTarget = tiers.bronze.nextTarget;
-      let percent = 0;
-      if (r < tiers.silver.nextTarget) {
-        nextTarget = tiers.silver.nextTarget;
-        percent = Math.min(100, Math.round((r / nextTarget) * 100));
-        document.getElementById('nextTierTarget').innerText = '$' + nextTarget.toLocaleString();
-        document.getElementById('currentTierLabel').innerText = (r >= 0 && r < nextTarget) ? 'Bronze' : 'Bronze';
-      } else if (r >= tiers.silver.nextTarget && tiers.gold.nextTarget) {
-        nextTarget = tiers.gold.nextTarget;
-        percent = Math.min(100, Math.round((r / nextTarget) * 100));
-        document.getElementById('nextTierTarget').innerText = '$' + nextTarget.toLocaleString();
-        document.getElementById('currentTierLabel').innerText = 'Silver';
-      } else {
-        // if beyond gold target or gold has no public target, mark full
-        percent = 100;
-        document.getElementById('nextTierTarget').innerText = 'Invite-only';
-        document.getElementById('currentTierLabel').innerText = 'Gold';
-      }
-      document.getElementById('tierProgress').style.width = percent + '%';
     }
 
     // Form links (put your real forms / Google Forms links here)
@@ -473,134 +292,34 @@
 
     // DM buttons
     function openTelegramDM(){
-  const handle = 'ZAYN1x';
-  const text = encodeURIComponent("Hi Zayn, I'm interested in the 1XBET Hybrid system.");
-  const tgLink = `https://t.me/${handle}?text=${text}`;
-  window.open(tgLink, '_blank', 'noopener');
-}
-document.getElementById('dmZayn')?.addEventListener('click', openTelegramDM);
+      const handle = 'ZAYN1x';
+      const text = encodeURIComponent("Hi Zayn, I'm interested in the 1XBET Hybrid system.");
+      const tgLink = `https://t.me/${handle}?text=${text}`;
+      if (isTelegram && typeof tg.openTelegramLink === 'function'){
+        try{ tg.openTelegramLink(tgLink); return; } catch(e){}
+      }
+      window.open(tgLink, '_blank', 'noopener');
+    }
+    document.getElementById('dmZayn')?.addEventListener('click', openTelegramDM);
 
-    // Send message form
-document.getElementById('sendMsgBtn')?.addEventListener('click', ()=>{
-  const name = document.getElementById('nameInput')?.value || 'Friend';
-  const contact = document.getElementById('contactInput')?.value || '';
-  const msg = document.getElementById('messageInput')?.value || '';
-  const text = encodeURIComponent(`Name: ${name}\nContact: ${contact}\nMessage: ${msg}`);
-  const tgLink = `https://t.me/ZAYN1x?text=${text}`;
-  window.open(tgLink, '_blank', 'noopener');
-});
+    // Small contact form (simple client-side -> opens Telegram DM or mailto fallback)
+    document.getElementById('sendMsgBtn')?.addEventListener('click', ()=>{
+      const name = document.getElementById('nameInput')?.value || 'Friend';
+      const contact = document.getElementById('contactInput')?.value || '';
+      const msg = document.getElementById('messageInput')?.value || '';
+      const text = encodeURIComponent(`Name: ${name}\nContact: ${contact}\nMessage: ${msg}`);
+      // prefer Telegram DM, but fallback to mailto
+      const tgLink = `https://t.me/ZAYN1x?text=${text}`;
+      try{ window.open(tgLink, '_blank', 'noopener'); } catch(e){ window.location.href = `mailto:your@email.com?subject=Affiliate%20Inquiry&body=${text}`; }
+    });
 
-    // Download affiliate guide
-document.getElementById('downloadPdf')?.addEventListener('click', ()=>{
-  window.open('assets/affiliate_en.pdf','_blank');
-});
+    // Download affiliate guide (placeholder behavior)
+    document.getElementById('downloadPdf')?.addEventListener('click', ()=>{
+      window.open('assets/affiliate_en.pdf','_blank');
+    });
 
     // Accessibility: allow Enter on keyboard for region buttons
     document.querySelectorAll('[onclick]')?.forEach(el=>{ el.setAttribute('tabindex', '0'); el.addEventListener('keypress', (e)=>{ if(e.key==='Enter') el.click(); }); });
-
-    // ---------------------
-    // Live payout ticker
-    // ---------------------
-    const sampleNames = ['ali', 'jamal', 'moh', 'sara', 'omar', 'yousef', 'zayn', 'ahmad', 'hassan', 'amin'];
-    const payoutTypes = ['CPA', 'RevShare', 'Bonus'];
-    const tickerEl = document.getElementById('ticker');
-    const pauseBtn = document.getElementById('pauseTicker');
-    const clearBtn = document.getElementById('clearTicker');
-    let tickerRunning = true;
-    let tickerEntries = [];
-
-    // helper to mask names: keep first letter and replace the rest with '**'
-    function maskName(name){
-      if(!name) return 'p**';
-      return name.charAt(0) + '**';
-    }
-
-    // create a simulated payout entry
-    function createPayoutEntry(){
-      const name = sampleNames[Math.floor(Math.random()*sampleNames.length)];
-      const type = payoutTypes[Math.floor(Math.random()*payoutTypes.length)];
-      // amounts typical for affiliates
-      const amounts = [120, 240, 480, 680, 920, 1240, 2200, 340];
-      const amount = amounts[Math.floor(Math.random()*amounts.length)];
-      // minutes ago random 0..12
-      const mins = Math.floor(Math.random()*12) + 1;
-      return { text: `Partner @${maskName(name)} earned $${amount.toLocaleString()} (${type}) - ${mins} min${mins>1?'s':''} ago` , timestamp: Date.now() - mins*60*1000 };
-    }
-
-    // build ticker string and start CSS animation
-    function renderTicker(){
-      // build single long string separated by bullets
-      const pieces = tickerEntries.map(e=>e.text);
-      if(pieces.length === 0) pieces.push('No recent payouts yet — be the first!');
-
-      const combined = '  •  ' + pieces.join('  •  ') + '  •  ';
-      tickerEl.innerText = combined;
-
-      // restart animation with duration relative to text length
-      // measure text width by creating temporary span
-      // simple approach: length influences duration
-      const baseDuration = 18; // seconds for medium length
-      const duration = Math.max(10, Math.min(60, Math.floor(baseDuration + combined.length / 8)));
-      // remove previous animation
-      tickerEl.style.animation = 'none';
-      // force reflow
-      void tickerEl.offsetWidth;
-      tickerEl.style.animation = `scroll-left ${duration}s linear infinite`;
-    }
-
-    // seed a few entries
-    for (let i=0;i<6;i++){
-      tickerEntries.unshift(createPayoutEntry());
-    }
-    renderTicker();
-
-    // periodically add simulated payouts (every 8-20s)
-    let addInterval = setInterval(()=>{
-      if(!tickerRunning) return;
-      const newEntry = createPayoutEntry();
-      tickerEntries.unshift(newEntry);
-      // keep size reasonable
-      if(tickerEntries.length>40) tickerEntries.pop();
-      renderTicker();
-    }, 10000 + Math.floor(Math.random()*12000));
-
-    pauseBtn?.addEventListener('click', ()=>{
-      tickerRunning = !tickerRunning;
-      if(!tickerRunning){
-        pauseBtn.innerText = 'Resume';
-        tickerEl.style.animationPlayState = 'paused';
-      } else {
-        pauseBtn.innerText = 'Pause';
-        tickerEl.style.animationPlayState = 'running';
-      }
-    });
-
-    clearBtn?.addEventListener('click', ()=>{
-      tickerEntries = [];
-      renderTicker();
-    });
-
-    // stop ticker when user leaves page (saves CPU)
-    window.addEventListener('visibilitychange', ()=>{
-      if(document.hidden){
-        tickerEl.style.animationPlayState = 'paused';
-      } else {
-        if(tickerRunning) tickerEl.style.animationPlayState = 'running';
-      }
-    });
-
-    // ---------------------
-    // small UX: make sure tier selection updates calculation on load
-    // ---------------------
-    // ensure current tier label matches initial slider
-    (function initTierFromRate(){
-      const r = Number(rateSlider.value || 25);
-      if (r >= 40) selectedTier = 'gold';
-      else if (r >= 30) selectedTier = 'silver';
-      else selectedTier = 'bronze';
-      document.getElementById('currentTierLabel').innerText = tiers[selectedTier].label;
-      updateTierProgress(Number(revSlider.value || 0));
-    })();
 
   </script>
 
