@@ -386,9 +386,10 @@
 
     // Tier logic
     const tiers = {
-      bronze: { label: 'Bronze', rate: 25, nextTarget: 10000 },
-      silver: { label: 'Silver', rate: 30, nextTarget: 25000 },
-      gold:   { label: 'Gold · Diamond', rate: 40, nextTarget: null } // top
+      bronze: { label: 'Bronze', rate: 25, nextTarget: 150 },
+      silver: { label: 'Silver', rate: 30, nextTarget: 300 },
+      gold:   { label: 'GoldDiamond', rate: 35, nextTarget: 500 }, 
+      diamond:   { label: 'Diamond', rate: 40, nextTarget: null } // top
     };
     let selectedTier = 'bronze';
 
@@ -472,31 +473,27 @@
 
     // DM buttons
     function openTelegramDM(){
-      const handle = 'ZAYN1x';
-      const text = encodeURIComponent("Hi Zayn, I'm interested in the 1XBET Hybrid system.");
-      const tgLink = `https://t.me/${handle}?text=${text}`;
-      if (isTelegram && typeof tg.openTelegramLink === 'function'){
-        try{ tg.openTelegramLink(tgLink); return; } catch(e){}
-      }
-      window.open(tgLink, '_blank', 'noopener');
-    }
-    document.getElementById('dmZayn')?.addEventListener('click', openTelegramDM);
+  const handle = 'ZAYN1x';
+  const text = encodeURIComponent("Hi Zayn, I'm interested in the 1XBET Hybrid system.");
+  const tgLink = `https://t.me/${handle}?text=${text}`;
+  window.open(tgLink, '_blank', 'noopener');
+}
+document.getElementById('dmZayn')?.addEventListener('click', openTelegramDM);
 
-    // Small contact form (simple client-side -> opens Telegram DM or mailto fallback)
-    document.getElementById('sendMsgBtn')?.addEventListener('click', ()=>{
-      const name = document.getElementById('nameInput')?.value || 'Friend';
-      const contact = document.getElementById('contactInput')?.value || '';
-      const msg = document.getElementById('messageInput')?.value || '';
-      const text = encodeURIComponent(`Name: ${name}\nContact: ${contact}\nMessage: ${msg}`);
-      // prefer Telegram DM, but fallback to mailto
-      const tgLink = `https://t.me/ZAYN1x?text=${text}`;
-      try{ window.open(tgLink, '_blank', 'noopener'); } catch(e){ window.location.href = `mailto:your@email.com?subject=Affiliate%20Inquiry&body=${text}`; }
-    });
+    // Send message form
+document.getElementById('sendMsgBtn')?.addEventListener('click', ()=>{
+  const name = document.getElementById('nameInput')?.value || 'Friend';
+  const contact = document.getElementById('contactInput')?.value || '';
+  const msg = document.getElementById('messageInput')?.value || '';
+  const text = encodeURIComponent(`Name: ${name}\nContact: ${contact}\nMessage: ${msg}`);
+  const tgLink = `https://t.me/ZAYN1x?text=${text}`;
+  window.open(tgLink, '_blank', 'noopener');
+});
 
-    // Download affiliate guide (placeholder behavior)
-    document.getElementById('downloadPdf')?.addEventListener('click', ()=>{
-      window.open('assets/affiliate_en.pdf','_blank');
-    });
+    // Download affiliate guide
+document.getElementById('downloadPdf')?.addEventListener('click', ()=>{
+  window.open('assets/affiliate_en.pdf','_blank');
+});
 
     // Accessibility: allow Enter on keyboard for region buttons
     document.querySelectorAll('[onclick]')?.forEach(el=>{ el.setAttribute('tabindex', '0'); el.addEventListener('keypress', (e)=>{ if(e.key==='Enter') el.click(); }); });
