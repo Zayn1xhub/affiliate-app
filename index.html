@@ -12,7 +12,7 @@
   <meta name="description" content="ZAYN1x — Official 1XBET Affiliate Manager. Hybrid CPA + Revenue Share deals, weekly payouts, onboarding & support." />
 
   <style>
-    :root{ --bg:#0f172a; --glass: rgba(255,255,255,0.03); --accent:#3b82f6; }
+    :root{ --bg:#0f172a; --glass: rgba(255,255,255,0.03); --accent:#3b82f6; --accent-2:#60a5fa; }
     html,body{height:100%;}
     body {
       background-color: var(--bg);
@@ -27,16 +27,70 @@
     .marquee { white-space:nowrap; overflow:hidden; }
     .marquee span { display:inline-block; padding:0 2rem; transform:translateX(100%); animation:scroll 18s linear infinite; }
     @keyframes scroll { from { transform:translateX(0%);} to { transform:translateX(-100%);} }
-    input[type='range']{ -webkit-appearance:none; appearance:none; background:#0b1220; border-radius:10px; height:8px; width:100%; }
-    input[type='range']::-webkit-slider-thumb{ width:20px; height:20px; background:var(--accent); border-radius:50%; border:2px solid rgba(255,255,255,0.9); cursor:pointer; box-shadow:0 6px 18px rgba(59,130,246,0.25); }
+
+    /* Range Slider base */
+    .slider-wrap { position: relative; padding-top: 24px; }
+    input[type='range']{
+      -webkit-appearance:none; appearance:none;
+      background: linear-gradient(90deg, var(--accent) 25%, #0b1220 25%);
+      border-radius:10px; height:10px; width:100%;
+      outline: none; transition: box-shadow .18s ease;
+    }
+    /* track for Firefox */
+    input[type='range']::-moz-range-track {
+      height: 10px; border-radius: 10px; background: transparent;
+    }
+    /* thumb */
+    input[type='range']::-webkit-slider-thumb{ -webkit-appearance:none; appearance:none;
+      width:22px; height:22px; background:var(--accent); border-radius:50%;
+      border:2px solid rgba(255,255,255,0.95); cursor:pointer; box-shadow:0 8px 26px rgba(59,130,246,0.18);
+      transition: transform .12s cubic-bezier(.2,.9,.3,1), box-shadow .12s;
+      position: relative;
+    }
+    input[type='range']:active::-webkit-slider-thumb{ transform: scale(1.07) rotate(-6deg); box-shadow:0 14px 40px rgba(59,130,246,0.22); }
+
+    /* Firefox thumb */
+    input[type='range']::-moz-range-thumb {
+      width:22px; height:22px; border-radius:50%; border:2px solid rgba(255,255,255,0.95); background:var(--accent);
+      box-shadow:0 8px 26px rgba(59,130,246,0.18);
+    }
+
+    /* tooltip */
+    .slider-tooltip{
+      position:absolute; top:0; transform:translate(-50%,-6px);
+      background:linear-gradient(180deg, #ffffff12, #00000014);
+      padding:6px 10px; border-radius:10px; font-weight:700; font-size:13px;
+      border:1px solid rgba(255,255,255,0.06); pointer-events:none;
+      transition: transform .12s, opacity .12s; opacity:0;
+      backdrop-filter: blur(6px);
+      white-space:nowrap;
+    }
+    .slider-tooltip.visible { opacity:1; transform:translate(-50%,-12px) scale(1.02); }
+
+    /* ticks and labels */
+    .slider-ticks { display:flex; justify-content:space-between; margin-top:8px; font-size:12px; color:rgba(255,255,255,0.5); }
+
+    /* small pulse on active drag */
+    .thumb-pulse {
+      position:absolute; width:36px; height:36px; border-radius:999px; left:0; top:50%; transform:translate(-50%,-50%); pointer-events:none;
+      box-shadow:0 0 0 6px rgba(59,130,246,0.06);
+      transition: box-shadow .24s;
+    }
+    .dragging .thumb-pulse { box-shadow:0 0 0 14px rgba(59,130,246,0.06); }
+
+    /* CPA examples box */
+    .cpa-examples { background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01)); border:1px solid rgba(255,255,255,0.04); padding:10px; border-radius:12px; font-size:13px; color: #e6eef8; }
+    .cpa-examples b{ color:var(--accent-2); }
+    .chip { font-size:12px; padding:6px 10px; border-radius:999px; display:inline-block; }
+    [tabindex]:focus { outline: 3px solid rgba(99,102,241,0.25); outline-offset: 3px; }
+
+    /* tier-card tweaks */
     .tier-card { transition: all 0.35s ease; cursor:pointer; }
     .tier-card:hover { transform: translateY(-10px); box-shadow: 0 20px 50px rgba(0,0,0,0.45); }
     .tier-card.active { transform: translateY(-12px); border-width:2px; box-shadow: 0 24px 60px rgba(0,0,0,0.5); }
     .tier-check { opacity:0; transition:opacity 0.25s ease; }
     .tier-card.active .tier-check{ opacity:1; }
     .toast { position: fixed; right: 20px; bottom: 24px; z-index:9999; }
-    [tabindex]:focus { outline: 3px solid rgba(99,102,241,0.25); outline-offset: 3px; }
-    .chip { font-size:12px; padding:6px 10px; border-radius:999px; display:inline-block; }
   </style>
 </head>
 <body class="antialiased leading-relaxed">
@@ -105,7 +159,20 @@
         <div class="flex-1">
           <h3 class="text-xs font-bold mb-4 text-blue-300 uppercase tracking-wider">Earnings Calculator</h3>
           <label class="text-[11px] font-semibold text-white/80 flex justify-between mb-2">Estimated Monthly NGR <span class="font-mono" id="revenueVal">$5,000</span></label>
-          <input type="range" id="revenueSlider" min="0" max="200000" step="100" value="5000" aria-label="Monthly NGR slider">
+
+          <!-- slider container for tooltip & pulse -->
+          <div class="slider-wrap relative">
+            <input type="range" id="revenueSlider" min="0" max="200000" step="100" value="5000" aria-label="Monthly NGR slider">
+            <div id="sliderTool" class="slider-tooltip">$5,000</div>
+            <div id="thumbPulse" class="thumb-pulse" style="display:none;"></div>
+            <div class="slider-ticks">
+              <div>0</div>
+              <div>50k</div>
+              <div>100k</div>
+              <div>150k</div>
+              <div>200k</div>
+            </div>
+          </div>
 
           <div class="mt-4 grid grid-cols-2 gap-3">
             <label class="text-[12px] text-white/70">Model</label>
@@ -143,10 +210,14 @@
           <div class="mt-6 p-4 rounded-2xl bg-blue-600/6 border border-blue-500/10 text-center">
             <div class="text-[10px] uppercase text-blue-300 font-black tracking-wide">Estimated Monthly Commission</div>
             <div id="payoutDisplay" class="text-3xl font-extrabold mt-1">$1,250</div>
-            <!-- Now shows commission info and model, not tier -->
             <div class="text-[11px] text-white/60 mt-1" id="tierInfo">(Commission: 25%)</div>
             <div class="text-[11px] text-white/60 mt-2" id="cpaInfo"></div>
           </div>
+
+          <div class="mt-3 cpa-examples" id="cpaExamples">
+            <!-- Filled by JS: CPA examples & explanation -->
+          </div>
+
           <div class="text-[11px] text-white/60 mt-2">*Calculator only estimates earnings — it's independent from the tier system. FTDs and CPA offers can be adjusted per region.</div>
         </div>
 
@@ -370,6 +441,9 @@
     const revVal = document.getElementById('revenueVal');
     const tierInfo = document.getElementById('tierInfo');
     const cpaInfo = document.getElementById('cpaInfo');
+    const cpaExamplesEl = document.getElementById('cpaExamples');
+    const sliderTool = document.getElementById('sliderTool');
+    const thumbPulse = document.getElementById('thumbPulse');
 
     // UI elements
     const modelSelect = document.getElementById('modelSelect');
@@ -382,15 +456,54 @@
     const saved = localStorage.getItem('zayn_revenue') || null;
     if (saved) revSlider.value = saved;
 
-    rateSelect.addEventListener('change', ()=>{
-      if (rateSelect.value === 'custom') customRate.style.display = 'inline-block'; else customRate.style.display = 'none';
-      updateCalculator();
-    });
+    // CPA example definitions (explanations)
+    const cpaExamples = [
+      {k:'3', label:'3-1-3', payout:3, deposit:1, bet:3, note:'Affiliate receives $3 when player deposits $1+ and bets $3+.'},
+      {k:'4', label:'4-1-4', payout:4, deposit:1, bet:4, note:'Affiliate receives $4 when player deposits $1+ and bets $4+.'},
+      {k:'5', label:'5-1-5', payout:5, deposit:1, bet:5, note:'Affiliate receives $5 when player deposits $1+ and bets $5+.'},
+      {k:'7', label:'7-4-10', payout:7, deposit:4, bet:10, note:'Affiliate receives $7 when player deposits $4+ and bets $10+.'},
+      {k:'10', label:'10-5-20', payout:10, deposit:5, bet:20, note:'Affiliate receives $10 when player deposits $5+ and bets $20+.'}
+    ];
+
+    function renderCpaExamples(){
+      const html = `
+        <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:8px;">
+          <div style="flex:1">
+            <div style="font-weight:700;margin-bottom:6px;color:var(--accent-2)">CPA Payout Examples</div>
+            <div style="font-size:13px;color:rgba(255,255,255,0.8);margin-bottom:6px">Common packages (can be adjusted per region):</div>
+            <ul style="margin-left:14px">
+              ${cpaExamples.map(e => `<li style="margin-bottom:6px"><b>${e.label}</b> — $${e.payout} per FTD &nbsp; <span style="color:rgba(255,255,255,0.6)">(${e.note})</span></li>`).join('')}
+            </ul>
+            <div style="font-size:12px;color:rgba(255,255,255,0.6);margin-top:8px">Tip: numbers are flexible — negotiate higher packages for specific regions or volume.</div>
+          </div>
+          <div style="width:150px;text-align:right">
+            <div style="font-size:12px;color:rgba(255,255,255,0.6)">Selected package</div>
+            <div id="selectedCpaBox" style="font-weight:800;font-size:16px;margin-top:6px;color:var(--accent)">${getCpaLabel(cpaSelect.value)}</div>
+            <div id="selectedCpaNote" style="font-size:12px;color:rgba(255,255,255,0.6);margin-top:6px"></div>
+          </div>
+        </div>
+      `;
+      cpaExamplesEl.innerHTML = html;
+      updateSelectedCpaNote();
+    }
+
+    function getCpaLabel(k){
+      const ex = cpaExamples.find(x=>x.k===k);
+      return ex ? `${ex.label} — $${ex.payout}/FTD` : '3-1-3 — $3/FTD';
+    }
+
+    function updateSelectedCpaNote(){
+      const ex = cpaExamples.find(x=>x.k===cpaSelect.value);
+      const box = document.getElementById('selectedCpaNote');
+      if (ex) box.innerText = `${ex.note} (deposit ≥ $${ex.deposit}, bet ≥ $${ex.bet})`;
+    }
+
+    rateSelect.addEventListener('change', ()=>{ if (rateSelect.value === 'custom') customRate.style.display = 'inline-block'; else customRate.style.display = 'none'; updateCalculator(); });
     customRate.addEventListener('input', updateCalculator);
-    modelSelect.addEventListener('change', updateCalculator);
+    modelSelect.addEventListener('change', ()=>{ updateCalculator(); highlightCPASection(); });
     ftdInput.addEventListener('input', updateCalculator);
-    cpaSelect.addEventListener('change', updateCalculator);
-    revSlider.addEventListener('input', updateCalculator);
+    cpaSelect.addEventListener('change', ()=>{ updateCalculator(); renderCpaExamples(); });
+    revSlider.addEventListener('input', ()=>{ updateCalculator(); updateSliderUI(); });
 
     function getSelectedRate(){
       if (rateSelect.value === 'custom'){
@@ -399,6 +512,9 @@
       }
       return Number(rateSelect.value);
     }
+
+    // initial render of CPA examples
+    renderCpaExamples();
 
     function updateCalculator(){
       const revenue = Number(revSlider.value);
@@ -431,9 +547,69 @@
 
       // persist slider value
       localStorage.setItem('zayn_revenue', revenue);
+      updateSelectedCpaNote();
     }
 
+    // Slider UI: update filled track, tooltip position & thumb pulse
+    function updateSliderUI(){
+      const min = Number(revSlider.min); const max = Number(revSlider.max); const val = Number(revSlider.value);
+      const pct = ((val - min) / (max - min)) * 100;
+      // set track gradient
+      revSlider.style.background = `linear-gradient(90deg, var(--accent) ${pct}%, #0b1220 ${pct}%)`;
+
+      // position tooltip
+      const wrap = revSlider.getBoundingClientRect();
+      const parent = revSlider.parentElement.getBoundingClientRect();
+      // compute left percent relative to parent width
+      const left = (pct / 100) * (wrap.width) + (wrap.left - parent.left);
+      // set tooltip and thumb pulse
+      sliderTool.style.left = `${left}px`;
+      sliderTool.innerText = `$${Number(val).toLocaleString()}`;
+      sliderTool.classList.add('visible');
+
+      // position pulse and show when dragging or recently moved
+      thumbPulse.style.left = `${left}px`;
+      thumbPulse.style.display = 'block';
+
+      // small auto-hide after short idle when not dragging
+      clearTimeout(window._sliderTooltipHide);
+      window._sliderTooltipHide = setTimeout(()=> {
+        sliderTool.classList.remove('visible');
+        // keep pulse subtle
+        thumbPulse.style.display = 'none';
+        document.body.classList.remove('dragging');
+      }, 900);
+    }
+
+    // drag / pointer events for nicer interaction & accessibility
+    let isDown = false;
+    revSlider.addEventListener('pointerdown', (e) => {
+      isDown = true; document.body.classList.add('dragging');
+      sliderTool.classList.add('visible'); thumbPulse.style.display = 'block';
+    });
+    document.addEventListener('pointerup', (e) => {
+      if (!isDown) return;
+      isDown = false; document.body.classList.remove('dragging');
+      // hide after short delay (handled in updateSliderUI)
+    });
+
+    // show tooltip on focus too (keyboard users)
+    revSlider.addEventListener('focus', ()=> { sliderTool.classList.add('visible'); updateSliderUI(); });
+    revSlider.addEventListener('blur', ()=> { sliderTool.classList.remove('visible'); thumbPulse.style.display='none'; });
+
+    // initial UI sync
+    updateSliderUI();
     updateCalculator();
+
+    // highlight CPA examples when model is CPA or Hybrid
+    function highlightCPASection(){
+      if (modelSelect.value === 'rev') {
+        cpaExamplesEl.style.opacity = '0.55';
+      } else {
+        cpaExamplesEl.style.opacity = '1';
+      }
+    }
+    highlightCPASection();
 
     // Tier cards: open modal only (NO interaction with calculator)
     const tierCards = document.querySelectorAll('.tier-card');
