@@ -99,7 +99,7 @@
       </div>
     </section>
 
-    <!-- CALCULATOR CARD -->
+    <!-- CALCULATOR CARD (DECOUPLED FROM TIERS) -->
     <section id="calculator" class="glass p-6 rounded-3xl border border-white/6 shadow-deep">
       <div class="flex flex-col md:flex-row gap-6">
         <div class="flex-1">
@@ -143,10 +143,11 @@
           <div class="mt-6 p-4 rounded-2xl bg-blue-600/6 border border-blue-500/10 text-center">
             <div class="text-[10px] uppercase text-blue-300 font-black tracking-wide">Estimated Monthly Commission</div>
             <div id="payoutDisplay" class="text-3xl font-extrabold mt-1">$1,250</div>
-            <div class="text-[11px] text-white/60 mt-1" id="tierInfo">(Bronze Tier – 25% RevShare)</div>
+            <!-- Now shows commission info and model, not tier -->
+            <div class="text-[11px] text-white/60 mt-1" id="tierInfo">(Commission: 25%)</div>
             <div class="text-[11px] text-white/60 mt-2" id="cpaInfo"></div>
           </div>
-          <div class="text-[11px] text-white/60 mt-2">*Calculator uses your NGR and selected commission rate. CPA values are per FTD and can be adjusted per region.</div>
+          <div class="text-[11px] text-white/60 mt-2">*Calculator only estimates earnings — it's independent from the tier system. FTDs and CPA offers can be adjusted per region.</div>
         </div>
 
         <div class="w-full md:w-80">
@@ -166,14 +167,14 @@
       </div>
     </section>
 
-    <!-- TIER SYSTEM -->
+    <!-- TIER SYSTEM (UNCHANGED VISUALLY BUT NO LINK TO CALCULATOR) -->
     <section class="mt-12 glass p-8 rounded-3xl border border-white/6 shadow-deep">
       <h3 class="text-2xl font-extrabold mb-6 text-center uppercase tracking-tight">Affiliate Tier System</h3>
       <p class="text-center text-white/70 mb-8 max-w-3xl mx-auto">Performance-based tiers with increasing RevShare. FTD requirements listed below. *FTD thresholds can be adjusted per region.</p>
 
       <div class="grid grid-cols-1 md:grid-cols-5 gap-6" id="tierContainer">
         <!-- Bronze -->
-        <div class="tier-card glass p-6 rounded-2xl text-center border border-amber-600/30 bg-amber-600/5 active" data-tier="bronze" data-rate="25" data-min="0" data-max="10000" data-ftd-min="0" data-ftd-max="250" tabindex="0" role="button" aria-pressed="false">
+        <div class="tier-card glass p-6 rounded-2xl text-center border border-amber-600/30 bg-amber-600/5" data-tier="bronze" data-rate="25" data-min="0" data-max="10000" data-ftd-min="0" data-ftd-max="250" tabindex="0" role="button" aria-pressed="false">
           <div class="text-3xl font-black text-amber-400 mb-2">Bronze</div>
           <div class="text-2xl font-extrabold mb-1">25%</div>
           <div class="text-xs text-white/60 mb-2">RevShare</div>
@@ -363,17 +364,12 @@
     }
     setTimeout(()=>{ animateCounter('statAffiliates', 0, 1240); animateCounter('statPayouts', 0, 18450); }, 400);
 
-    // Calculator & tiers
+    // Calculator (DECOUPLED)
     const revSlider = document.getElementById('revenueSlider');
     const payoutDisplay = document.getElementById('payoutDisplay');
     const revVal = document.getElementById('revenueVal');
     const tierInfo = document.getElementById('tierInfo');
     const cpaInfo = document.getElementById('cpaInfo');
-    const tierCards = document.querySelectorAll('.tier-card');
-
-    // restore slider state
-    const saved = localStorage.getItem('zayn_revenue') || null;
-    if (saved) revSlider.value = saved;
 
     // UI elements
     const modelSelect = document.getElementById('modelSelect');
@@ -381,6 +377,10 @@
     const customRate = document.getElementById('customRate');
     const ftdInput = document.getElementById('ftdInput');
     const cpaSelect = document.getElementById('cpaSelect');
+
+    // restore slider state
+    const saved = localStorage.getItem('zayn_revenue') || null;
+    if (saved) revSlider.value = saved;
 
     rateSelect.addEventListener('change', ()=>{
       if (rateSelect.value === 'custom') customRate.style.display = 'inline-block'; else customRate.style.display = 'none';
@@ -390,6 +390,7 @@
     modelSelect.addEventListener('change', updateCalculator);
     ftdInput.addEventListener('input', updateCalculator);
     cpaSelect.addEventListener('change', updateCalculator);
+    revSlider.addEventListener('input', updateCalculator);
 
     function getSelectedRate(){
       if (rateSelect.value === 'custom'){
@@ -402,30 +403,18 @@
     function updateCalculator(){
       const revenue = Number(revSlider.value);
       const rate = getSelectedRate();
-      // determine tier by revenue
-      let tierName = 'Bronze';
-      let colorClass = 'text-amber-400';
-      let computedRate = 25;
-      if (revenue >= 150001) { tierName='Diamond'; computedRate = (isNaN(rate) ? 'Negotiable' : rate); colorClass='text-purple-300'; }
-      else if (revenue >= 70001) { tierName='Platinum'; computedRate = 40; colorClass='text-cyan-300'; }
-      else if (revenue >= 30001) { tierName='Gold'; computedRate = 35; colorClass='text-yellow-400'; }
-      else if (revenue >= 10001) { tierName='Silver'; computedRate = 30; colorClass='text-gray-300'; }
-      else { tierName='Bronze'; computedRate = 25; colorClass='text-amber-400'; }
 
       // Revenue-share earning
-      const revShareRate = (typeof computedRate === 'number') ? computedRate : rate;
-      const revResult = Math.round(revenue * (revShareRate / 100));
+      const revResult = Math.round(revenue * (rate / 100));
 
       // CPA earning
       const ftds = Math.max(0, Number(ftdInput.value || 0));
-      // CPA select value maps to dollar per FTD
       const cpaValueMap = { '3':3, '4':4, '5':5, '7':7, '10':10 };
       const cpaPer = cpaValueMap[cpaSelect.value] || 3;
       const cpaTotal = Math.round(ftds * cpaPer);
 
       // Hybrid: show both results
       const model = modelSelect.value;
-      let shown = '';
       if (model === 'rev'){
         payoutDisplay.innerText = '$' + revResult.toLocaleString();
         cpaInfo.innerText = '';
@@ -438,41 +427,29 @@
       }
 
       revVal.innerText = '$' + revenue.toLocaleString();
-      tierInfo.innerText = `(${tierName} Tier – ${revShareRate}% RevShare)`;
-      tierInfo.className = `text-[11px] text-white/60 mt-1 ${colorClass}`;
+      tierInfo.innerText = `(Commission: ${rate}%)`; // important: calculator only shows commission, not tiers
 
-      // highlight tier card by revenue and by FTD (for info)
-      tierCards.forEach(card => {
-        card.classList.remove('active');
-        card.setAttribute('aria-pressed','false');
-        const min = Number(card.dataset.min);
-        const max = Number(card.dataset.max);
-        if (revenue >= min && (max === 999999999 || revenue <= max)){
-          card.classList.add('active'); card.setAttribute('aria-pressed','true');
-        }
-      });
-
-      // persist
+      // persist slider value
       localStorage.setItem('zayn_revenue', revenue);
     }
 
-    revSlider.addEventListener('input', updateCalculator);
     updateCalculator();
 
-    // clicking tier opens modal and sets slider to mid-range
+    // Tier cards: open modal only (NO interaction with calculator)
+    const tierCards = document.querySelectorAll('.tier-card');
     function openTierModalWith(card){
       const tier = card.dataset.tier;
       const rate = card.dataset.rate;
       const min = Number(card.dataset.min);
       const max = Number(card.dataset.max);
-      const ftdMin = card.dataset.ftdMin || card.dataset.ftdMin === '0' ? Number(card.dataset.ftdMin) : Number(card.dataset.ftdMin);
-      const ftdMax = card.dataset.ftdMax ? Number(card.dataset.ftdMax) : '∞';
       document.getElementById('tierModalTitle').innerText = `${tier.charAt(0).toUpperCase()+tier.slice(1)} — ${rate === 'negotiable' ? 'Negotiable' : rate + '%'}`;
+      const ftdMin = card.dataset.ftdMin;
+      const ftdMax = card.dataset.ftdMax === '999999999' ? '∞' : card.dataset.ftdMax;
       document.getElementById('tierModalBody').innerHTML = `
         <p><strong>Tier:</strong> ${tier}</p>
         <p><strong>Rate:</strong> ${rate === 'negotiable' ? 'Negotiable — contact us' : rate + '%'}</p>
         <p class="mt-2"><strong>Monthly NGR:</strong> ${min.toLocaleString()} — ${max === 999999999 ? '∞' : max.toLocaleString()}</p>
-        <p class="mt-2"><strong>FTD requirement:</strong> ${card.dataset.ftdMin} — ${card.dataset.ftdMax === '999999999' ? '∞' : card.dataset.ftdMax}</p>
+        <p class="mt-2"><strong>FTD requirement:</strong> ${ftdMin} — ${ftdMax}</p>
         <p class="mt-2"><strong>Support:</strong> Direct support from Zayn (text only)</p>
         <hr class="my-3 border-white/10">
         <p>Perks & supports:</p>
@@ -483,25 +460,19 @@
         </ul>
         <p class="mt-3 text-xs text-white/60">Note: FTD thresholds and CPA offers can be adjusted by region.</p>
       `;
-      // show modal
       document.getElementById('tierModal').classList.remove('hidden'); document.getElementById('tierModal').classList.add('flex');
     }
 
     tierCards.forEach(card=>{
-      card.addEventListener('click', ()=>{
-        const min = Number(card.dataset.min);
-        const max = Number(card.dataset.max);
-        let target = min;
-        if (max !== 999999999) target = Math.round((min + max) / 2); else target = min + 50000;
-        revSlider.value = target; updateCalculator(); openTierModalWith(card);
-      });
-      card.addEventListener('keydown', (e)=>{ if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); card.click(); } });
+      card.addEventListener('click', ()=> openTierModalWith(card));
+      card.addEventListener('keydown', (e)=>{ if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openTierModalWith(card); } });
     });
 
     // modal controls
     document.getElementById('closeTierModal').addEventListener('click', ()=> { document.getElementById('tierModal').classList.add('hidden'); document.getElementById('tierModal').classList.remove('flex'); });
     document.getElementById('tierCloseBtn').addEventListener('click', ()=> { document.getElementById('tierModal').classList.add('hidden'); document.getElementById('tierModal').classList.remove('flex'); });
-    // Request Info (Text only) from modal
+
+    // Request Info (Text only)
     const handle = 'ZAYN1x';
     function openTelegramDM(prefill){
       const text = encodeURIComponent(prefill || "Hi Zayn, I want more info about the affiliate program and tiers. Please text me details.");
@@ -544,7 +515,7 @@
     document.getElementById('navContact')?.addEventListener('click', openContact);
 
     // small hint
-    setTimeout(()=> toast('Tip: switch between Revenue Share / CPA / Hybrid and enter estimated FTDs to see outcomes.'), 1200);
+    setTimeout(()=> toast('Tip: Calculator is independent — it estimates earnings only.'), 1200);
   </script>
 </body>
 </html>
