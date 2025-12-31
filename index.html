@@ -1,600 +1,697 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>1XBET Global Partner | Exclusive Bonus Code WIKI28</title>
-    
-    <script src="https://cdn.tailwindcss.com"></script>
-    
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,1,0">
-    
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800;900&display=swap" rel="stylesheet">
-    
-    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
-    
-    <style>
-        body { 
-            font-family: 'Inter', sans-serif;
-            background-color: #0b141e; 
-            color: #ffffff; 
-            overflow-x: hidden; /* Prevent horizontal scroll from animations */
-        }
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no" />
+  <title>ZAYN1x — Interactive Affiliate Dashboard</title>
 
-        /* --- 1. HERO PARALLAX & ENTRANCE --- */
-        .hero-bg {
-            /* Initial entrance animation */
-            animation: heroParallax 1.5s ease-out forwards;
-            will-change: transform, opacity, filter;
-            transform: translateZ(0); /* Hardware acceleration */
-        }
+  <!-- Tailwind (CDN) -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Animate.css -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+  <meta name="description" content="ZAYN1x — Official 1XBET Affiliate Manager. Hybrid CPA + Revenue Share deals, weekly payouts, onboarding & support." />
 
-        @keyframes heroParallax {
-            0% { opacity: 0; transform: scale(1.1) translateY(-20px); filter: blur(10px); }
-            100% { opacity: 0.3; transform: scale(1) translateY(0); filter: blur(0px); }
-        }
+  <style>
+    :root{ --bg:#0f172a; --glass: rgba(255,255,255,0.03); --accent:#3b82f6; --accent-2:#60a5fa; }
+    html,body{height:100%;}
+    body {
+      background-color: var(--bg);
+      color: #e6eef8;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+    }
+    .hero-gradient { background: radial-gradient(circle at top right, #1e3a8a, var(--bg)); }
+    .glass { background: var(--glass); backdrop-filter: blur(8px); border: 1px solid rgba(255,255,255,0.05); }
+    .shadow-deep{ box-shadow: 0 10px 40px rgba(2,6,23,0.6); }
+    .marquee { white-space:nowrap; overflow:hidden; }
+    .marquee span { display:inline-block; padding:0 2rem; transform:translateX(100%); animation:scroll 18s linear infinite; }
+    @keyframes scroll { from { transform:translateX(0%);} to { transform:translateX(-100%);} }
 
-        /* Staggered Content Entry */
-        .hero-content > * {
-            opacity: 0;
-            transform: translateY(40px);
-            animation: fadeUp 1s ease-out forwards;
-        }
+    /* Range Slider base */
+    .slider-wrap { position: relative; padding-top: 24px; }
+    input[type='range']{
+      -webkit-appearance:none; appearance:none;
+      background: linear-gradient(90deg, var(--accent) 25%, #0b1220 25%);
+      border-radius:10px; height:10px; width:100%;
+      outline: none; transition: box-shadow .18s ease;
+    }
+    /* track for Firefox */
+    input[type='range']::-moz-range-track {
+      height: 10px; border-radius: 10px; background: transparent;
+    }
+    /* thumb */
+    input[type='range']::-webkit-slider-thumb{ -webkit-appearance:none; appearance:none;
+      width:22px; height:22px; background:var(--accent); border-radius:50%;
+      border:2px solid rgba(255,255,255,0.95); cursor:pointer; box-shadow:0 8px 26px rgba(59,130,246,0.18);
+      transition: transform .12s cubic-bezier(.2,.9,.3,1), box-shadow .12s;
+      position: relative;
+    }
+    input[type='range']:active::-webkit-slider-thumb{ transform: scale(1.07) rotate(-6deg); box-shadow:0 14px 40px rgba(59,130,246,0.22); }
 
-        .hero-content > *:nth-child(1) { animation-delay: 0.2s; }
-        .hero-content > *:nth-child(2) { animation-delay: 0.4s; }
-        .hero-content > *:nth-child(3) { animation-delay: 0.6s; }
-        .hero-content > *:nth-child(4) { animation-delay: 0.8s; }
+    /* Firefox thumb */
+    input[type='range']::-moz-range-thumb {
+      width:22px; height:22px; border-radius:50%; border:2px solid rgba(255,255,255,0.95); background:var(--accent);
+      box-shadow:0 8px 26px rgba(59,130,246,0.18);
+    }
 
-        @keyframes fadeUp {
-            to { opacity: 1; transform: translateY(0); }
-        }
+    /* tooltip */
+    .slider-tooltip{
+      position:absolute; top:0; transform:translate(-50%,-6px);
+      background:linear-gradient(180deg, #ffffff12, #00000014);
+      padding:6px 10px; border-radius:10px; font-weight:700; font-size:13px;
+      border:1px solid rgba(255,255,255,0.06); pointer-events:none;
+      transition: transform .12s, opacity .12s; opacity:0;
+      backdrop-filter: blur(6px);
+      white-space:nowrap;
+    }
+    .slider-tooltip.visible { opacity:1; transform:translate(-50%,-12px) scale(1.02); }
 
-        /* --- 2. SEAMLESS MARQUEE --- */
-        .animate-marquee {
-            animation: marquee 40s linear infinite;
-            display: flex;
-            gap: 3rem; /* Spacing between items */
-            width: max-content;
-        }
+    /* ticks and labels */
+    .slider-ticks { display:flex; justify-content:space-between; margin-top:8px; font-size:12px; color:rgba(255,255,255,0.5); }
 
-        .animate-marquee:hover {
-            animation-play-state: paused;
-        }
+    /* small pulse on active drag */
+    .thumb-pulse {
+      position:absolute; width:36px; height:36px; border-radius:999px; left:0; top:50%; transform:translate(-50%,-50%); pointer-events:none;
+      box-shadow:0 0 0 6px rgba(59,130,246,0.06);
+      transition: box-shadow .24s;
+    }
+    .dragging .thumb-pulse { box-shadow:0 0 0 14px rgba(59,130,246,0.06); }
 
-        @keyframes marquee {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(-50%); } /* Move half width since content is duplicated */
-        }
+    /* CPA examples box */
+    .cpa-examples { background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01)); border:1px solid rgba(255,255,255,0.04); padding:10px; border-radius:12px; font-size:13px; color: #e6eef8; }
+    .cpa-examples b{ color:var(--accent-2); }
+    .chip { font-size:12px; padding:6px 10px; border-radius:999px; display:inline-block; }
+    [tabindex]:focus { outline: 3px solid rgba(99,102,241,0.25); outline-offset: 3px; }
 
-        /* --- 3. SCROLL REVEAL ANIMATIONS --- */
-        .reveal {
-            opacity: 0;
-            transform: translateY(60px);
-            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
-        }
-
-        .reveal.active {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        /* Stagger children inside reveals automatically via JS logic later */
-        .reveal > * {
-            transition: transform 0.8s ease-out, opacity 0.8s ease-out;
-            transition-delay: calc(var(--delay) * 0.1s);
-        }
-
-        /* --- 4. ENHANCED GLASS PANELS --- */
-        .glass-panel { 
-            background: rgba(255, 255, 255, 0.03);
-            backdrop-filter: blur(12px); 
-            border: 1px solid rgba(255, 255, 255, 0.08); 
-            transition: transform 0.4s ease, box-shadow 0.4s ease, border-color 0.4s ease;
-        }
-
-        .glass-panel:hover {
-            transform: translateY(-12px);
-            box-shadow: 0 20px 40px rgba(0, 112, 244, 0.15);
-            border-color: rgba(59, 130, 246, 0.5);
-        }
-
-        /* Utility Gradients */
-        .accent-gradient { background: linear-gradient(135deg, #1e90ff 0%, #00d2ff 100%); }
-        .casino-gradient { background: linear-gradient(135deg, #f39c12 0%, #e67e22 100%); }
-        .text-glow { text-shadow: 0 0 15px rgba(30, 144, 255, 0.5); }
-        
-        .glow-btn { 
-            box-shadow: 0 0 20px rgba(30, 144, 255, 0.3);
-            transition: all 0.3s ease; 
-        }
-        .glow-btn:hover { 
-            box-shadow: 0 0 35px rgba(30, 144, 255, 0.6);
-            transform: translateY(-2px); 
-        }
-
-        /* Range Slider Styling */
-        input[type="range"]::-webkit-slider-thumb {
-            -webkit-appearance: none;
-            height: 24px;
-            width: 24px;
-            border-radius: 50%;
-            background: #1e90ff;
-            cursor: pointer;
-            box-shadow: 0 0 10px rgba(30, 144, 255, 0.5);
-            border: 3px solid white;
-        }
-
-        .region-btn.active { 
-            background: #1e90ff; 
-            color: white; 
-            border-color: transparent;
-        }
-    </style>
+    /* tier-card tweaks */
+    .tier-card { transition: all 0.35s ease; cursor:pointer; }
+    .tier-card:hover { transform: translateY(-10px); box-shadow: 0 20px 50px rgba(0,0,0,0.45); }
+    .tier-card.active { transform: translateY(-12px); border-width:2px; box-shadow: 0 24px 60px rgba(0,0,0,0.5); }
+    .tier-check { opacity:0; transition:opacity 0.25s ease; }
+    .tier-card.active .tier-check{ opacity:1; }
+    .toast { position: fixed; right: 20px; bottom: 24px; z-index:9999; }
+  </style>
 </head>
-<body class="overflow-x-hidden">
-
-    <nav class="fixed top-0 left-0 right-0 z-50 glass-panel py-4 border-b border-white/5">
-        <div class="container mx-auto px-6 flex justify-between items-center">
-            <div class="flex items-center space-x-2">
-                <span class="text-3xl font-black italic tracking-tighter text-blue-500">1X<span class="text-white">BET</span></span>
-                <span class="bg-blue-600/20 text-blue-400 text-[10px] font-bold px-2 py-0.5 rounded border border-blue-500/30 uppercase tracking-widest hidden sm:inline">Official Partner</span>
-            </div>
-            <div class="hidden lg:flex space-x-8 text-xs font-bold uppercase tracking-widest text-gray-400">
-                <a href="#sports" class="hover:text-blue-400 transition duration-300">Sports</a>
-                <a href="#casino" class="hover:text-blue-400 transition duration-300">Casino</a>
-                <a href="#bonuses" class="hover:text-blue-400 transition duration-300">Bonus Structure</a>
-                <a href="#mobile" class="hover:text-blue-400 transition duration-300">Mobile App</a>
-            </div>
-            <a href="https://1xbet.com" target="_blank" class="accent-gradient px-6 py-2 rounded-full text-xs font-bold shadow-lg hover:scale-105 transition active:scale-95 uppercase tracking-wider">Join Now</a>
-        </div>
-    </nav>
-
-    <section class="relative min-h-screen flex items-center pt-24 overflow-hidden">
-        <div class="absolute inset-0 hero-bg overflow-hidden">
-             <img src="https://placehold.co/1920x1080/000000/1e90ff?text=Modern+Stadium+Background" alt="Background" class="w-full h-full object-cover opacity-30" id="heroImage">
-        </div>
-        
-        <div class="absolute inset-0 bg-gradient-to-b from-[#0b141e] via-transparent to-[#0b141e]"></div>
-        
-        <div class="container mx-auto px-6 relative z-10 grid lg:grid-cols-2 gap-16 items-center hero-content">
-            <div>
-                <div class="inline-flex items-center px-4 py-1.5 rounded-full bg-blue-500/10 border border-blue-500/30 text-blue-400 text-xs font-bold mb-8 animate-pulse">
-                    <span class="material-symbols-outlined text-sm mr-2">verified</span>
-                    OFFICIAL 2025 PROMO CODE: <span class="text-white ml-2 font-black tracking-widest">WIKI28</span>
-                </div>
-                
-                <h1 class="text-6xl lg:text-8xl font-black leading-none mb-6 uppercase tracking-tighter">
-                    CLAIM YOUR <span class="text-transparent bg-clip-text accent-gradient text-glow">MAX BONUS</span>
-                </h1>
-                
-                <p class="text-gray-400 text-lg lg:text-xl mb-10 max-w-xl leading-relaxed">
-                    Elevate your game with the ultimate betting experience.
-                    Get a <span class="text-white font-bold">100% to 200% Welcome Bonus</span> exclusively with code <span class="text-blue-400 font-bold">WIKI28</span>. Global access, local rewards.
-                </p>
-                
-                <div class="flex flex-col sm:flex-row gap-4">
-                    <button onclick="triggerConfetti()" class="accent-gradient px-10 py-5 rounded-2xl text-lg font-black shadow-2xl glow-btn flex items-center justify-center group">
-                        GET STARTED
-                        <span class="material-symbols-outlined ml-3 group-hover:translate-x-1 transition">trending_up</span>
-                    </button>
-                    <div class="flex items-center space-x-4 px-6 py-4 glass-panel rounded-2xl border border-white/10">
-                        <span class="text-xs text-gray-500 font-bold uppercase tracking-widest">Bonus Rate:</span>
-                        <span class="text-xl font-black text-blue-400">100% - 200%</span>
-                    </div>
-                </div>
-
-                <div class="mt-12 flex items-center gap-8 grayscale opacity-50 hover:grayscale-0 hover:opacity-100 transition duration-500">
-                    <div class="flex flex-col">
-                        <span class="text-2xl font-black">60+</span>
-                        <span class="text-[10px] uppercase font-bold text-gray-500">Sports</span>
-                    </div>
-                    <div class="h-8 w-px bg-white/10"></div>
-                    <div class="flex flex-col">
-                        <span class="text-2xl font-black">1M+</span>
-                        <span class="text-[10px] uppercase font-bold text-gray-500">Players</span>
-                    </div>
-                    <div class="h-8 w-px bg-white/10"></div>
-                    <div class="flex flex-col">
-                        <span class="text-2xl font-black">24/7</span>
-                        <span class="text-[10px] uppercase font-bold text-gray-500">Support</span>
-                    </div>
-                </div>
-            </div>
-
-            <div class="glass-panel p-10 rounded-[2.5rem] border border-white/10 relative">
-                <div class="absolute -top-4 -right-4 bg-red-600 text-white text-[10px] font-black px-4 py-2 rounded-full shadow-lg uppercase tracking-tighter z-20">Limited Offer</div>
-                
-                <h3 class="text-2xl font-black mb-8 flex items-center">
-                    <span class="material-symbols-outlined mr-3 text-blue-400">calculate</span>
-                    BONUS ESTIMATOR
-                </h3>
-
-                <div class="space-y-8">
-                    <div>
-                        <label class="block text-[10px] text-gray-500 font-black uppercase tracking-widest mb-4">1. Select Your Region</label>
-                        <div class="grid grid-cols-3 gap-3">
-                            <button onclick="updateRegion(2.0, this)" class="region-btn active py-3 rounded-xl text-xs font-black border border-white/10 hover:border-blue-500 transition uppercase">Africa (200%)</button>
-                            <button onclick="updateRegion(1.3, this)" class="region-btn py-3 rounded-xl text-xs font-black border border-white/10 hover:border-blue-500 transition uppercase">LatAm/Asia (130%)</button>
-                            <button onclick="updateRegion(1.0, this)" class="region-btn py-3 rounded-xl text-xs font-black border border-white/10 hover:border-blue-500 transition uppercase">Global (100%)</button>
-                        </div>
-                    </div>
-
-                    <div>
-                        <label class="block text-[10px] text-gray-500 font-black uppercase tracking-widest mb-4">2. First Deposit Amount</label>
-                        <input type="range" id="depositSlider" min="10" max="1000" value="100" class="w-full h-1.5 bg-gray-800 rounded-lg appearance-none cursor-pointer accent-blue-500">
-                        <div class="flex justify-between items-end mt-4">
-                            <span class="text-gray-600 text-[10px] font-bold">$10</span>
-                            <span class="text-4xl font-black text-white">$<span id="depositAmt">100</span></span>
-                            <span class="text-gray-600 text-[10px] font-bold">$1000+</span>
-                        </div>
-                    </div>
-
-                    <div class="grid grid-cols-2 gap-4">
-                        <div class="bg-blue-600/10 p-5 rounded-3xl border border-blue-500/20">
-                            <p class="text-[9px] text-blue-400 font-black uppercase tracking-widest mb-1">Bonus You Get</p>
-                            <p class="text-3xl font-black text-white">+$<span id="bonusAmt">200</span></p>
-                        </div>
-                        <div class="bg-green-600/10 p-5 rounded-3xl border border-green-500/20">
-                            <p class="text-[9px] text-green-400 font-black uppercase tracking-widest mb-1">Total to Play</p>
-                            <p class="text-3xl font-black text-white">$<span id="totalAmt">300</span></p>
-                        </div>
-                    </div>
-
-                    <div class="p-6 bg-black/40 rounded-3xl border border-white/5 text-center">
-                        <p class="text-[10px] text-gray-500 font-bold mb-3 uppercase tracking-widest">Unlock with unique code:</p>
-                        <div class="flex items-center justify-between bg-blue-500/10 px-6 py-4 rounded-2xl border border-blue-500/30">
-                            <span class="text-2xl font-black tracking-widest text-blue-400" id="promoCodeText">WIKI28</span>
-                            <button onclick="copyPromo()" class="text-[10px] font-black bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-400 transition uppercase">Copy</button>
-                        </div>
-                    </div>
-
-                    <p class="text-[9px] text-center text-gray-600 italic">Percentages vary by region (100%-200%). Subject to T&Cs. Play responsibly.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <div class="bg-black/60 border-y border-white/5 py-3 relative z-20">
-        <div class="flex overflow-hidden">
-            <div class="flex animate-marquee">
-                <div class="flex items-center space-x-3 shrink-0">
-                    <span class="w-1.5 h-1.5 rounded-full bg-red-500"></span>
-                    <span class="text-[10px] font-bold uppercase tracking-widest">PL: Liverpool vs Chelsea</span>
-                    <span class="text-blue-400 font-black text-xs">1.85 | 3.40 | 4.10</span>
-                </div>
-                <div class="flex items-center space-x-3 shrink-0">
-                    <span class="w-1.5 h-1.5 rounded-full bg-red-500"></span>
-                    <span class="text-[10px] font-bold uppercase tracking-widest">LL: Real Madrid vs Atletico</span>
-                    <span class="text-blue-400 font-black text-xs">2.10 | 3.25 | 3.00</span>
-                </div>
-                <div class="flex items-center space-x-3 shrink-0">
-                    <span class="w-1.5 h-1.5 rounded-full bg-red-500"></span>
-                    <span class="text-[10px] font-bold uppercase tracking-widest">NBA: Lakers vs Celtics</span>
-                    <span class="text-blue-400 font-black text-xs">1.91 | 1.89</span>
-                </div>
-                <div class="flex items-center space-x-3 shrink-0">
-                    <span class="w-1.5 h-1.5 rounded-full bg-red-500"></span>
-                    <span class="text-[10px] font-bold uppercase tracking-widest">UCL: Bayern vs PSG</span>
-                    <span class="text-blue-400 font-black text-xs">1.72 | 3.80 | 4.50</span>
-                </div>
-                
-                <div class="flex items-center space-x-3 shrink-0">
-                    <span class="w-1.5 h-1.5 rounded-full bg-red-500"></span>
-                    <span class="text-[10px] font-bold uppercase tracking-widest">PL: Liverpool vs Chelsea</span>
-                    <span class="text-blue-400 font-black text-xs">1.85 | 3.40 | 4.10</span>
-                </div>
-                <div class="flex items-center space-x-3 shrink-0">
-                    <span class="w-1.5 h-1.5 rounded-full bg-red-500"></span>
-                    <span class="text-[10px] font-bold uppercase tracking-widest">LL: Real Madrid vs Atletico</span>
-                    <span class="text-blue-400 font-black text-xs">2.10 | 3.25 | 3.00</span>
-                </div>
-                <div class="flex items-center space-x-3 shrink-0">
-                    <span class="w-1.5 h-1.5 rounded-full bg-red-500"></span>
-                    <span class="text-[10px] font-bold uppercase tracking-widest">NBA: Lakers vs Celtics</span>
-                    <span class="text-blue-400 font-black text-xs">1.91 | 1.89</span>
-                </div>
-                <div class="flex items-center space-x-3 shrink-0">
-                    <span class="w-1.5 h-1.5 rounded-full bg-red-500"></span>
-                    <span class="text-[10px] font-bold uppercase tracking-widest">UCL: Bayern vs PSG</span>
-                    <span class="text-blue-400 font-black text-xs">1.72 | 3.80 | 4.50</span>
-                </div>
-            </div>
-        </div>
+<body class="antialiased leading-relaxed">
+  <!-- NAV -->
+  <nav class="p-4 flex items-center justify-between sticky top-0 z-50 bg-[#0f172a]/80 backdrop-blur-md border-b border-white/5">
+    <div class="flex items-center gap-3">
+      <img src="assets/logo.png" alt="ZAYN1x" class="h-8 w-auto" onerror="this.src='https://img.icons8.com/color/48/1xbet.png'" loading="lazy">
+      <div class="text-xl font-extrabold tracking-tight"><span class="text-blue-400">ZAYN1x</span> <span class="text-sm text-white/60 font-semibold">Official 1X Partner</span></div>
     </div>
+    <div class="flex items-center gap-3">
+      <a href="#apply" class="hidden md:inline uppercase text-xs font-bold px-3 py-2 rounded-lg bg-blue-600/10 border border-blue-600/20 hover:bg-blue-600/20">Apply</a>
+      <button id="navContact" class="uppercase text-xs font-bold px-3 py-2 rounded-lg bg-[#0088cc] hover:bg-[#0077b5]">Contact</button>
+    </div>
+  </nav>
 
-    <section class="py-32 bg-[#0b141e] reveal" id="sports">
-        <div class="container mx-auto px-6">
-            <div class="text-center max-w-3xl mx-auto mb-20">
-                <h2 class="text-4xl lg:text-5xl font-black mb-6 uppercase tracking-tighter">Engineered for <span class="text-blue-500">Victory</span></h2>
-                <p class="text-gray-500 leading-relaxed">Access a world-class betting ecosystem designed for high performance, maximum security, and the best market odds available today.</p>
-            </div>
+  <!-- HERO -->
+  <header class="hero-gradient text-center py-10 px-6">
+    <div class="max-w-4xl mx-auto">
+      <h1 class="animate__animated animate__fadeInDown text-3xl sm:text-4xl font-extrabold mb-3 bg-clip-text text-transparent bg-gradient-to-r from-white via-blue-200 to-blue-500">Partner with <span class="text-white/90">1XBET</span> — Grow & Earn</h1>
+      <p class="text-sm text-white/60 max-w-2xl mx-auto mb-6">Hybrid CPA + Revenue share deals, sub-affiliate bonuses, weekly payouts, and hands-on support to help you scale.</p>
 
-            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-                <div class="glass-panel p-8 rounded-[2rem] group">
-                    <div class="w-14 h-14 rounded-2xl bg-blue-500/10 flex items-center justify-center mb-6 group-hover:scale-110 transition">
-                        <span class="material-symbols-outlined text-blue-400 text-3xl">live_tv</span>
-                    </div>
-                    <h4 class="text-xl font-bold mb-3 uppercase tracking-tight">Live Streaming</h4>
-                    <p class="text-gray-500 text-sm leading-relaxed">Watch over 10,000 events monthly in full HD while placing live bets in real-time.</p>
-                </div>
-                <div class="glass-panel p-8 rounded-[2rem] group">
-                    <div class="w-14 h-14 rounded-2xl bg-green-500/10 flex items-center justify-center mb-6 group-hover:scale-110 transition">
-                        <span class="material-symbols-outlined text-green-400 text-3xl">payments</span>
-                    </div>
-                    <h4 class="text-xl font-bold mb-3 uppercase tracking-tight">Rapid Payouts</h4>
-                    <p class="text-gray-500 text-sm leading-relaxed">Experience lightning-fast withdrawals with 60+ payment methods supported worldwide.</p>
-                </div>
-                <div class="glass-panel p-8 rounded-[2rem] group">
-                    <div class="w-14 h-14 rounded-2xl green-500/10 flex items-center justify-center mb-6 group-hover:scale-110 transition">
-                        <span class="material-symbols-outlined text-green-400 text-3xl">shield</span>
-                    </div>
-                    <h4 class="text-xl font-bold mb-3 uppercase tracking-tight">Secure & Fair</h4>
-                    <p class="text-gray-500 text-sm leading-relaxed">Licensed by Curacao eGaming. Advanced encryption protects your data and funds 24/7.</p>
-                </div>
-                <div class="glass-panel p-8 rounded-[2rem] group">
-                    <div class="w-14 h-14 rounded-2xl bg-purple-500/10 flex items-center justify-center mb-6 group-hover:scale-110 transition">
-                        <span class="material-symbols-outlined text-purple-400 text-3xl">currency_bitcoin</span>
-                    </div>
-                    <h4 class="text-xl font-bold mb-3 uppercase tracking-tight">Crypto Ready</h4>
-                    <p class="text-gray-500 text-sm leading-relaxed">Full support for Bitcoin, Ethereum, USDT, and 25+ major cryptocurrencies.</p>
-                </div>
-            </div>
+      <div class="flex items-center gap-3 justify-center">
+        <button onclick="scrollToApply()" class="px-6 py-3 bg-blue-600 rounded-xl font-bold uppercase shadow-deep active:scale-95">Start Application</button>
+        <button onclick="openContact()" class="px-6 py-3 border border-white/6 rounded-xl font-semibold uppercase">Message Zayn</button>
+      </div>
+
+      <!-- Live payout ticker -->
+      <div class="mt-6 glass py-3 px-4 rounded-xl max-w-4xl mx-auto mt-6">
+        <div class="flex items-center justify-between">
+          <div class="text-xs text-white/70 uppercase font-bold">Latest payouts</div>
+          <div class="flex items-center gap-3">
+            <div class="text-[12px] text-white/60">Live</div>
+            <div id="tickerStatus" class="w-2 h-2 rounded-full bg-emerald-400/90"></div>
+          </div>
         </div>
+        <div class="mt-3 overflow-hidden relative">
+          <div id="marquee" class="marquee text-[13px] text-white/80 py-2"></div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="max-w-6xl mx-auto px-4 -mt-10 relative">
+    <!-- Top quick stats -->
+    <section class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+      <div class="glass p-4 rounded-2xl shadow-deep text-center">
+        <div class="text-sm text-white/60 uppercase mb-1">Active Affiliates</div>
+        <div class="text-3xl font-extrabold" id="statAffiliates">0</div>
+        <div class="text-xs text-white/70 mt-1">growth this month</div>
+      </div>
+      <div class="glass p-4 rounded-2xl shadow-deep text-center">
+        <div class="text-sm text-white/60 uppercase mb-1">Weekly Payouts</div>
+        <div class="text-3xl font-extrabold" id="statPayouts">$0</div>
+        <div class="text-xs text-white/70 mt-1">processed in last 7 days</div>
+      </div>
+      <div class="glass p-4 rounded-2xl shadow-deep text-center">
+        <div class="text-sm text-white/60 uppercase mb-1">Sub-aff Bonus</div>
+        <div class="text-3xl font-extrabold" id="statSub">5%</div>
+        <div class="text-xs text-white/70 mt-1">lifetime</div>
+      </div>
     </section>
 
-    <section class="relative py-32 bg-black overflow-hidden reveal" id="casino">
-        <img src="https://placehold.co/1920x1080/000000/e67e22?text=Luxury+Casino+Background" alt="Casino" class="absolute inset-0 w-full h-full object-cover opacity-30">
-        <div class="absolute inset-0 bg-gradient-to-r from-black via-black/80 to-transparent"></div>
-        
-        <div class="container mx-auto px-6 relative z-10 grid lg:grid-cols-2 gap-20 items-center">
-            <div>
-                <h2 class="text-5xl lg:text-7xl font-black mb-8 uppercase leading-none tracking-tighter">Elite <span class="text-transparent bg-clip-text casino-gradient">Casino</span> Experience</h2>
-                <p class="text-green-300 text-lg mb-10 leading-relaxed max-w-xl">
-                    Unlock a library of 3,000+ premium slots, live dealers, and exclusive 1xGames.
-                    Use code <span class="text-green-400 font-bold">WIKI28</span> to claim up to <span class="text-white font-black">€1,500 + 150 Free Spins</span>.
-                </p>
-                <div class="grid grid-cols-2 gap-4 mb-12">
-                    <div class="flex items-center space-x-3">
-                        <span class="material-symbols-outlined text-green-500">check_circle</span>
-                        <span class="text-sm font-bold uppercase tracking-widest">Live Roulette</span>
-                    </div>
-                    <div class="flex items-center space-x-3">
-                        <span class="material-symbols-outlined text-green-500">check_circle</span>
-                        <span class="text-sm font-bold uppercase tracking-widest">Blackjack Elite</span>
-                    </div>
-                    <div class="flex items-center space-x-3">
-                        <span class="material-symbols-outlined text-green-500">check_circle</span>
-                        <span class="text-sm font-bold uppercase tracking-widest">Progressive Slots</span>
-                    </div>
-                    <div class="flex items-center space-x-3">
-                        <span class="material-symbols-outlined text-green-500">check_circle</span>
-                        <span class="text-sm font-bold uppercase tracking-widest">Instant Wins</span>
-                    </div>
-                </div>
-                <a href="https://1xbet.com" target="_blank" class="casino-gradient px-12 py-5 rounded-2xl text-lg font-black shadow-2xl hover:brightness-110 transition inline-block uppercase tracking-widest hover:scale-105">Enter Casino</a>
+    <!-- CALCULATOR CARD (DECOUPLED FROM TIERS) -->
+    <section id="calculator" class="glass p-6 rounded-3xl border border-white/6 shadow-deep">
+      <div class="flex flex-col md:flex-row gap-6">
+        <div class="flex-1">
+          <h3 class="text-xs font-bold mb-4 text-blue-300 uppercase tracking-wider">Earnings Calculator</h3>
+          <label class="text-[11px] font-semibold text-white/80 flex justify-between mb-2">Estimated Monthly NGR <span class="font-mono" id="revenueVal">$5,000</span></label>
+
+          <!-- slider container for tooltip & pulse -->
+          <div class="slider-wrap relative">
+            <input type="range" id="revenueSlider" min="0" max="200000" step="100" value="5000" aria-label="Monthly NGR slider">
+            <div id="sliderTool" class="slider-tooltip">$5,000</div>
+            <div id="thumbPulse" class="thumb-pulse" style="display:none;"></div>
+            <div class="slider-ticks">
+              <div>0</div>
+              <div>50k</div>
+              <div>100k</div>
+              <div>150k</div>
+              <div>200k</div>
             </div>
-            
-            <div class="grid grid-cols-2 gap-4">
-                <div class="space-y-4">
-                    <img src="https://placehold.co/400x400/111/fff?text=Roulette+Wheel" alt="Roulette" class="glass-panel rounded-3xl shadow-2xl border border-white/10 transform hover:-rotate-3 transition duration-500">
-                    <img src="https://placehold.co/400x400/111/fff?text=Casino+Chips" alt="Chips" class="glass-panel rounded-3xl shadow-2xl border border-white/10">
-                </div>
-                <div class="pt-12">
-                    <img src="https://placehold.co/300x400/111/fff?text=Live+Dealer" alt="Live Dealer" class="glass-panel rounded-3xl shadow-2xl border border-white/10 transform hover:rotate-3 transition duration-500">
-                </div>
+          </div>
+
+          <div class="mt-4 grid grid-cols-2 gap-3">
+            <label class="text-[12px] text-white/70">Model</label>
+            <select id="modelSelect" class="rounded-lg p-2 bg-transparent border border-white/6">
+              <option value="rev">Revenue Share</option>
+              <option value="cpa">CPA</option>
+              <option value="hybrid">Hybrid (CPA + RevShare)</option>
+            </select>
+
+            <label class="text-[12px] text-white/70">Commission rate</label>
+            <div class="flex gap-2">
+              <select id="rateSelect" class="rounded-lg p-2 bg-transparent border border-white/6 w-full">
+                <option value="25">25%</option>
+                <option value="30">30%</option>
+                <option value="35">35%</option>
+                <option value="40">40%</option>
+                <option value="custom">Custom</option>
+              </select>
+              <input id="customRate" type="number" placeholder="% (custom)" class="rounded-lg p-2 bg-transparent border border-white/6 w-24" style="display:none;">
             </div>
+
+            <label class="text-[12px] text-white/70">Estimated FTDs / month</label>
+            <input id="ftdInput" type="number" value="10" min="0" class="rounded-lg p-2 bg-transparent border border-white/6">
+
+            <label class="text-[12px] text-white/70">CPA package</label>
+            <select id="cpaSelect" class="rounded-lg p-2 bg-transparent border border-white/6">
+              <option value="3">3-1-3 ($3 per FTD)</option>
+              <option value="4">4-1-4 ($4 per FTD)</option>
+              <option value="5">5-1-5 ($5 per FTD)</option>
+              <option value="7">7-4-10 ($7 per FTD)</option>
+              <option value="10">10-5-20 ($10 per FTD)</option>
+            </select>
+          </div>
+
+          <div class="mt-6 p-4 rounded-2xl bg-blue-600/6 border border-blue-500/10 text-center">
+            <div class="text-[10px] uppercase text-blue-300 font-black tracking-wide">Estimated Monthly Commission</div>
+            <div id="payoutDisplay" class="text-3xl font-extrabold mt-1">$1,250</div>
+            <div class="text-[11px] text-white/60 mt-1" id="tierInfo">(Commission: 25%)</div>
+            <div class="text-[11px] text-white/60 mt-2" id="cpaInfo"></div>
+          </div>
+
+          <div class="mt-3 cpa-examples" id="cpaExamples">
+            <!-- Filled by JS: CPA examples & explanation -->
+          </div>
+
+          <div class="text-[11px] text-white/60 mt-2">*Calculator only estimates earnings — it's independent from the tier system. FTDs and CPA offers can be adjusted per region.</div>
         </div>
+
+        <div class="w-full md:w-80">
+          <h4 class="text-sm font-bold mb-3">Quick Facts</h4>
+          <ul class="text-[13px] space-y-2 text-white/70">
+            <li>• Tiered Revenue Share: 25% → 40%+ (Diamond negotiable).</li>
+            <li>• <strong>5% lifetime bonus</strong> on your sub-affiliates' earnings.</li>
+            <li>• Hybrid model available: CPA + RevShare.</li>
+            <li>• Weekly payouts via Binance wallet.</li>
+            <li>• <span class="chip bg-white/6">Direct support from Zayn for every tier</span></li>
+          </ul>
+          <div class="mt-6">
+            <a href="#apply" class="block w-full text-center py-2 rounded-lg bg-blue-600 font-bold">Apply Now</a>
+            <button id="downloadPdf" class="mt-3 w-full py-2 rounded-lg border border-white/5">Download Affiliate Guide (EN)</button>
+          </div>
+        </div>
+      </div>
     </section>
 
-    <section class="py-32 bg-[#0b141e] reveal" id="mobile">
-        <div class="container mx-auto px-6 flex flex-col lg:flex-row items-center gap-20">
-            <div class="lg:w-1/2 relative">
-                <div class="absolute inset-0 bg-blue-500/20 blur-[120px] rounded-full"></div>
-                <img src="https://placehold.co/800x600/0b141e/1e90ff?text=App+Interface" alt="App Interface" class="relative z-10 w-full drop-shadow-2xl">
-            </div>
-            <div class="lg:w-1/2">
-                <h2 class="text-4xl lg:text-5xl font-black mb-6 uppercase tracking-tighter">Your Bets, <span class="text-blue-500">Everywhere</span></h2>
-                <p class="text-gray-500 text-lg mb-10 leading-relaxed">
-                    The 1XBET mobile application is a powerhouse of features.
-                    Biometric login, lightning-fast navigation, and exclusive app-only bonuses. Register with code <span class="text-white font-bold">WIKI28</span> directly from the app.
-                </p>
-                <div class="flex flex-col sm:flex-row gap-4 mb-8">
-                    <a href="https://1xbet.com" target="_blank" class="glass-panel p-5 rounded-2xl flex items-center space-x-4 border border-white/10 flex-1">
-                        <span class="material-symbols-outlined text-4xl text-blue-400">radio_button_unchecked</span>
-                        <div>
-                            <p class="text-[9px] text-gray-500 uppercase font-black">Download for</p>
-                            <p class="font-bold">iOS Devices</p>
-                        </div>
-                    </a>
-                    <a href="https://1xbet.com" target="_blank" class="glass-panel p-5 rounded-2xl flex items-center space-x-4 border border-white/10 flex-1">
-                        <span class="material-symbols-outlined text-4xl text-green-400">android</span>
-                        <div>
-                            <p class="text-[9px] text-gray-500 uppercase font-black">Download for</p>
-                            <p class="font-bold">Android APK</p>
-                        </div>
-                    </a>
-                </div>
-                <div class="flex items-center p-4 bg-blue-500/5 rounded-2xl border border-blue-500/20">
-                    <span class="material-symbols-outlined text-blue-400 mr-4">info</span>
-                    <p class="text-xs text-gray-400">Scan the official QR code on the desktop site for a direct, secure download link.</p>
-                </div>
-            </div>
+    <!-- TIER SYSTEM (UNCHANGED VISUALLY BUT NO LINK TO CALCULATOR) -->
+    <section class="mt-12 glass p-8 rounded-3xl border border-white/6 shadow-deep">
+      <h3 class="text-2xl font-extrabold mb-6 text-center uppercase tracking-tight">Affiliate Tier System</h3>
+      <p class="text-center text-white/70 mb-8 max-w-3xl mx-auto">Performance-based tiers with increasing RevShare. FTD requirements listed below. *FTD thresholds can be adjusted per region.</p>
+
+      <div class="grid grid-cols-1 md:grid-cols-5 gap-6" id="tierContainer">
+        <!-- Bronze -->
+        <div class="tier-card glass p-6 rounded-2xl text-center border border-amber-600/30 bg-amber-600/5" data-tier="bronze" data-rate="25" data-min="0" data-max="10000" data-ftd-min="0" data-ftd-max="250" tabindex="0" role="button" aria-pressed="false">
+          <div class="text-3xl font-black text-amber-400 mb-2">Bronze</div>
+          <div class="text-2xl font-extrabold mb-1">25%</div>
+          <div class="text-xs text-white/60 mb-2">RevShare</div>
+          <div class="text-xs uppercase font-bold text-amber-300 mb-2">Entry Level</div>
+          <hr class="border-white/10 my-3">
+          <p class="text-[13px] text-white/70">Monthly NGR<br>up to $10,000</p>
+          <p class="text-[12px] text-white/70 mt-2">FTD: 0 – 250</p>
+          <p class="text-[12px] text-white/70 mt-2">Support: Direct (Zayn)</p>
+          <svg class="tier-check mx-auto mt-4 w-8 h-8 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
         </div>
+
+        <!-- Silver -->
+        <div class="tier-card glass p-6 rounded-2xl text-center border border-gray-400/30 bg-gray-400/5" data-tier="silver" data-rate="30" data-min="10001" data-max="30000" data-ftd-min="251" data-ftd-max="500" tabindex="0" role="button" aria-pressed="false">
+          <div class="text-3xl font-black text-gray-300 mb-2">Silver</div>
+          <div class="text-2xl font-extrabold mb-1">30%</div>
+          <div class="text-xs text-white/60 mb-2">RevShare</div>
+          <div class="text-xs uppercase font-bold text-gray-300 mb-2">Growing</div>
+          <hr class="border-white/10 my-3">
+          <p class="text-[13px] text-white/70">Monthly NGR<br>$10,001 – $30,000</p>
+          <p class="text-[12px] text-white/70 mt-2">FTD: 251 – 500</p>
+          <p class="text-[12px] text-white/70 mt-2">Support: Direct (Zayn)</p>
+          <svg class="tier-check mx-auto mt-4 w-8 h-8 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
+        </div>
+
+        <!-- Gold -->
+        <div class="tier-card glass p-6 rounded-2xl text-center border border-yellow-500/40 bg-yellow-500/5" data-tier="gold" data-rate="35" data-min="30001" data-max="70000" data-ftd-min="501" data-ftd-max="1000" tabindex="0" role="button" aria-pressed="false">
+          <div class="text-3xl font-black text-yellow-400 mb-2">Gold</div>
+          <div class="text-2xl font-extrabold mb-1">35%</div>
+          <div class="text-xs text-white/60 mb-2">RevShare</div>
+          <div class="text-xs uppercase font-bold text-yellow-300 mb-2">Top Performer</div>
+          <hr class="border-white/10 my-3">
+          <p class="text-[13px] text-white/70">Monthly NGR<br>$30,001 – $70,000</p>
+          <p class="text-[12px] text-white/70 mt-2">FTD: 501 – 1000</p>
+          <p class="text-[12px] text-white/70 mt-2">Support: Direct (Zayn)</p>
+          <svg class="tier-check mx-auto mt-4 w-8 h-8 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
+        </div>
+
+        <!-- Platinum -->
+        <div class="tier-card glass p-6 rounded-2xl text-center border border-cyan-400/50 bg-cyan-400/5" data-tier="platinum" data-rate="40" data-min="70001" data-max="150000" data-ftd-min="1001" data-ftd-max="2000" tabindex="0" role="button" aria-pressed="false">
+          <div class="text-3xl font-black text-cyan-300 mb-2">Platinum</div>
+          <div class="text-2xl font-extrabold mb-1">40%</div>
+          <div class="text-xs text-white/60 mb-2">RevShare</div>
+          <div class="text-xs uppercase font-bold text-cyan-300 mb-2">Elite</div>
+          <hr class="border-white/10 my-3">
+          <p class="text-[13px] text-white/70">Monthly NGR<br>$70,001 – $150,000</p>
+          <p class="text-[12px] text-white/70 mt-2">FTD: 1001 – 2000</p>
+          <p class="text-[12px] text-white/70 mt-2">Support: Direct (Zayn)</p>
+          <svg class="tier-check mx-auto mt-4 w-8 h-8 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
+        </div>
+
+        <!-- Diamond -->
+        <div class="tier-card glass p-6 rounded-2xl text-center border border-purple-500/60 bg-purple-600/10" data-tier="diamond" data-rate="negotiable" data-min="150001" data-max="999999999" data-ftd-min="2001" data-ftd-max="999999999" tabindex="0" role="button" aria-pressed="false">
+          <div class="text-3xl font-black text-purple-300 mb-2">Diamond</div>
+          <div class="text-2xl font-extrabold mb-1">??%</div>
+          <div class="text-xs text-white/60 mb-2">RevShare</div>
+          <div class="text-xs uppercase font-bold text-purple-300 mb-2">VIP</div>
+          <hr class="border-white/10 my-3">
+          <p class="text-[13px] text-white/70">Monthly NGR<br>$150,001+</p>
+          <p class="text-[12px] text-white/70 mt-2">FTD: 2001+</p>
+          <p class="text-[12px] text-white/70 mt-2">Support: Direct (Zayn)</p>
+          <p class="text-xs text-purple-200 mt-2">Negotiable rate + Exclusive perks</p>
+          <svg class="tier-check mx-auto mt-4 w-8 h-8 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
+        </div>
+      </div>
+
+      <div class="mt-8 text-center">
+        <button id="openTierModal" class="px-6 py-3 rounded-xl bg-purple-600/20 border border-purple-500/20">Request Info (Text only)</button>
+      </div>
     </section>
 
-    <section class="py-16 bg-black/40 border-y border-white/5 reveal">
-        <div class="container mx-auto px-6">
-            <h5 class="text-center text-[10px] text-gray-600 font-black uppercase tracking-[0.3em] mb-12">Global Settlement Partners</h5>
-            <div class="flex flex-wrap justify-center items-center gap-12 grayscale opacity-30 hover:grayscale-0 hover:opacity-100 transition duration-1000">
-                <img src="https://placehold.co/100x40/333/fff?text=Visa" alt="Visa" class="h-6">
-                <img src="https://placehold.co/100x40/333/fff?text=Mastercard" alt="Mastercard" class="h-6">
-                <img src="https://placehold.co/100x40/333/fff?text=Skrill" alt="Skrill" class="h-6">
-                <img src="https://placehold.co/100x40/333/fff?text=Neteller" alt="Neteller" class="h-6">
-                <img src="https://placehold.co/100x40/333/fff?text=Bitcoin" alt="Bitcoin" class="h-6">
-                <img src="https://placehold.co/100x40/333/fff?text=Tether" alt="Tether" class="h-6">
-                <img src="https://placehold.co/100x40/333/fff?text=ApplePay" alt="Apple Pay" class="h-6">
-            </div>
-        </div>
+    <!-- Application (regions) -->
+    <section id="apply" class="mt-8 mb-12">
+      <h3 class="text-lg font-extrabold mb-4 text-center uppercase tracking-tight">Select Region & Apply</h3>
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 max-w-xl mx-auto">
+        <button onclick="openForm('EN')" class="glass p-4 rounded-2xl flex flex-col items-center">🇺🇸<span class="mt-2 text-[12px] font-black uppercase">English</span></button>
+        <button onclick="openForm('AR')" class="glass p-4 rounded-2xl flex flex-col items-center">🇦🇪<span class="mt-2 text-[12px] font-black uppercase">العربية</span></button>
+        <button onclick="openForm('FR')" class="glass p-4 rounded-2xl flex flex-col items-center">🇫🇷<span class="mt-2 text-[12px] font-black uppercase">Français</span></button>
+        <button onclick="openForm('TR')" class="glass p-4 rounded-2xl flex flex-col items-center">🇹🇷<span class="mt-2 text-[12px] font-black uppercase">Türkçe</span></button>
+      </div>
     </section>
 
-    <section class="py-32 bg-[#0b141e] reveal" id="bonuses">
-        <div class="container mx-auto px-6">
-            <div class="text-center mb-20">
-                <h2 class="text-4xl font-black mb-4 uppercase tracking-tighter">Global <span class="text-blue-500">Bonus Distribution</span></h2>
-                <p class="text-gray-500 max-w-2xl mx-auto">Using code <span class="text-white font-bold">WIKI28</span> ensures you receive the maximum possible reward for your location. Below is the standard distribution.</p>
-            </div>
-            
-            <div class="grid md:grid-cols-3 gap-8">
-                <div class="glass-panel p-10 rounded-[2.5rem] border border-white/5">
-                    <div class="text-5xl font-black text-blue-500 mb-4">200%</div>
-                    <h4 class="text-xl font-bold mb-4 uppercase">Tier 1 Regions</h4>
-                    <p class="text-sm text-gray-500 leading-relaxed mb-6">Nigeria, Kenya, Ghana, Uganda, and several African territories are eligible for the maximum 200% bonus up to local currency equivalents.</p>
-                    <div class="pt-6 border-t border-white/5 text-[10px] font-bold text-blue-400 uppercase tracking-widest">Active: WIKI28</div>
-                </div>
-                <div class="glass-panel p-10 rounded-[2.5rem] border-2 border-blue-500 relative">
-                    <div class="absolute -top-4 left-1/2 -translate-x-1/2 bg-blue-500 text-white text-[9px] font-black px-4 py-1.5 rounded-full uppercase tracking-widest">Most Popular</div>
-                    <div class="text-5xl font-black text-blue-500 mb-4">130%</div>
-                    <h4 class="text-xl font-bold mb-4 uppercase">Tier 2 Regions</h4>
-                    <p class="text-sm text-gray-500 leading-relaxed mb-6">India, Brazil, Mexico, and major parts of SE Asia/LATAM receive a boosted 130% bonus (standard is 100%) exclusively through this code.</p>
-                    <div class="pt-6 border-t border-white/5 text-[10px] font-bold text-blue-400 uppercase tracking-widest">Active: WIKI28</div>
-                </div>
-                <div class="glass-panel p-10 rounded-[2.5rem] border border-white/5">
-                    <div class="text-5xl font-black text-blue-500 mb-4">100%</div>
-                    <h4 class="text-xl font-bold mb-4 uppercase">Standard Regions</h4>
-                    <p class="text-sm text-gray-500 leading-relaxed mb-6">European territories and standard international regions receive a robust 100% matching deposit bonus on all sign-ups.</p>
-                    <div class="pt-6 border-t border-white/5 text-[10px] font-bold text-blue-400 uppercase tracking-widest">Active: WIKI28</div>
-                </div>
-            </div>
+    <!-- Contact -->
+    <section id="contact" class="glass p-6 rounded-3xl border border-white/6 mb-20">
+      <h3 class="text-xl font-extrabold mb-4">Contact</h3>
+      <p class="text-[13px] text-white/70 mb-4">Prefer DMs? Use the button — otherwise fill the quick message form and I will reply by text.</p>
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <div>
+          <input id="nameInput" placeholder="Your name" class="w-full p-3 rounded-lg bg-transparent border border-white/6" />
+          <input id="contactInput" placeholder="Telegram handle or phone" class="w-full p-3 rounded-lg bg-transparent border border-white/6 mt-3" />
+          <textarea id="messageInput" placeholder="Short message" class="w-full p-3 rounded-lg bg-transparent border border-white/6 mt-3 h-28"></textarea>
+          <div class="mt-3 flex gap-3">
+            <button id="sendMsgBtn" class="px-4 py-2 rounded-lg bg-blue-600 font-bold">Send</button>
+            <button id="dmZayn" class="px-4 py-2 rounded-lg border border-white/6">DM on Telegram</button>
+          </div>
         </div>
+        <div class="h-full flex flex-col justify-center items-start gap-3">
+          <div class="text-[13px] text-white/70">Quick links</div>
+          <a class="underline text-sm" href="#apply">Application forms</a>
+          <a class="underline text-sm" href="assets/affiliate_en.pdf">Affiliate Guide (EN)</a>
+          <a class="underline text-sm" href="assets/affiliate_ar.pdf">دليل الشركاء (AR)</a>
+          <div class="mt-6 text-[12px] text-white/60">Follow on Telegram: <a href="https://t.me/ZAYN1x" class="underline">@ZAYN1x</a></div>
+        </div>
+      </div>
     </section>
+  </main>
 
-    <footer class="py-20 bg-black text-center border-t border-white/5 reveal">
-        <div class="container mx-auto px-6">
-            <span class="text-3xl font-black italic tracking-tighter text-blue-500 mb-10 block uppercase">1XBET <span class="text-white/20">Partner</span></span>
-            <div class="max-w-4xl mx-auto mb-12">
-                <p class="text-[10px] text-gray-600 font-bold uppercase tracking-widest leading-loose">
-                    THE PROMO CODE <span class="text-white">WIKI28</span> IS PROVIDED BY AUTHORIZED 1XBET PARTNERS.
-                    BONUSES RANGE FROM 100% TO 200% BASED ON REGION. GAMBLING IS ADDICTIVE - PLEASE PLAY RESPONSIBLY. 18+ ONLY.
-                    OPERATED BY CAECUS N.V. UNDER CURACAO LICENSE 1668/JAZ.
-                </p>
-            </div>
-            <div class="flex flex-wrap justify-center gap-10 text-[10px] font-black uppercase tracking-[0.2em] text-gray-500">
-                <a href="#" class="hover:text-blue-400 transition">Privacy</a>
-                <a href="#" class="hover:text-blue-400 transition">Responsible Gaming</a>
-                <a href="#" class="hover:text-blue-400 transition">Terms</a>
-                <a href="#" class="hover:text-blue-400 transition">T&Cs</a>
-            </div>
-            <p class="mt-12 text-[10px] text-gray-800">© 2025 1XBET GLOBAL AFFILIATE NETWORK. ALL RIGHTS RESERVED.</p>
+  <!-- Tier Modal -->
+  <div id="tierModal" class="fixed inset-0 hidden items-center justify-center z-50">
+    <div class="absolute inset-0 bg-black/60" tabindex="-1" aria-hidden="true"></div>
+    <div class="glass p-6 rounded-2xl z-50 w-11/12 max-w-xl mx-auto shadow-deep">
+      <div class="flex justify-between items-start">
+        <h4 id="tierModalTitle" class="text-xl font-bold">Tier Details</h4>
+        <button id="closeTierModal" class="text-white/60">✕</button>
+      </div>
+      <div id="tierModalBody" class="mt-4 text-[13px] text-white/70"></div>
+      <div class="mt-4 flex gap-3 justify-end">
+        <button id="tierCallBtn" class="px-4 py-2 rounded-lg bg-[#0088cc]">Request Info (Text only)</button>
+        <button id="tierCloseBtn" class="px-4 py-2 rounded-lg border border-white/6">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast container -->
+  <div id="toastArea" class="toast"></div>
+
+  <footer class="text-center py-6 text-white/60">
+    <div class="max-w-4xl mx-auto px-4">
+      <div class="mb-3">© <strong>ZAYN1x</strong> — Official 1XBET Partner</div>
+      <div class="text-[12px]">Built with focus on affiliates. Questions? <a href="#contact" class="underline">Contact Zayn</a>.</div>
+    </div>
+  </footer>
+
+  <!-- SCRIPTS -->
+  <script>
+    // small toast helper
+    const toast = (msg, time=2500) => {
+      const area = document.getElementById('toastArea');
+      const el = document.createElement('div');
+      el.className = 'glass p-3 rounded-lg mb-2 shadow-deep animate__animated animate__fadeInUp';
+      el.innerText = msg;
+      area.appendChild(el);
+      setTimeout(()=> el.classList.add('animate__fadeOutDown'), time-400);
+      setTimeout(()=> el.remove(), time);
+    };
+
+    // --- Ticker (sample data)
+    const payouts = [
+      {name:'Ali', amt: 120, country:'EG'},
+      {name:'Samir', amt: 75, country:'IQ'},
+      {name:'Lina', amt: 300, country:'DZ'},
+      {name:'Omar', amt: 250, country:'MA'},
+      {name:'Jamal', amt: 40, country:'AE'},
+      {name:'Hadi', amt: 90, country:'TR'},
+      {name:'Rana', amt: 500, country:'SA'}
+    ];
+    function renderMarquee(){
+      const m = document.getElementById('marquee');
+      const parts = [];
+      for(let i=0;i<20;i++){
+        const p = payouts[i % payouts.length];
+        parts.push(`${p.name} paid $${p.amt} — ${p.country}`);
+      }
+      m.innerHTML = '';
+      const text = parts.join(' • ');
+      const span = document.createElement('span'); span.innerText = text + ' • ';
+      m.appendChild(span);
+      const span2 = span.cloneNode(true); m.appendChild(span2);
+    }
+    renderMarquee();
+    setInterval(()=> {
+      const p = payouts.shift();
+      payouts.push({name: p.name, amt: Math.max(10, p.amt + (Math.random()*200-100|0)), country: p.country});
+      renderMarquee();
+    }, 8000);
+
+    // animated counters (demo)
+    function animateCounter(id, from, to, ms=1200){
+      const el = document.getElementById(id);
+      const start = performance.now();
+      const step = (now) => {
+        const t = Math.min(1, (now - start) / ms);
+        const val = Math.round(from + (to - from) * t);
+        el.innerText = (id === 'statPayouts') ? `$${val.toLocaleString()}` : val.toLocaleString();
+        if (t < 1) requestAnimationFrame(step);
+      };
+      requestAnimationFrame(step);
+    }
+    setTimeout(()=>{ animateCounter('statAffiliates', 0, 1240); animateCounter('statPayouts', 0, 18450); }, 400);
+
+    // Calculator (DECOUPLED)
+    const revSlider = document.getElementById('revenueSlider');
+    const payoutDisplay = document.getElementById('payoutDisplay');
+    const revVal = document.getElementById('revenueVal');
+    const tierInfo = document.getElementById('tierInfo');
+    const cpaInfo = document.getElementById('cpaInfo');
+    const cpaExamplesEl = document.getElementById('cpaExamples');
+    const sliderTool = document.getElementById('sliderTool');
+    const thumbPulse = document.getElementById('thumbPulse');
+
+    // UI elements
+    const modelSelect = document.getElementById('modelSelect');
+    const rateSelect = document.getElementById('rateSelect');
+    const customRate = document.getElementById('customRate');
+    const ftdInput = document.getElementById('ftdInput');
+    const cpaSelect = document.getElementById('cpaSelect');
+
+    // restore slider state
+    const saved = localStorage.getItem('zayn_revenue') || null;
+    if (saved) revSlider.value = saved;
+
+    // CPA example definitions (explanations)
+    const cpaExamples = [
+      {k:'3', label:'3-1-3', payout:3, deposit:1, bet:3, note:'Affiliate receives $3 when player deposits $1+ and bets $3+.'},
+      {k:'4', label:'4-1-4', payout:4, deposit:1, bet:4, note:'Affiliate receives $4 when player deposits $1+ and bets $4+.'},
+      {k:'5', label:'5-1-5', payout:5, deposit:1, bet:5, note:'Affiliate receives $5 when player deposits $1+ and bets $5+.'},
+      {k:'7', label:'7-4-10', payout:7, deposit:4, bet:10, note:'Affiliate receives $7 when player deposits $4+ and bets $10+.'},
+      {k:'10', label:'10-5-20', payout:10, deposit:5, bet:20, note:'Affiliate receives $10 when player deposits $5+ and bets $20+.'}
+    ];
+
+    function renderCpaExamples(){
+      const html = `
+        <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:8px;">
+          <div style="flex:1">
+            <div style="font-weight:700;margin-bottom:6px;color:var(--accent-2)">CPA Payout Examples</div>
+            <div style="font-size:13px;color:rgba(255,255,255,0.8);margin-bottom:6px">Common packages (can be adjusted per region):</div>
+            <ul style="margin-left:14px">
+              ${cpaExamples.map(e => `<li style="margin-bottom:6px"><b>${e.label}</b> — $${e.payout} per FTD &nbsp; <span style="color:rgba(255,255,255,0.6)">(${e.note})</span></li>`).join('')}
+            </ul>
+            <div style="font-size:12px;color:rgba(255,255,255,0.6);margin-top:8px">Tip: numbers are flexible — negotiate higher packages for specific regions or volume.</div>
+          </div>
+          <div style="width:150px;text-align:right">
+            <div style="font-size:12px;color:rgba(255,255,255,0.6)">Selected package</div>
+            <div id="selectedCpaBox" style="font-weight:800;font-size:16px;margin-top:6px;color:var(--accent)">${getCpaLabel(cpaSelect.value)}</div>
+            <div id="selectedCpaNote" style="font-size:12px;color:rgba(255,255,255,0.6);margin-top:6px"></div>
+          </div>
         </div>
-    </footer>
+      `;
+      cpaExamplesEl.innerHTML = html;
+      updateSelectedCpaNote();
+    }
 
-    <script>
-        // --- 1. INTERSECTION OBSERVER FOR SCROLL REVEALS ---
-        const reveals = document.querySelectorAll('.reveal');
-        
-        const observer = new IntersectionObserver((entries) => {
-          entries.forEach(entry => {
-            if (entry.isIntersecting) {
-              entry.target.classList.add('active');
-              // Optional: stagger children animations inside sections
-              entry.target.querySelectorAll('*').forEach((child, i) => {
-                // Only apply stagger if not too deep
-                if(i < 10) child.style.setProperty('--delay', i);
-              });
-            }
-          });
-        }, { threshold: 0.15 });
-        
-        reveals.forEach(el => observer.observe(el));
+    function getCpaLabel(k){
+      const ex = cpaExamples.find(x=>x.k===k);
+      return ex ? `${ex.label} — $${ex.payout}/FTD` : '3-1-3 — $3/FTD';
+    }
 
-        // --- 2. ACTIVE NAV HIGHLIGHT ---
-        window.addEventListener('scroll', () => {
-            const sections = document.querySelectorAll('section[id]');
-            const navLinks = document.querySelectorAll('nav a[href^="#"]');
-            
-            let current = '';
-            sections.forEach(sec => {
-                const sectionTop = sec.offsetTop;
-                if (window.scrollY >= sectionTop - 150) {
-                    current = sec.getAttribute('id');
-                }
-            });
-            
-            navLinks.forEach(link => {
-                link.classList.remove('text-blue-400');
-                if (link.getAttribute('href').includes(current) && current !== '') {
-                    link.classList.add('text-blue-400');
-                }
-            });
-        });
+    function updateSelectedCpaNote(){
+      const ex = cpaExamples.find(x=>x.k===cpaSelect.value);
+      const box = document.getElementById('selectedCpaNote');
+      if (ex) box.innerText = `${ex.note} (deposit ≥ $${ex.deposit}, bet ≥ $${ex.bet})`;
+    }
 
-        // --- 3. HERO SCROLL PARALLAX (JS Enhancement) ---
-        // While CSS handles the entrance, this adds the "move on scroll" feeling
-        window.addEventListener('scroll', () => {
-            const heroImage = document.getElementById('heroImage');
-            const scrollPosition = window.scrollY;
-            if(scrollPosition < 800) {
-                // Move image slower than scroll speed
-                heroImage.style.transform = `translateY(${scrollPosition * 0.4}px)`;
-            }
-        });
+    rateSelect.addEventListener('change', ()=>{ if (rateSelect.value === 'custom') customRate.style.display = 'inline-block'; else customRate.style.display = 'none'; updateCalculator(); });
+    customRate.addEventListener('input', updateCalculator);
+    modelSelect.addEventListener('change', ()=>{ updateCalculator(); highlightCPASection(); });
+    ftdInput.addEventListener('input', updateCalculator);
+    cpaSelect.addEventListener('change', ()=>{ updateCalculator(); renderCpaExamples(); });
+    revSlider.addEventListener('input', ()=>{ updateCalculator(); updateSliderUI(); });
 
-        // --- 4. CALCULATOR LOGIC ---
-        let currentMultiplier = 2.0; // Default: Africa
+    function getSelectedRate(){
+      if (rateSelect.value === 'custom'){
+        const v = Number(customRate.value);
+        return (v > 0) ? v : 25;
+      }
+      return Number(rateSelect.value);
+    }
 
-        const slider = document.getElementById('depositSlider');
-        const depositDisplay = document.getElementById('depositAmt');
-        const bonusDisplay = document.getElementById('bonusAmt');
-        const totalDisplay = document.getElementById('totalAmt');
+    // initial render of CPA examples
+    renderCpaExamples();
 
-        function updateCalc() {
-            const deposit = parseInt(slider.value);
-            const bonus = Math.floor(deposit * currentMultiplier);
-            const total = deposit + bonus;
+    function updateCalculator(){
+      const revenue = Number(revSlider.value);
+      const rate = getSelectedRate();
 
-            depositDisplay.innerText = deposit;
-            bonusDisplay.innerText = bonus;
-            totalDisplay.innerText = total;
-        }
+      // Revenue-share earning
+      const revResult = Math.round(revenue * (rate / 100));
 
-        function updateRegion(multiplier, el) {
-            currentMultiplier = multiplier;
-            // UI Toggle
-            document.querySelectorAll('.region-btn').forEach(btn => btn.classList.remove('active'));
-            el.classList.add('active');
-            
-            updateCalc();
-        }
+      // CPA earning
+      const ftds = Math.max(0, Number(ftdInput.value || 0));
+      const cpaValueMap = { '3':3, '4':4, '5':5, '7':7, '10':10 };
+      const cpaPer = cpaValueMap[cpaSelect.value] || 3;
+      const cpaTotal = Math.round(ftds * cpaPer);
 
-        function copyPromo() {
-            navigator.clipboard.writeText('WIKI28').then(() => {
-                const btn = event.target;
-                const originalText = btn.innerText;
-                btn.innerText = 'COPIED!';
-                btn.style.background = '#22c55e';
-                setTimeout(() => {
-                    btn.innerText = originalText;
-                    btn.style.background = '';
-                }, 2000);
-            });
-        }
+      // Hybrid: show both results
+      const model = modelSelect.value;
+      if (model === 'rev'){
+        payoutDisplay.innerText = '$' + revResult.toLocaleString();
+        cpaInfo.innerText = '';
+      } else if (model === 'cpa'){
+        payoutDisplay.innerText = '$' + cpaTotal.toLocaleString();
+        cpaInfo.innerText = `CPA: ${ftds} FTDs × $${cpaPer} = $${cpaTotal.toLocaleString()}`;
+      } else {
+        payoutDisplay.innerText = '$' + (revResult + cpaTotal).toLocaleString();
+        cpaInfo.innerText = `RevShare: $${revResult.toLocaleString()} + CPA: $${cpaTotal.toLocaleString()} = $${(revResult + cpaTotal).toLocaleString()}`;
+      }
 
-        function triggerConfetti() {
-            confetti({
-                particleCount: 150,
-                spread: 70,
-                origin: { y: 0.6 },
-                colors: ['#1e90ff', '#ffffff', '#00d2ff']
-            });
-            
-            setTimeout(() => {
-                window.open('https://1xbet.com', '_blank');
-            }, 1000);
-        }
+      revVal.innerText = '$' + revenue.toLocaleString();
+      tierInfo.innerText = `(Commission: ${rate}%)`; // important: calculator only shows commission, not tiers
 
-        slider.addEventListener('input', updateCalc);
-        updateCalc();
-    </script>
+      // persist slider value
+      localStorage.setItem('zayn_revenue', revenue);
+      updateSelectedCpaNote();
+    }
+
+    // Slider UI: update filled track, tooltip position & thumb pulse
+    function updateSliderUI(){
+      const min = Number(revSlider.min); const max = Number(revSlider.max); const val = Number(revSlider.value);
+      const pct = ((val - min) / (max - min)) * 100;
+      // set track gradient
+      revSlider.style.background = `linear-gradient(90deg, var(--accent) ${pct}%, #0b1220 ${pct}%)`;
+
+      // position tooltip
+      const wrap = revSlider.getBoundingClientRect();
+      const parent = revSlider.parentElement.getBoundingClientRect();
+      // compute left percent relative to parent width
+      const left = (pct / 100) * (wrap.width) + (wrap.left - parent.left);
+      // set tooltip and thumb pulse
+      sliderTool.style.left = `${left}px`;
+      sliderTool.innerText = `$${Number(val).toLocaleString()}`;
+      sliderTool.classList.add('visible');
+
+      // position pulse and show when dragging or recently moved
+      thumbPulse.style.left = `${left}px`;
+      thumbPulse.style.display = 'block';
+
+      // small auto-hide after short idle when not dragging
+      clearTimeout(window._sliderTooltipHide);
+      window._sliderTooltipHide = setTimeout(()=> {
+        sliderTool.classList.remove('visible');
+        // keep pulse subtle
+        thumbPulse.style.display = 'none';
+        document.body.classList.remove('dragging');
+      }, 900);
+    }
+
+    // drag / pointer events for nicer interaction & accessibility
+    let isDown = false;
+    revSlider.addEventListener('pointerdown', (e) => {
+      isDown = true; document.body.classList.add('dragging');
+      sliderTool.classList.add('visible'); thumbPulse.style.display = 'block';
+    });
+    document.addEventListener('pointerup', (e) => {
+      if (!isDown) return;
+      isDown = false; document.body.classList.remove('dragging');
+      // hide after short delay (handled in updateSliderUI)
+    });
+
+    // show tooltip on focus too (keyboard users)
+    revSlider.addEventListener('focus', ()=> { sliderTool.classList.add('visible'); updateSliderUI(); });
+    revSlider.addEventListener('blur', ()=> { sliderTool.classList.remove('visible'); thumbPulse.style.display='none'; });
+
+    // initial UI sync
+    updateSliderUI();
+    updateCalculator();
+
+    // highlight CPA examples when model is CPA or Hybrid
+    function highlightCPASection(){
+      if (modelSelect.value === 'rev') {
+        cpaExamplesEl.style.opacity = '0.55';
+      } else {
+        cpaExamplesEl.style.opacity = '1';
+      }
+    }
+    highlightCPASection();
+
+    // Tier cards: open modal only (NO interaction with calculator)
+    const tierCards = document.querySelectorAll('.tier-card');
+    function openTierModalWith(card){
+      const tier = card.dataset.tier;
+      const rate = card.dataset.rate;
+      const min = Number(card.dataset.min);
+      const max = Number(card.dataset.max);
+      document.getElementById('tierModalTitle').innerText = `${tier.charAt(0).toUpperCase()+tier.slice(1)} — ${rate === 'negotiable' ? 'Negotiable' : rate + '%'}`;
+      const ftdMin = card.dataset.ftdMin;
+      const ftdMax = card.dataset.ftdMax === '999999999' ? '∞' : card.dataset.ftdMax;
+      document.getElementById('tierModalBody').innerHTML = `
+        <p><strong>Tier:</strong> ${tier}</p>
+        <p><strong>Rate:</strong> ${rate === 'negotiable' ? 'Negotiable — contact us' : rate + '%'}</p>
+        <p class="mt-2"><strong>Monthly NGR:</strong> ${min.toLocaleString()} — ${max === 999999999 ? '∞' : max.toLocaleString()}</p>
+        <p class="mt-2"><strong>FTD requirement:</strong> ${ftdMin} — ${ftdMax}</p>
+        <p class="mt-2"><strong>Support:</strong> Direct support from Zayn (text only)</p>
+        <hr class="my-3 border-white/10">
+        <p>Perks & supports:</p>
+        <ul class="list-disc ml-5 mt-2">
+          <li>Dedicated onboarding</li>
+          <li>Performance optimisation tips</li>
+          <li>Sub-affiliate tools</li>
+        </ul>
+        <p class="mt-3 text-xs text-white/60">Note: FTD thresholds and CPA offers can be adjusted by region.</p>
+      `;
+      document.getElementById('tierModal').classList.remove('hidden'); document.getElementById('tierModal').classList.add('flex');
+    }
+
+    tierCards.forEach(card=>{
+      card.addEventListener('click', ()=> openTierModalWith(card));
+      card.addEventListener('keydown', (e)=>{ if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openTierModalWith(card); } });
+    });
+
+    // modal controls
+    document.getElementById('closeTierModal').addEventListener('click', ()=> { document.getElementById('tierModal').classList.add('hidden'); document.getElementById('tierModal').classList.remove('flex'); });
+    document.getElementById('tierCloseBtn').addEventListener('click', ()=> { document.getElementById('tierModal').classList.add('hidden'); document.getElementById('tierModal').classList.remove('flex'); });
+
+    // Request Info (Text only)
+    const handle = 'ZAYN1x';
+    function openTelegramDM(prefill){
+      const text = encodeURIComponent(prefill || "Hi Zayn, I want more info about the affiliate program and tiers. Please text me details.");
+      const tgLink = `https://t.me/${handle}?text=${text}`;
+      window.open(tgLink, '_blank', 'noopener');
+    }
+    document.getElementById('tierCallBtn').addEventListener('click', ()=> {
+      const title = document.getElementById('tierModalTitle').innerText;
+      openTelegramDM(`Hi Zayn, I'm interested in ${title}. Please text me more info.`);
+    });
+
+    // contact area
+    document.getElementById('dmZayn').addEventListener('click', ()=> openTelegramDM());
+    document.getElementById('sendMsgBtn').addEventListener('click', ()=> {
+      const name = document.getElementById('nameInput').value.trim() || 'Friend';
+      const contact = document.getElementById('contactInput').value.trim() || '';
+      const msg = document.getElementById('messageInput').value.trim() || '';
+      if (!contact && !msg) { toast('Please add contact or a short message.'); return; }
+      const text = encodeURIComponent(`Name: ${name}\nContact: ${contact}\nMessage: ${msg}`);
+      const tgLink = `https://t.me/${handle}?text=${text}`;
+      try { window.open(tgLink, '_blank', 'noopener'); toast('Opened Telegram — sending message...'); } catch (e) { window.location.href = `mailto:support@zayn1x.example?subject=Affiliate%20Inquiry&body=${text}`; }
+    });
+
+    // download guide (fallback logic)
+    document.getElementById('downloadPdf').addEventListener('click', ()=> {
+      const url = 'assets/affiliate_en.pdf';
+      fetch(url, {method:'HEAD'}).then(r => {
+        if (r.ok) window.open(url, '_blank'); else { toast('Guide not found locally — opening sample'); window.open('https://example.com/affiliate_en.pdf', '_blank'); }
+      }).catch(()=> window.open('https://example.com/affiliate_en.pdf', '_blank'));
+    });
+
+    // open forms
+    window.openForm = function(lang){
+      const urls = { EN: "https://forms.gle/jdWbKvg8qbRqXomi9", AR: "https://forms.gle/LijfMVsGhbnLVKwo8", FR: "https://forms.gle/fp7rofvUAo1PEoCu7", TR: "https://forms.gle/5c6zrjN3JrQuzhtz9" };
+      const target = urls[lang] || urls.EN; window.open(target, '_blank', 'noopener');
+    }
+
+    function openContact(){ document.getElementById('contact')?.scrollIntoView({behavior:'smooth'}); }
+    function scrollToApply(){ document.getElementById('apply')?.scrollIntoView({behavior:'smooth'}); }
+    document.getElementById('navContact')?.addEventListener('click', openContact);
+
+    // small hint
+    setTimeout(()=> toast('Tip: Calculator is independent — it estimates earnings only.'), 1200);
+  </script>
 </body>
 </html>
